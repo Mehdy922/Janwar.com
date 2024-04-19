@@ -9,15 +9,17 @@ export default function Navbar(props) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   return (
     <>
-      <nav className="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-black shadow">
-        <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
+      <nav className="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-black bg-opacity-70 backdrop-blur-md shadow">
+        <div className="container px-4 mx-auto flex flex-wrap items-center justify-between backdrop-blur-lg bg-opacity-75">
           <div className="w-1/4 relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <Link
               to="/home"
               className="text-blueGray-100 text-lg font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
             >
-              AutoSim
+            Janwar
             </Link>
+
+
             
           </div>
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">

@@ -16,7 +16,7 @@ export default function Navbar() {
               to="/user/dashboard"
               className="text-blueGray-100 text-lg font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
             >
-              AutoSim
+              Janwar
             </Link>
             
           </div>
