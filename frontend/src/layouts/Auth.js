@@ -8,7 +8,7 @@ import FooterSmall from "components/Footers/FooterSmall.js";
 
 // views
 
-import Login from "views/auth/Login.js";
+import Login from "views/auth/Login.jsx";
 import Register from "views/auth/Register.js";
 
 export default function Auth() {
