@@ -11,7 +11,7 @@ export default function FooterAdmin() {
               <div className="text-sm text-blueGray-500 font-semibold py-1 text-center md:text-left">
                 Copyright © {new Date().getFullYear()}{" "}
                 <button className="hover:text-blueGray-700 text-sm font-semibold py-1">
-                  Asad, Sultan & Mudesser
+                  Hasnain, Umair and Mehdy
                 </button>
               </div>
             </div>
