@@ -1,4 +1,4 @@
-import { PageWrapper } from "../../styles/styles";
+import { PageWrapper } from "../../styles/styles.js";
 import Footer from "../footer/Footer";
 import AuthHeader from "../header/AuthHeader";
 import { Outlet } from "react-router-dom";

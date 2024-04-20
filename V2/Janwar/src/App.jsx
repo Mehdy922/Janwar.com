@@ -5,17 +5,17 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { Outlet } from 'react-router-dom'
 
-import BaseLayout from "./components/layout/BaseLayout";
-import AuthLayout from "./components/layout/AuthLayout";
-import { GlobalStyles } from "./styles/global/GlobalStyles";
+import BaseLayout from "./components/layout/BaseLayout.jsx";
+import AuthLayout from "./components/layout/AuthLayout.jsx";
+import { GlobalStyles } from "./styles/global/GlobalStyles.js";
 // auth pages
-import SignIn from "./screens/auth/SignInScreen";
-import SignUp from "./screens/auth/SignUpScreen";
-import Reset from "./screens/auth/ResetScreen";
-import ChangePassword from "./screens/auth/ChangePasswordScreen";
-import CheckMail from "./screens/auth/CheckMailScreen";
-import Verification from "./screens/auth/VerificationScreen";
-import NotFound from "./screens/error/NotFoundScreen";
+import SignIn from "./pages/auth/SignInScreen";
+import SignUp from "./pages/auth/SignUpScreen";
+import Reset from "./pages/auth/ResetScreen";
+import ChangePassword from "./pages/auth/ChangePasswordScreen";
+import CheckMail from "./pages/auth/CheckMailScreen";
+import Verification from "./pages/auth/VerificationScreen";
+import NotFound from "./pages/error/NotFoundScreen";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -26,7 +26,7 @@ function App() {
         <Router>
           <GlobalStyles />
           <Routes>
-              {/* auth screens */}
+              {/* auth pages */}
               <Route path="/" element={<AuthLayout />}>
               <Route path="sign_in" element={<SignIn />} />
               <Route path="sign_up" element={<SignUp />} />

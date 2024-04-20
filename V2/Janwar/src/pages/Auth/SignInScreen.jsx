@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import { FormGridWrapper, FormTitle } from "../../styles/form_grid";
-import { Container } from "../../styles/styles";
-import { staticImages } from "../../utils/images";
-import AuthOptions from "../../components/auth/AuthOptions";
-import { FormElement, Input } from "../../styles/form";
-import PasswordInput from "../../components/auth/PasswordInput";
+import { FormGridWrapper, FormTitle } from "../../styles/form_grid.js";
+import { Container } from "../../styles/styles.js";
+import { staticImages } from "../../utils/images.js";
+import AuthOptions from "../../components/auth/AuthOptions.jsx";
+import { FormElement, Input } from "../../styles/form.js";
+import PasswordInput from "../../components/auth/PasswordInput.jsx";
 import { Link } from "react-router-dom";
-import { BaseButtonBlack } from "../../styles/button";
-import { breakpoints, defaultTheme } from "../../styles/themes/default";
+import { BaseButtonBlack } from "../../styles/button.js";
+import { breakpoints, defaultTheme } from "../../styles/themes/default.js";
 
 const SignInScreenWrapper = styled.section`
   .form-separator {
