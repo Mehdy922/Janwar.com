@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from "./screens/home/HomeScreen";
 import './App.css';
 
+//import Home from "./screens/home/HomeScreen";
 import BaseLayout from './components/layout/BaseLayout.jsx';
 import AuthLayout from './components/layout/AuthLayout.jsx';
 import { GlobalStyles } from './styles/global/GlobalStyles.js';
@@ -20,8 +22,13 @@ function App() {
       <Router>
         <GlobalStyles />
         <Routes>
-          {/* Auth pages */}
-          <Route path="/" element={<AuthLayout />}>
+          {/* main screens */}
+          <Route path="/" element={<BaseLayout />}>
+            <Route index element={<Home />} />
+            </Route>
+
+            {/* auth screens */}
+            <Route path="/" element={<AuthLayout />}>
             <Route path="sign_in" element={<SignIn />} />
             <Route path="sign_up" element={<SignUp />} />
             <Route path="reset" element={<Reset />} />
@@ -29,6 +36,7 @@ function App() {
             <Route path="check_mail" element={<CheckMail />} />
             <Route path="verification" element={<Verification />} />
           </Route>
+          
   
           {/* Base layout or other routes can be added here */}
           {/* <Route path="/base" element={<BaseLayout />} /> */}
