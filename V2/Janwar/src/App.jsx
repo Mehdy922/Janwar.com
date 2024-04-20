@@ -29,11 +29,6 @@ function App() {
             <Route path="check_mail" element={<CheckMail />} />
             <Route path="verification" element={<Verification />} />
           </Route>
-  
-          {/* Base layout or other routes can be added here */}
-          {/* <Route path="/base" element={<BaseLayout />} /> */}
-
-          {/* Error route */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
