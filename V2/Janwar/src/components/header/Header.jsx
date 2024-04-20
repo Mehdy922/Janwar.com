@@ -140,7 +140,7 @@ const Header = () => {
                   alt="site logo"
                 />
               </div>
-              <span className="site-brand-text text-outerspace">achats.</span>
+              <span className="site-brand-text text-outerspace">Janwar</span>
             </SiteBrandWrapper>
           </div>
           <NavigationAndSearchWrapper className="flex items-center">

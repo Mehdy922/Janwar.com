@@ -185,7 +185,7 @@ const Footer = () => {
           <p className="text-base text-white">
             Copyright &copy; 2023 &nbsp;
             <Link to="/" className="text-white">
-              Achats site
+              Janwar.com
             </Link>
             &nbsp;. All rights reserved.
           </p>
