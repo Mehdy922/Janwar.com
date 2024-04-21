@@ -22,6 +22,7 @@ import Accessories from "./screens/product/Accessories.jsx";
 import ProductDetailsAccessories from "./screens/product/ProductDetailsAccessories.jsx";
 import ProductDetailsBuy from "./screens/product/ProductDetailsBuy.jsx";
 import ProductDetailsAdopt from "./screens/product/ProductDetailsAdopt.jsx";
+import Cart from "./screens/cart/CartScreen";
 
 
 function App() {
@@ -36,9 +37,10 @@ function App() {
             <Route path="/buy" element={<BuyPet />} />
             <Route path="/adopt" element={<AdoptPet />} />
             <Route path="/accessories" element={<Accessories />} />
-            <Route path="/productdetailsaccessories" element={<ProductDetailsAccessories />} />
-            <Route path="/productdetailsbuy" element={<ProductDetailsBuy />} />
-            <Route path="/productdetailsadopt" element={<ProductDetailsAdopt />} />
+            <Route path="/product/accessories/details" element={<ProductDetailsAccessories />} />
+            <Route path="/product/buy/details" element={<ProductDetailsBuy />} />
+            <Route path="/product/adopt/details" element={<ProductDetailsAdopt />} />
+            <Route path="/cart" element={<Cart />} />
             </Route>
 
             {/* auth screens */}
