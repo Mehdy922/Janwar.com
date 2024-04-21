@@ -1,5 +1,6 @@
 import { staticImages } from "../utils/images";
-
+import BuyPet from "../screens/product/BuyPet.jsx";
+import AdoptPet from "../screens/product/AdoptPet.jsx";
 const navMenuData = [
   {
     id: "nav-menu-1",
@@ -8,17 +9,17 @@ const navMenuData = [
   },
   {
     id: "nav-menu-2",
-    menuLink: "/",
+    menuLink: "/buy",
     menuText: "Buy Pets",
   },
   {
     id: "nav-menu-3",
-    menuLink: "/",
+    menuLink: "/adopt",
     menuText: "Adopt Pets",
   },
   {
     id: "nav-menu-4",
-    menuLink: "/",
+    menuLink: "/accessories",
     menuText: "Buy Accessories",
   },
   {
@@ -487,39 +488,35 @@ const cartItems = [
 const ProductFilterList = [
   {
     id: "prod_filter_1",
-    title: "Tops",
+    title: "Dogs",
   },
   {
     id: "prod_filter_2",
-    title: "Printed T-shirts",
+    title: "Cats",
   },
   {
     id: "prod_filter_3",
-    title: "Plain T-shirts",
+    title: "Birds",
   },
   {
     id: "prod_filter_4",
-    title: "Kurti",
+    title: "Fishes",
   },
   {
     id: "prod_filter_5",
-    title: "Boxers",
+    title: "Reptiles",
   },
   {
     id: "prod_filter_6",
-    title: "Full sleeve T-shirts",
+    title: "Exotic Pets",
   },
   {
     id: "prod_filter_7",
-    title: "Joggers",
+    title: "Small mammals",
   },
   {
     id: "prod_filter_8",
-    title: "Payjamas",
-  },
-  {
-    id: "prod_filter_9",
-    title: "Jeans",
+    title: "Farm animals",
   },
 ];
 

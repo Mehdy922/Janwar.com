@@ -16,7 +16,6 @@ const ProductFilter = () => {
   const [isPriceFilterOpen, setPriceFilterOpen] = useState(true);
   const [isColorFilterOpen, setColorFilterOpen] = useState(true);
   const [isSexFilterOpen, setSexFilterOpen] = useState(true);
-  const [isStyleFilterOpen, setStyleFilterOpen] = useState(true);
 
   const toggleFilter = (filter) => {
     switch (filter) {
@@ -32,9 +31,6 @@ const ProductFilter = () => {
       case "Sex":
         setSexFilterOpen(!isSexFilterOpen);
         break;
-      // case "style":
-      //   setStyleFilterOpen(!isStyleFilterOpen);
-      //   break;
       default:
         break;
     }
@@ -175,7 +171,7 @@ const ProductFilter = () => {
         </FilterWrap>
       </PriceFilter>
 
-      {/* <ColorsFilter>
+      <ColorsFilter>
         <FilterTitle
           className="flex items-center justify-between"
           onClick={() => toggleFilter("color")}
@@ -243,7 +239,7 @@ const ProductFilter = () => {
             </div>
           </div>
         </FilterWrap>
-      </ColorsFilter> */}
+      </ColorsFilter>
       <SexFilter>
         <FilterTitle
           className="flex items-center justify-between"
