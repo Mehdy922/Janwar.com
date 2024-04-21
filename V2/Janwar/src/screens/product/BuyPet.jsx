@@ -89,7 +89,9 @@ const DescriptionContent = styled.div`
 const BuyPet = () => {
   const breadcrumbItems = [
     { label: "Home", link: "/" },
-    { label: "Products", link: "" },
+
+    { label: "Products", link: "/buy" },
+
   ];
   return (
     <main className="page-py-spacing">
