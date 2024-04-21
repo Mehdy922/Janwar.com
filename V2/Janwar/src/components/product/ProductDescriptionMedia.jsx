@@ -86,7 +86,7 @@ const ProductDescriptionMedia = () => {
     <DescriptionMediaWrapper>
       <video className="w-full h-full" loop muted ref={mediaVideoRef}>
         <source src={preview_video} type="video/mp4"></source>
-        Your browser does not support the video tag.
+        German Shepard
       </video>
       <button
         type="button"
@@ -96,7 +96,7 @@ const ProductDescriptionMedia = () => {
         <img src={staticImages.play_icon} alt="play icon" />
       </button>
       <h4 className="media-title text-white text-xl font-medium text-center">
-        Raven Hoodie with black colored design
+        German Shepard
       </h4>
     </DescriptionMediaWrapper>
   );
