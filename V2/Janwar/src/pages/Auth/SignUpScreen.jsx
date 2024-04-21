@@ -46,7 +46,6 @@ const SignUpScreen = () => {
                   Sign up for free to access to in any of our products
                 </p>
               </FormTitle>
-              <AuthOptions />
               <form>
                 <FormElement>
                   <label htmlFor="" className="forme-elem-label">
@@ -59,7 +58,6 @@ const SignUpScreen = () => {
                     className="form-elem-control"
                   />
                   <span className="form-elem-error">
-                    *Please enter valid email address.
                   </span>
                 </FormElement>
                 <PasswordInput fieldName="Password" name="password" />
