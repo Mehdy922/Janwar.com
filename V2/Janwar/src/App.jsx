@@ -33,6 +33,7 @@ function App() {
             <Route path="/buy" element={<BuyPet />} />
             <Route path="/adopt" element={<AdoptPet />} />
             <Route path="/accessories" element={<Accessories />} />
+            <Route path="/productdetails" element={<ProductDetails />} />
             </Route>
 
             {/* auth screens */}
