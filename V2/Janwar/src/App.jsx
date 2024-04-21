@@ -19,7 +19,10 @@ import NotFound from './pages/error/NotFoundScreen';
 import BuyPet from "./screens/product/BuyPet.jsx";
 import AdoptPet from "./screens/product/AdoptPet.jsx";
 import Accessories from "./screens/product/Accessories.jsx";
-import ProductDetails from "./screens/product/ProductDetailsScreen";
+import ProductDetailsAccessories from "./screens/product/ProductDetailsAccessories.jsx";
+import ProductDetailsBuy from "./screens/product/ProductDetailsBuy.jsx";
+import ProductDetailsAdopt from "./screens/product/ProductDetailsAdopt.jsx";
+
 
 function App() {
   return (
@@ -33,7 +36,9 @@ function App() {
             <Route path="/buy" element={<BuyPet />} />
             <Route path="/adopt" element={<AdoptPet />} />
             <Route path="/accessories" element={<Accessories />} />
-            <Route path="/productdetails" element={<ProductDetails />} />
+            <Route path="/productdetailsaccessories" element={<ProductDetailsAccessories />} />
+            <Route path="/productdetailsbuy" element={<ProductDetailsBuy />} />
+            <Route path="/productdetailsadopt" element={<ProductDetailsAdopt />} />
             </Route>
 
             {/* auth screens */}
