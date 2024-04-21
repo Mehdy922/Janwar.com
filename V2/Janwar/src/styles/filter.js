@@ -198,7 +198,7 @@ export const ColorsFilter = styled.div`
   }
 `;
 
-export const SizesFilter = styled.div`
+export const SexFilter = styled.div`
   .sizes-list {
     gap: 12px;
     grid-template-columns: repeat(auto-fill, minmax(60px, 60px));
