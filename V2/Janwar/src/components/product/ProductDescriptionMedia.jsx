@@ -86,7 +86,9 @@ const ProductDescriptionMedia = () => {
     <DescriptionMediaWrapper>
       <video className="w-full h-full" loop muted ref={mediaVideoRef}>
         <source src={preview_video} type="video/mp4"></source>
+
         German Shepard
+
       </video>
       <button
         type="button"
@@ -96,7 +98,9 @@ const ProductDescriptionMedia = () => {
         <img src={staticImages.play_icon} alt="play icon" />
       </button>
       <h4 className="media-title text-white text-xl font-medium text-center">
+
         German Shepard
+
       </h4>
     </DescriptionMediaWrapper>
   );

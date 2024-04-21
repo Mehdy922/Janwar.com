@@ -86,12 +86,10 @@ const DescriptionContent = styled.div`
   }
 `;
 
-const BuyPet = () => {
+const ProductListScreen = () => {
   const breadcrumbItems = [
     { label: "Home", link: "/" },
-
-    { label: "Products", link: "/buy" },
-
+    { label: "Products", link: "" },
   ];
   return (
     <main className="page-py-spacing">
@@ -103,7 +101,7 @@ const BuyPet = () => {
           </ProductsContentLeft>
           <ProductsContentRight>
             <div className="products-right-top flex items-center justify-between">
-              <h4 className="text-xxl">Buy Pets</h4>
+              <h4 className="text-xxl">Women&apos;s Clothing</h4>
               <ul className="products-right-nav flex items-center justify-end flex-wrap">
                 <li>
                   <Link to="/" className="active text-lg font-semibold">
@@ -124,24 +122,36 @@ const BuyPet = () => {
       <Section>
         <Container>
           <DescriptionContent>
-            <Title titleText={"Find Your Perfect Pet Companion on Janwar"} />
+            <Title titleText={"Clothing for Everyone Online"} />
             <ContentStylings className="text-base content-stylings">
-              <h4> Meet Your New Pet Pal on Janwar</h4>
+              <h4>Reexplore Clothing Collection Online at Achats.</h4>
               <p>
-              Looking to add a new member to your family? Explore our diverse selection of pets available for purchase on Janwar. Whether you're looking for a loyal canine companion, a purring feline friend, or a colorful feathered buddy, we have a wide range of breeds and species to choose from. Our platform makes it easy to browse through listings, connect with reputable breeders and sellers, and find the perfect pet that matches your lifestyle and preferences.
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed,
+                molestiae ex atque similique consequuntur ipsum sapiente
+                inventore magni ducimus sequi nemo id, numquam officiis fugit
+                pariatur esse, totam facere ullam?
               </p>
               <p>
-              At Janwar, we prioritize the well-being and happiness of both pets and their future owners. Each listing is carefully vetted to ensure ethical breeding practices and responsible pet ownership. Plus, our user-friendly interface and secure payment options provide a seamless and trustworthy shopping experience.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Consequatur nam magnam placeat nesciunt ipsa amet, vel illo
+                veritatis eligendi voluptatem!
               </p>
               <h4>
-                Find Your Furry Friend Today
+                One-stop Destination to Shop Every Clothing for Everyone:
+                Achats.
               </h4>
               <p>
-              Discover the joy of pet ownership with Janwar. Start your search today and find your furry, feathered, or scaled companion that will bring love, laughter, and companionship into your life.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
+                iure doloribus optio aliquid id. Quos quod delectus, dolor est
+                ab exercitationem odio quae quas qui doloremque. Esse natus
+                minima ratione reiciendis nostrum, quam, quisquam modi aut,
+                neque hic provident dolorem.
               </p>
               <p>
-              Your Pet Journey Starts Here.
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi
+                laborum dolorem deserunt aperiam voluptate mollitia.
               </p>
+              <Link to="/">See More</Link>
             </ContentStylings>
           </DescriptionContent>
         </Container>
@@ -150,4 +160,4 @@ const BuyPet = () => {
   );
 };
 
-export default BuyPet;
+export default ProductListScreen;

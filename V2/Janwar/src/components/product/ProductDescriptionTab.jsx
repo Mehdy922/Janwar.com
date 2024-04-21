@@ -126,7 +126,9 @@ const ProductDescriptionTab = () => {
   };
   return (
     <DetailsContent>
+
       <Title titleText={"German Shepherd Description"} />
+
       <div className="details-content-wrapper grid">
         <DescriptionTabsWrapper>
           <div className="tabs-heads flex items-center flex-wrap">
@@ -164,6 +166,7 @@ const ProductDescriptionTab = () => {
             >
               <ContentStylings>
                 <p>
+
                   The German Shepherd is a loyal, intelligent, and courageous breed known for its versatility. These dogs are highly trainable and excel in various tasks such as search and rescue, police work, and herding.
                 </p>
                 <h4>Specifications:</h4>
@@ -177,6 +180,7 @@ const ProductDescriptionTab = () => {
                 </ul>
                 <p>
                   *Important: Please make sure that the mobile number is filled
+
                 </p>
               </ContentStylings>
             </div>

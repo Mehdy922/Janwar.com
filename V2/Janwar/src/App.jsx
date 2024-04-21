@@ -25,6 +25,8 @@ import ProductDetailsAdopt from "./screens/product/ProductDetailsAdopt.jsx";
 import Cart from "./screens/cart/CartScreen";
 
 
+
+
 function App() {
   return (
     <>
@@ -37,10 +39,12 @@ function App() {
             <Route path="/buy" element={<BuyPet />} />
             <Route path="/adopt" element={<AdoptPet />} />
             <Route path="/accessories" element={<Accessories />} />
+
             <Route path="/product/accessories/details" element={<ProductDetailsAccessories />} />
             <Route path="/product/buy/details" element={<ProductDetailsBuy />} />
             <Route path="/product/adopt/details" element={<ProductDetailsAdopt />} />
             <Route path="/cart" element={<Cart />} />
+
             </Route>
 
             {/* auth screens */}
