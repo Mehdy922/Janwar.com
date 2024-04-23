@@ -35,7 +35,7 @@ function App() {
         <Routes>
           {/* main screens */}
           <Route path="/" element={<BaseLayout />}>
-            <Route index element={<Home />} />
+          <Route path="/home" element={<Home />} />
             <Route path="/buy" element={<BuyPet />} />
             <Route path="/adopt" element={<AdoptPet />} />
             <Route path="/accessories" element={<Accessories />} />
@@ -49,6 +49,7 @@ function App() {
 
             {/* auth screens */}
             <Route path="/" element={<AuthLayout />}>
+            <Route index element={<SignIn />} />
             <Route path="sign_in" element={<SignIn />} />
             <Route path="sign_up" element={<SignUp />} />
             <Route path="reset" element={<Reset />} />
