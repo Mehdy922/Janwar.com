@@ -32,7 +32,7 @@ const navMenuData = [
 const sideMenuData = [
   {
     id: "side-menu-1",
-    menuLink: "/",
+    menuLink: "/home",
     menuText: "Home",
     iconName: "house",
   },
