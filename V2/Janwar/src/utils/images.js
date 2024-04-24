@@ -99,9 +99,9 @@ import shipping_icon from "../assets/icons/shipping_icon.svg";
 import return_icon from "../assets/icons/return_icon.svg";
 
 // cart images
-import cart1 from "../assets/images/cart1.png";
-import cart2 from "../assets/images/cart2.png";
-import cart3 from "../assets/images/cart3.png";
+import cart1 from "../assets/images/cart1.jpg";
+import cart2 from "../assets/images/cart2.jpg";
+import cart3 from "../assets/images/cart3.jpg";
 import play_icon from "../assets/icons/play_icon.svg";
 
 // error

@@ -23,6 +23,7 @@ import ProductDetailsAccessories from "./screens/product/ProductDetailsAccessori
 import ProductDetailsBuy from "./screens/product/ProductDetailsBuy.jsx";
 import ProductDetailsAdopt from "./screens/product/ProductDetailsAdopt.jsx";
 import Cart from "./screens/cart/CartScreen";
+import Checkout from "./screens/checkout/CheckoutScreen";
 
 
 
@@ -44,6 +45,7 @@ function App() {
             <Route path="/product/buy/details" element={<ProductDetailsBuy />} />
             <Route path="/product/adopt/details" element={<ProductDetailsAdopt />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<Checkout />} />
 
             </Route>
 
