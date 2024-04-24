@@ -9,13 +9,13 @@ import AuthLayout from './components/layout/AuthLayout.jsx';
 import { GlobalStyles } from './styles/global/GlobalStyles.js';
 
 // Auth pages
-import SignIn from './pages/auth/SignInScreen';
-import SignUp from './pages/auth/SignUpScreen';
-import Reset from './pages/auth/ResetScreen';
-import ChangePassword from './pages/auth/ChangePasswordScreen';
-import CheckMail from './pages/auth/CheckMailScreen';
-import Verification from './pages/auth/VerificationScreen';
-import NotFound from './pages/error/NotFoundScreen';
+import SignIn from './screens/auth/SignInScreen.jsx';
+import SignUp from './screens/auth/SignUpScreen.jsx';
+import Reset from './screens/auth/ResetScreen.jsx';
+import ChangePassword from './screens/auth/ChangePasswordScreen.jsx';
+import CheckMail from './screens/auth/CheckMailScreen.jsx';
+import Verification from './screens/auth/VerificationScreen.jsx';
+import NotFound from './screens/error/NotFoundScreen.jsx';
 import BuyPet from "./screens/product/BuyPet.jsx";
 import AdoptPet from "./screens/product/AdoptPet.jsx";
 import Accessories from "./screens/product/Accessories.jsx";
