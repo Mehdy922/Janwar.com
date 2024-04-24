@@ -725,7 +725,7 @@ const orderData = [
 const wishlistData = [
   {
     id: "wishlist_1",
-    name: "Blue Flower Print Crop Top",
+    name: "Sunconure",
     color: "yellow",
     quantity: 1,
     price: 29,
@@ -733,7 +733,7 @@ const wishlistData = [
   },
   {
     id: "wishlist_2",
-    name: "Yellow Flower Print Dress",
+    name: "Pineapple Conure",
     color: "yellow",
     quantity: 4,
     price: 40,
@@ -741,15 +741,15 @@ const wishlistData = [
   },
   {
     id: "wishlist_3",
-    name: "White Hoodie long sleeve",
-    color: "white",
+    name: "Rottwiler",
+    color: "black",
     quantity: 1,
     price: 123,
     imgSource: staticImages.wishitem3,
   },
   {
     id: "wishlist_4",
-    name: "Brown men’s long sleeve T-shirt",
+    name: "Persian Cat",
     color: "brown",
     quantity: 6,
     price: 42,
