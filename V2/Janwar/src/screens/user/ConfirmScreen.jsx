@@ -38,7 +38,7 @@ const ConfirmScreen = () => {
             <p className="text-4xl font-semibold text-outerspace">
               Your Order is Confirmed
             </p>
-            <BaseLinkGreen to="/">Continue Shopping</BaseLinkGreen>
+            <BaseLinkGreen to="/home">Continue Shopping</BaseLinkGreen>
           </div>
         </div>
       </Container>

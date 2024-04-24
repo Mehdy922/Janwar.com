@@ -80,7 +80,7 @@ const AccountScreen = () => {
                     <Input
                       type="text"
                       className="form-elem-control text-outerspace font-semibold"
-                      value="Richard Doe"
+                      value="Mehdy Hasnain"
                       readOnly
                     />
                     <button type="button" className="form-control-change-btn">
@@ -99,7 +99,7 @@ const AccountScreen = () => {
                     <Input
                       type="email"
                       className="form-elem-control text-outerspace font-semibold"
-                      value="richard@gmail.com"
+                      value="mehdy922@gmail.com"
                       readOnly
                     />
                     <button type="button" className="form-control-change-btn">
@@ -118,7 +118,7 @@ const AccountScreen = () => {
                     <Input
                       type="text"
                       className="form-elem-control text-outerspace font-semibold"
-                      value="+9686 6864 3434"
+                      value="+923178453636"
                       readOnly
                     />
                     <button type="button" className="form-control-change-btn">
@@ -153,7 +153,7 @@ const AccountScreen = () => {
               <div className="address-list grid">
                 <div className="address-item grid">
                   <p className="text-outerspace text-lg font-semibold address-title">
-                    Richard Doe
+                    Mehdy Hasnain
                   </p>
                   <p className="text-gray text-base font-medium address-description">
                     1/4 Watson Street Flat, East Coastal Road, Ohio City
@@ -185,7 +185,7 @@ const AccountScreen = () => {
 
                 <div className="address-item grid">
                   <p className="text-outerspace text-lg font-semibold address-title">
-                    Richard Doe
+                    Mehdy Hasnain
                   </p>
                   <p className="text-gray text-base font-medium address-description">
                     1/4 Watson Street Flat, East Coastal Road, Ohio City

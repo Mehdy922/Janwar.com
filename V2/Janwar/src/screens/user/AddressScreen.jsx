@@ -136,8 +136,10 @@ const AddressScreen = () => {
                     State*
                   </label>
                   <select className="form-elem-control" name="" id="">
-                    <option value="">State 1</option>
-                    <option value="">State 2</option>
+                    <option value="">Lahore</option>
+                    <option value="">Islamabad</option>
+                    <option value="">Faisalabad</option>
+                    <option value="">Karachi</option>
                   </select>
                 </FormElement>
                 <FormElement>
