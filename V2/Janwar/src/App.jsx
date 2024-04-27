@@ -19,7 +19,13 @@ import NotFound from './pages/error/NotFoundScreen';
 import BuyPet from "./screens/product/BuyPet.jsx";
 import AdoptPet from "./screens/product/AdoptPet.jsx";
 import Accessories from "./screens/product/Accessories.jsx";
-import ProductDetails from "./screens/product/ProductDetailsScreen";
+import ProductDetailsAccessories from "./screens/product/ProductDetailsAccessories.jsx";
+import ProductDetailsBuy from "./screens/product/ProductDetailsBuy.jsx";
+import ProductDetailsAdopt from "./screens/product/ProductDetailsAdopt.jsx";
+import Cart from "./screens/cart/CartScreen";
+
+
+
 
 function App() {
   return (
@@ -29,14 +35,21 @@ function App() {
         <Routes>
           {/* main screens */}
           <Route path="/" element={<BaseLayout />}>
-            <Route index element={<Home />} />
+          <Route path="/home" element={<Home />} />
             <Route path="/buy" element={<BuyPet />} />
             <Route path="/adopt" element={<AdoptPet />} />
             <Route path="/accessories" element={<Accessories />} />
+
+            <Route path="/product/accessories/details" element={<ProductDetailsAccessories />} />
+            <Route path="/product/buy/details" element={<ProductDetailsBuy />} />
+            <Route path="/product/adopt/details" element={<ProductDetailsAdopt />} />
+            <Route path="/cart" element={<Cart />} />
+
             </Route>
 
             {/* auth screens */}
             <Route path="/" element={<AuthLayout />}>
+            <Route index element={<SignIn />} />
             <Route path="sign_in" element={<SignIn />} />
             <Route path="sign_up" element={<SignUp />} />
             <Route path="reset" element={<Reset />} />

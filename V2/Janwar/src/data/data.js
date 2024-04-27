@@ -32,7 +32,7 @@ const navMenuData = [
 const sideMenuData = [
   {
     id: "side-menu-1",
-    menuLink: "/",
+    menuLink: "/home",
     menuText: "Home",
     iconName: "house",
   },
@@ -597,25 +597,15 @@ const servicesData = [
     text: "Secure Payment",
   },
   {
-    id: "service_2",
-    icon: staticImages.size_icon,
-    text: "Size & fit",
-  },
-  {
     id: "service_3",
     icon: staticImages.shipping_icon,
     text: "Free Shipping",
-  },
-  {
-    id: "service_4",
-    icon: staticImages.return_icon,
-    text: "Free Shipping & Returns",
   },
 ];
 
 const product_one = {
   id: "product_01",
-  title: "Raven Hoodie With Black Colored Design",
+  title: "German Shepherd",
   previewImages: [
     {
       id: "preview1",
@@ -639,10 +629,8 @@ const product_one = {
     },
   ],
   rating: 3.5,
-  comments_count: 120,
-  sizes: ["xs", "s", "m", "l", "xl"],
   colors: ["#3C4242", "#EDD146", "#EB84B0", "#9C1F35"],
-  price: 63.0,
+  price: 123.0,
 };
 
 const productDescriptionTabHeads = [
@@ -653,13 +641,7 @@ const productDescriptionTabHeads = [
     badgeValue: null,
     badgeColor: "",
   },
-  {
-    id: "tab-comments",
-    tabHead: "tabComments",
-    tabText: "User Comments",
-    badgeValue: 10,
-    badgeColor: "purple",
-  },
+
   {
     id: "tab-QNA",
     tabHead: "tabQNA",
