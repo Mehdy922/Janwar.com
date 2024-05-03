@@ -42,10 +42,12 @@ router.post('/send-email', async (req, res) => {
 router.post('/send-pass',async (req,res)=>{
 
    
-   let username = req.body.username;
+
+   let name = req.body.name;
    let email = req.body.email;
    let password = req.body.password;
-    
+
+   console.log(name,email,password);
     
     // Configure nodemailer with your email service provider
     let transporter = nodemailer.createTransport({
@@ -62,7 +64,7 @@ router.post('/send-pass',async (req,res)=>{
         to: email,
         subject: 'Greetings from Team Janwar!',
         html: `
-            <p>Dear ${username},</p>
+            <p>Dear ${name},</p>
 
             <p>We have received a password reset request from you:</p>
 
