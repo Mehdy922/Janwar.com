@@ -47,9 +47,9 @@ const ResetScreen = () => {
             </div>
             <div className="form-grid-right">
               <FormTitle>
-                <h3>Reset Your Password</h3>
+                <h3>Forgot Your Password ?</h3>
                 <p>
-                  Enter your email and we &apos;ll send you a link to reset your
+                  Enter your email and we &apos;ll send you you'r
                   password.
                 </p>
                 <p>Please check it.</p>

@@ -41,11 +41,7 @@ router.post('/send-email', async (req, res) => {
 
 router.post('/send-pass',async (req,res)=>{
 
-    console.log("Pass reset request received by backend:", req.body);
-    console.log("name:", req.body.name);
-    console.log("email:", req.body.email);
-    console.log("password:", req.body.password);
-
+   
    let username = req.body.username;
    let email = req.body.email;
    let password = req.body.password;
@@ -66,18 +62,18 @@ router.post('/send-pass',async (req,res)=>{
         to: email,
         subject: 'Greetings from Team Janwar!',
         html: `
-    <p>Dear ${username},</p>
+            <p>Dear ${username},</p>
 
-    <p>We have received a password reset request from you:</p>
+            <p>We have received a password reset request from you:</p>
 
-    <p>We thank you for contacting us. If you didn't initiate this request, please contact our team through email. Your password is:</p>
+            <p>We thank you for contacting us. If you didn't initiate this request, please contact our team through email. Your password is:</p>
 
-    <p><strong>${password}</strong></p>
+            <p><strong>${password}</strong></p>
 
-    <p>Don't have a good day, have a great day :)</p>
+            <p>Don't have a good day, have a great day :)</p>
 
-    <p>Regards,</p>
-    <p>The Janwar Team</p>
+            <p>Regards,</p>
+            <p>The Janwar Team</p>
 `
     };
 

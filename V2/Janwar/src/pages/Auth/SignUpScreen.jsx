@@ -12,6 +12,9 @@ import PasswordInput from "../../components/auth/PasswordInput";
 import { Link } from "react-router-dom";
 import { BaseButtonBlack } from "../../styles/button";
 
+import axios from "axios";
+import React, { useState } from "react";
+
 const SignUpScreenWrapper = styled.section`
   form {
     margin-top: 40px;
@@ -27,6 +30,37 @@ const SignUpScreenWrapper = styled.section`
 `;
 
 const SignUpScreen = () => {
+
+  const [contactData, setContactData] = useState({
+    name:"",
+    email: "",
+    password: "",
+    phone: "",
+    address: ""
+  });
+
+  const handleContactChange = (e) => {
+    setContactData({ ...contactData, [e.target.name]: e.target.value });
+  };
+
+  const register = async () => {
+    try {
+      console.log('Registering:', contactData);
+      const userObj = await axios.post('http://localhost:5050/user/register', contactData);
+      console.log('Response:', userObj);
+     if (userObj.status === 200) {
+        alert('User registered');
+      }
+      
+
+      
+    } catch (error) {
+      console.error('Error sending message:', error);
+      alert('User already exists');
+    }
+  };
+
+
   return (
     <SignUpScreenWrapper>
       <FormGridWrapper>
@@ -56,6 +90,7 @@ const SignUpScreen = () => {
                     placeholder="Enter your name"
                     name="name"
                     className="form-elem-control"
+                    onChange={handleContactChange}
                   />
                   <span className="form-elem-error">
                     {/* Add error message if needed */}
@@ -71,13 +106,26 @@ const SignUpScreen = () => {
                     placeholder="Enter your email"
                     name="email"
                     className="form-elem-control"
+                    onChange={handleContactChange}
                   />
                   <span className="form-elem-error">
                     {/* Add error message if needed */}
                   </span>
                 </FormElement>
 
-                <PasswordInput fieldName="Password" name="password" />
+                <FormElement>
+                  <label htmlFor="password" className="form-elem-label">
+                    Password
+                  </label>
+                  <Input
+                    type="password"
+                    placeholder=""
+                    name="password"
+                    className="form-elem-control"
+                    onChange={handleContactChange}
+                  />
+                </FormElement>
+
 
                 <span className="form-elem-text font-medium">
                   *Use 8 or more characters with a mix of letters, numbers &
@@ -92,6 +140,7 @@ const SignUpScreen = () => {
                     placeholder="Enter your phone number"
                     name="phone"
                     className="form-elem-control"
+                    onChange={handleContactChange}
                   />
                   <span className="form-elem-error">
                     {/* Add error message if needed */}
@@ -107,6 +156,7 @@ const SignUpScreen = () => {
                     placeholder="Enter your address"
                     name="address"
                     className="form-elem-control"
+                    onChange={handleContactChange}
                   />
                   <span className="form-elem-error">
                     {/* Add error message if needed */}
@@ -135,9 +185,13 @@ const SignUpScreen = () => {
                   </li>
                 </CheckboxGroup>
 
-                <BaseButtonBlack type="submit" className="form-submit-btn">
-                  Sign Up
-                </BaseButtonBlack>
+                <button
+                        className="form-submit-btn" 
+                        type="button"
+                        onClick={register}
+                      >
+                        Send
+                </button>
               </form>
               <p className="flex flex-wrap account-rel-text">
                 Already have an account?

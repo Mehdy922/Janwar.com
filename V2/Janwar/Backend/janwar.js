@@ -59,6 +59,31 @@ db_users.post("/Pass-reset", async (req, res) => {
   }
 });
 
+db_users.post("/register", async (req, res) => {
+  try {
+
+    console.log("Register request received:", req.body);
+    const collection = await db.collection("janwarUsers");
+
+    const query = { email: req.body.email };
+    const userexist = await collection.findOne(query);
+
+    if (!userexist) {
+    const user = await collection.insertOne(req.body);
+    res.status(200).send(user);
+    }
+    else{
+      console.log("User already exist");
+      res.status(404).send("User already exist");
+    }
+  } catch (error) {
+    console.error("Error during registration:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+
+
 
 
 
