@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { db_users, router_lang, router_user } from "./janwar.js";
+import { db_users} from "./janwar.js";
 import emailRoutes from "./emails.js";
 import bodyParser from 'body-parser';
 
@@ -25,9 +25,8 @@ app.use(cors(), function(req, res, next) {
 });
 
 app.use(express.json());
-app.use("/automata", db_users);
-app.use("/languages", router_lang);
-app.use("/users", router_user);
+app.use("/user", db_users);
+
 
 app.use(bodyParser.json());
 app.use('/email', emailRoutes);

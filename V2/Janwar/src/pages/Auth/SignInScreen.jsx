@@ -9,6 +9,9 @@ import { Link } from "react-router-dom";
 import { BaseButtonBlack } from "../../styles/button.js";
 import { breakpoints, defaultTheme } from "../../styles/themes/default.js";
 
+import axios from "axios";
+import React, { useState } from "react";
+
 const SignInScreenWrapper = styled.section`
   .form-separator {
     margin: 32px 0;
@@ -40,6 +43,35 @@ const SignInScreenWrapper = styled.section`
 `;
 
 const SignInScreen = () => {
+
+  const [contactData, setContactData] = useState({
+    email: "",
+    password: ""
+  });
+
+  const handleContactChange = (e) => {
+    setContactData({ ...contactData, [e.target.name]: e.target.value });
+  };
+
+  const login = async () => {
+    try {
+      console.log('Sending message:', contactData);
+      const userObj = await axios.post('http://localhost:5050/user/login', contactData);
+      console.log('Response:', userObj);
+     if (userObj.status === 200) {
+        localStorage.setItem('user_data', JSON.stringify(userObj.data));
+        window.location.href = "/home";
+      }
+
+      
+    } catch (error) {
+      console.error('Error sending message:', error);
+      alert('Failed to send message');
+    }
+  };
+
+ 
+
   return (
     <SignInScreenWrapper>
       <FormGridWrapper>
@@ -55,25 +87,43 @@ const SignInScreen = () => {
               <form>
                 <FormElement>
                   <label htmlFor="" className="form-elem-label">
-                    User name or email address
+                    Email address
                   </label>
                   <Input
-                    type="text"
+                    type="email"
                     placeholder=""
-                    name=""
+                    name="email"
                     className="form-elem-control"
+                    onChange={handleContactChange}
                   />
                 </FormElement>
-                <PasswordInput fieldName="Password" name="password" />
+
+                <FormElement>
+                  <label htmlFor="password" className="form-elem-label">
+                    Password
+                  </label>
+                  <Input
+                    type="password"
+                    placeholder=""
+                    name="password"
+                    className="form-elem-control"
+                    onChange={handleContactChange}
+                  />
+                </FormElement>
                 <Link
                   to="/reset"
                   className="form-elem-text text-end font-medium"
                 >
                   Forgot your password?
                 </Link>
-                <BaseButtonBlack type="submit" className="form-submit-btn">
-                  Sign In
-                </BaseButtonBlack>
+                <button
+                        className="form-submit-btn" 
+                        type="button"
+                        onClick={login}
+                      >
+                        Sign In
+                </button>
+                
               </form>
               <p className="flex flex-wrap account-rel-text">
                 Don&apos;t have a account?
