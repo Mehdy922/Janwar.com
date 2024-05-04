@@ -27,6 +27,11 @@ const navMenuData = [
     menuLink: "/",
     menuText: "About Us",
   },
+  {
+    id: "nav-menu-6",
+    menuLink: "/feedback",
+    menuText: "Feedback",
+  },
 ];
 
 const sideMenuData = [
