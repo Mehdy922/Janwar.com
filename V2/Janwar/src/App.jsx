@@ -17,6 +17,7 @@ import CheckMail from './screens/auth/CheckMailScreen.jsx';
 import Verification from './screens/auth/VerificationScreen.jsx';
 import NotFound from './screens/error/NotFoundScreen.jsx';
 import BuyPet from "./screens/product/BuyPet.jsx";
+import FeedbackPage from "./screens/feedback/feedback.jsx";
 import AdoptPet from "./screens/product/AdoptPet.jsx";
 import Accessories from "./screens/product/Accessories.jsx";
 import ProductDetailsAccessories from "./screens/product/ProductDetailsAccessories.jsx";
@@ -45,6 +46,7 @@ function App() {
           <Route path="/" element={<BaseLayout />}>
           <Route path="/home" element={<Home />} />
             <Route path="/buy" element={<BuyPet />} />
+            <Route path="/feedback" element={<FeedbackPage />} />
             <Route path="/adopt" element={<AdoptPet />} />
             <Route path="/accessories" element={<Accessories />} />
 

@@ -161,7 +161,7 @@ const Header = () => {
               </ul>
             </NavigationMenuWrapper>
             <form className="search-form">
-              <InputGroupWrapper className="input-group">
+            <div className="flex items-center justify-center">
                 <span className="input-icon flex items-center justify-center text-xl text-gray">
                   <i className="bi bi-search"></i>
                 </span>
@@ -170,7 +170,7 @@ const Header = () => {
                   className="input-control w-full"
                   placeholder="Search"
                 />
-              </InputGroupWrapper>
+              </div>
             </form>
           </NavigationAndSearchWrapper>
 
