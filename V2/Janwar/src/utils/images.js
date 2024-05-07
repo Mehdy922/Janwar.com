@@ -126,6 +126,10 @@ import paypal from "../assets/images/paypal.png";
 import paypass from "../assets/images/paypass.png";
 import confirmed_img from "../assets/images/confirmed_img.svg";
 
+import mission from "../assets/images/mission.jpg";
+
+
+
 export const staticImages = {
   logo,
   form_img1,
@@ -223,4 +227,5 @@ export const staticImages = {
   paypal,
   paypass,
   confirmed_img,
+  mission,
 };
