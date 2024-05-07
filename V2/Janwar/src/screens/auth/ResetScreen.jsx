@@ -26,6 +26,7 @@ const ResetScreen = () => {
     try {
       console.log('Pass Request reset recieved', contactData);
       const {data } = await axios.post('http://localhost:5050/user/Pass-reset', contactData);
+      console.log('Response:', data);
       const userObj = await axios.post('http://localhost:5050/email/send-pass', data);
      if (userObj.status === 200) {
         alert('Password reset email sent');
