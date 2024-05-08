@@ -33,6 +33,7 @@ import Confirm from "./screens/user/ConfirmScreen";
 import Account from "./screens/user/AccountScreen";
 import Address from "./screens/user/AddressScreen";
 import PostAdScreen from "./screens/user/PostAd";
+import Intro from "./components/intro/Intro.jsx";
 
 
 
@@ -65,7 +66,7 @@ function App() {
             <Route path="/confirm" element={<Confirm />} />
             <Route path="/account" element={<Account />} />
             <Route path="/account/add" element={<Address />} />
-            <Route path="/Info" element={<Info />} />
+            <Route path="/Intro" element={<Intro />} />
             </Route>
 
             {/* auth screens */}

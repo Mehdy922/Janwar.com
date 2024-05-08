@@ -23,7 +23,7 @@ const navMenuData = [
   },
   {
     id: "nav-menu-5",
-    menuLink: "/Info",
+    menuLink: "/Intro",
     menuText: "About Us",
   },
   {
