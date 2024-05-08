@@ -37,6 +37,7 @@ import PostAdScreen from "./screens/user/PostAd";
 
 
 
+
 function App() {
   return (
     <>
@@ -64,7 +65,7 @@ function App() {
             <Route path="/confirm" element={<Confirm />} />
             <Route path="/account" element={<Account />} />
             <Route path="/account/add" element={<Address />} />
-
+            <Route path="/Info" element={<Info />} />
             </Route>
 
             {/* auth screens */}

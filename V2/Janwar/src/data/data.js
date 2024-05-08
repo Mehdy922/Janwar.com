@@ -1,6 +1,5 @@
 import { staticImages } from "../utils/images";
-import BuyPet from "../screens/product/BuyPet.jsx";
-import AdoptPet from "../screens/product/AdoptPet.jsx";
+
 const navMenuData = [
   {
     id: "nav-menu-1",
@@ -24,7 +23,7 @@ const navMenuData = [
   },
   {
     id: "nav-menu-5",
-    menuLink: "/",
+    menuLink: "/Info",
     menuText: "About Us",
   },
   {
