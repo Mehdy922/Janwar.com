@@ -32,6 +32,7 @@ import WishListEmpty from "./screens/user/WishListEmptyScreen";
 import Confirm from "./screens/user/ConfirmScreen";
 import Account from "./screens/user/AccountScreen";
 import Address from "./screens/user/AddressScreen";
+import PostAdScreen from "./screens/user/PostAd";
 
 
 
@@ -45,6 +46,7 @@ function App() {
           {/* main screens */}
           <Route path="/" element={<BaseLayout />}>
           <Route path="/home" element={<Home />} />
+            <Route path="/postad" element={<PostAdScreen />} />
             <Route path="/buy" element={<BuyPet />} />
             <Route path="/feedback" element={<FeedbackPage />} />
             <Route path="/adopt" element={<AdoptPet />} />
