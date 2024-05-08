@@ -62,6 +62,7 @@ const SignUpScreen = () => {
 
 
   return (
+    
     <SignUpScreenWrapper>
       <FormGridWrapper>
         <Container>

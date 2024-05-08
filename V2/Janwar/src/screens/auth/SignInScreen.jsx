@@ -58,9 +58,10 @@ const SignInScreen = () => {
       console.log('Sending message:', contactData);
       const userObj = await axios.post('http://localhost:5050/user/login', contactData);
       console.log('Response:', userObj);
-     if (userObj.status === 200) {
+      if (userObj.status === 200) {
         localStorage.setItem('user_data', JSON.stringify(userObj.data));
-        window.location.href = "/home";
+        const encodedData = encodeURIComponent(JSON.stringify(userObj.data));
+        window.location.href = `/home?data=${encodedData}`;
       }
 
       

@@ -82,6 +82,30 @@ db_users.post("/register", async (req, res) => {
   }
 });
 
+db_users.post("/postAd", async (req, res) => {
+  try {
+    console.log("Post Add request received:", req.body);
+    const collection = await db.collection("janwarAds");
+    const user = await collection.insertOne(req.body);
+    res.status(200).send(user);
+  } catch (error) {
+    console.error("Error during postAdd:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+db_users.post("/getAds", async (req, res) => {
+  try {
+    console.log("Get Ads request received");
+    const collection = await db.collection("janwarAds");
+    const user = await collection.find().toArray();
+    res.status(200).send(user);
+  } catch (error) {
+    console.error("Error during getAds:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 
 
 

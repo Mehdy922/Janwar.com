@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import styled from "styled-components";
 import { Container } from "../../styles/styles";
 import Breadcrumb from "../../components/common/Breadcrumb";
@@ -8,6 +7,9 @@ import Title from "../../components/common/Title";
 import { FormElement, Input, Textarea } from "../../styles/form";
 import { BaseButtonGreen, BaseButtonWhitesmoke } from "../../styles/button";
 import { defaultTheme } from "../../styles/themes/default";
+import {useLocation, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const PostAdScreenWrapper = styled.main`
   .form-elem-control {
@@ -32,28 +34,81 @@ const breadcrumbItems = [
 ];
 
 const PostAdScreen = () => {
-  const [age, setAge] = useState("");
-  const [price, setPrice] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+/*   const navigate = useNavigate();
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const data = params.get('data');
 
-  const handleAgeChange = (e) => {
-    const value = e.target.value;
-    if (!isNaN(value) && value >= 0) {
-      setAge(value);
-      setErrorMessage("");
-    } else {
-      setErrorMessage("Age should be a positive number");
+  useEffect(() => {
+    if (!data) {
+      navigate('/login');
+    }
+    else
+    {
+      console.log('User data:', data);
+    }
+  }, [data, navigate]);
+ */
+
+  
+  const [postData, setContactData] = useState({
+    title:"",
+    pet_type: "",
+    pet_breed: "",
+    gender: "",
+    health_status: "",
+    description: "",
+    age: "",
+    price: "",
+    location: "",
+    images: null,
+    postCategory:""
+  });
+
+  const [image, setImage] = useState(null);
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setContactData({ ...postData, images: reader.result });
+      };
+      reader.readAsArrayBuffer(file); // Read file as binary data
     }
   };
 
-  const handlePriceChange = (e) => {
-    const value = e.target.value;
-    if (!isNaN(value)) {
-      setPrice(value);
-      setErrorMessage(value < 0 ? "Price cannot be negative" : "");
-    } else {
-      setErrorMessage("Price should be a number");
+  const handleContactChange = (e) => {
+    setContactData({ ...postData, [e.target.name]: e.target.value });
+  };
+
+  const postAdd = async (e) => {
+    try {
+      console.log('Posting ad req recieved at frontend:', postData);
+     
+      //combine local storage user data with post data
+      const userData = localStorage.getItem('user_data');
+      if (!userData) {
+        alert('User not logged in');
+        return;
+      }
+      else{
+        const user = JSON.parse(userData);
+        postData.user_id = user._id;
+        const userObj = await axios.post('http://localhost:5050/user/postAd', postData);
+        if (userObj.status === 200) {
+            alert('Add posted successfully');
+        }
+
+      }
     }
+    catch (error) {
+      console.error('Error sending message:', error);
+      alert('Failed to post ad');
+    }
+     
+      
+
   };
 
   return (
@@ -78,6 +133,8 @@ const PostAdScreen = () => {
                     id="adTitle"
                     className="form-elem-control"
                     placeholder="Enter Ad title"
+                    onChange={handleContactChange}
+                    name = "title"
                   />
                 </FormElement>
                 <FormElement>
@@ -90,8 +147,10 @@ const PostAdScreen = () => {
                   <Input
                     type="text"
                     id="petType"
+                    name = "pet_type"
                     className="form-elem-control"
                     placeholder="Enter pet type (e.g., dog, cat)"
+                    onChange={handleContactChange}
                   />
                 </FormElement>
                 <FormElement>
@@ -103,9 +162,11 @@ const PostAdScreen = () => {
                   </label>
                   <Input
                     type="text"
+                    name = "pet_breed"
                     id="petBreed"
                     className="form-elem-control"
                     placeholder="Enter pet breed"
+                    onChange={handleContactChange}
                   />
                 </FormElement>
                 <FormElement>
@@ -117,11 +178,14 @@ const PostAdScreen = () => {
                   </label>
                   <select
                     id="gender"
+                    name="gender"
                     className="form-elem-control"
+                    onChange={handleContactChange}
                   >
-                    <option value="">Male</option>
-                    <option value="">Female</option>
-                    <option value="">Not specified</option>
+                    <option value="">Select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Not specified">Not specified</option>
                   </select>
                 </FormElement>
                 <FormElement>
@@ -133,8 +197,10 @@ const PostAdScreen = () => {
                   </label>
                   <Textarea
                     id="healthStatus"
+                    name = "health_status"
                     className="form-elem-control"
                     placeholder="Describe the health status of the pet"
+                    onChange={handleContactChange}
                   ></Textarea>
                 </FormElement>
                 <FormElement>
@@ -146,8 +212,10 @@ const PostAdScreen = () => {
                   </label>
                   <Textarea
                     id="description"
+                    name = "description"
                     className="form-elem-control"
                     placeholder="Enter pet description"
+                    onChange={handleContactChange}
                   ></Textarea>
                 </FormElement>
                 <FormElement>
@@ -160,12 +228,11 @@ const PostAdScreen = () => {
                   <Input
                     type="text"
                     id="age"
+                    name = "age"
                     className="form-elem-control"
                     placeholder="Enter pet age"
-                    value={age}
-                    onChange={handleAgeChange}
+                    onChange={handleContactChange}
                   />
-                  {errorMessage && <p className="error-message">{errorMessage}</p>}
                 </FormElement>
                 <FormElement>
                   <label
@@ -176,13 +243,12 @@ const PostAdScreen = () => {
                   </label>
                   <Input
                     type="text"
+                    name = "price"
                     id="price"
                     className="form-elem-control"
                     placeholder="Enter price"
-                    value={price}
-                    onChange={handlePriceChange}
+                    onChange={handleContactChange}
                   />
-                  {errorMessage && <p className="error-message">{errorMessage}</p>}
                 </FormElement>
                 <FormElement>
                   <label
@@ -194,8 +260,10 @@ const PostAdScreen = () => {
                   <Input
                     type="text"
                     id="location"
+                    name = "location"
                     className="form-elem-control"
                     placeholder="Enter location"
+                    onChange={handleContactChange}
                   />
                 </FormElement>
                 <FormElement>
@@ -207,16 +275,36 @@ const PostAdScreen = () => {
                   </label>
                   <Input
                     type="file"
-                    id="imageUpload"
+                    name="images"
+                    id="images"
                     className="form-elem-control"
-                    multiple
-                    accept="image/*"
+                    onChange={handleImageChange}
                   />
+                </FormElement>
+                <FormElement>
+                  <label
+                    htmlFor="gender"
+                    className="form-label font-semibold text-base"
+                  >
+                    For Adoption or Selling?
+                  </label>
+                  <select
+                    id="postCategory"
+                    name="postCategory"
+                    className="form-elem-control"
+                    onChange={handleContactChange}
+                  >
+                    <option value="">Select</option>
+                    <option value="Sell">Sell</option>
+                    <option value="Adopt">Adopt</option>
+                  </select>
                 </FormElement>
                 {/* Additional fields can be added as needed for the ad */}
               </div>
               <div className="form-btns flex">
-                <BaseButtonGreen type="submit">Post Ad</BaseButtonGreen>
+                <BaseButtonGreen type="button" onClick={postAdd}>Post Ad</BaseButtonGreen>
+                
+                
                 <BaseButtonWhitesmoke type="button">
                   Cancel
                 </BaseButtonWhitesmoke>
