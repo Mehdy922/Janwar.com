@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { products } from "../../data/data";
 import ProductItem from "./ProductItem";
-import { PropTypes } from "prop-types";
+import PropTypes from "prop-types";
 import { breakpoints } from "../../styles/themes/default";
 
 const ProductListWrapper = styled.div`
@@ -15,18 +14,22 @@ const ProductListWrapper = styled.div`
   }
 `;
 
-const ProductList = () => {
+const ProductList = ({ products }) => {
+  console.log('Products:', products.length);
+  if (!products || products.length === 0) {
+    return <p>No products available.</p>;
+  }
   return (
     <ProductListWrapper className="grid">
-      {products?.map((product) => {
-        return <ProductItem key={product.id} product={product} />;
+      {products.map((product) => {
+        return <ProductItem key={product._id} product={product} />;
       })}
     </ProductListWrapper>
   );
 };
 
-export default ProductList;
-
 ProductList.propTypes = {
   products: PropTypes.array,
 };
+
+export default ProductList;
