@@ -3,10 +3,16 @@ import { Container, ContentStylings, Section } from "../../styles/styles";
 import Breadcrumb from "../../components/common/Breadcrumb";
 import { Link } from "react-router-dom";
 import ProductList from "../../components/product/ProductList";
-import { products } from "../../data/data";
+//import { products } from "../../data/data";
 import Title from "../../components/common/Title";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";
 import ProductFilter from "../../components/product/ProductFilter";
+import React, {useEffect} from "react";
+import { useState } from "react";
+import axios from "axios";
+import { combineReducers } from "@reduxjs/toolkit";
+
+let petlist = []
 
 const ProductsContent = styled.div`
   grid-template-columns: 320px auto;
@@ -86,6 +92,7 @@ const DescriptionContent = styled.div`
   }
 `;
 
+
 const BuyPet = () => {
   const breadcrumbItems = [
     { label: "Home", link: "/" },
@@ -93,6 +100,27 @@ const BuyPet = () => {
     { label: "Products", link: "/buy" },
 
   ];
+
+  const [petlist, setPetlist] = useState([]);
+
+  useEffect(() => {
+    loadProducts();
+  }, []);
+
+  const loadProducts = async () => {
+    try {
+      console.log("Fetching data...");
+      const userObj = await axios.post('http://localhost:5050/user/getAds');
+      if (userObj.status === 200) {
+        console.log("Response:", userObj);
+        setPetlist(userObj.data);  // Update petlist using the state setter function
+        console.log("Petlist:", petlist);
+      }
+    } catch (error) {
+      console.error("Failed to fetch data:", error);
+    }
+  };
+
   return (
     <main className="page-py-spacing">
       <Container>
@@ -117,7 +145,7 @@ const BuyPet = () => {
                 </li>
               </ul>
             </div>
-            <ProductList products={products.slice(0, 12)} />
+            {<ProductList products={petlist} />}
           </ProductsContentRight>
         </ProductsContent>
       </Container>
