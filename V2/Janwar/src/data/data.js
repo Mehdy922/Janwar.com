@@ -3,7 +3,7 @@ import { staticImages } from "../utils/images";
 const navMenuData = [
   {
     id: "nav-menu-1",
-    menuLink: "/",
+    menuLink: "/postad",
     menuText: "Post Add",
   },
   {
@@ -42,7 +42,7 @@ const sideMenuData = [
   },
   {
     id: "side-menu-2",
-    menuLink: "/product",
+    menuLink: "/accessories",
     menuText: "Products",
     iconName: "grid-fill",
   },
