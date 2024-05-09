@@ -36,28 +36,14 @@ const ProductCardWrapper = styled(Link)`
 `;
 
 const ProductItem = ({ product }) => {
-  const base64Regex = /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/;
-  let url;
-  if (!base64Regex.test(product.images)) {
-    console.error('The product image string is not base64 encoded.');
-    url = 'path/to/default/image.jpg'; // Replace with your default image path
-  } else {
-    const binary = atob(product.images);
-    const array = new Uint8Array(binary.length);
-    for(let i = 0; i < binary.length; i++) {
-      array[i] = binary.charCodeAt(i);
-    }
-    const blob = new Blob([array], {type: 'image/jpeg'}); // Adjust the type if necessary
-    url = URL.createObjectURL(blob);
-  }
-
+  
 
   return (
 
     <ProductCardWrapper key={product.id} to="/product/buy/details">
 
       <div className="product-img">
-      <img className="object-fit-cover" src={url} />
+      <img className="object-fit-cover" src={product.images} />
         <button
           type="button"
           className="product-wishlist-icon flex items-center justify-center bg-white"
