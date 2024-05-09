@@ -71,6 +71,7 @@ const PostAdScreen = () => {
         setContactData({ ...postData, images: reader.result });
       };
       reader.readAsDataURL(file); // Read file as base64 data
+      
 
     }
   };

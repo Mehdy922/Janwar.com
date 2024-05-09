@@ -10,6 +10,9 @@ import { breakpoints, defaultTheme } from "../../styles/themes/default";
 import ProductDescriptionTab from "../../components/product/ProductDescriptionTab";
 import ProductSimilar from "../../components/product/ProductSimilar";
 import ProductServices from "../../components/product/ProductServices";
+import React, {useEffect} from "react";
+import { useState } from "react";
+import {useLocation, useNavigate } from 'react-router-dom';
 
 const DetailsScreenWrapper = styled.main`
   margin: 40px 0;
@@ -128,6 +131,64 @@ const ProductSexWrapper = styled.div`
 `;
 
 const ProductDetailsBuy = () => {
+  
+
+  const [title , setTitle] = useState('');
+  const [pet_type , setPetType] = useState('');
+  const [pet_breed , setPetBreed] = useState('');
+  const [gender , setGender] = useState('');
+  const [health_status , setHealthStatus] = useState('');
+  const [description , setDescription] = useState('');
+  const [age , setAge] = useState('');
+  const [price , setPrice] = useState('');
+  const [loc , setLoc] = useState('');
+  const [images , setImages] = useState('');
+
+
+  const navigate = useNavigate();
+  const location = useLocation();
+ 
+  useEffect(() => {
+    
+    const params = new URLSearchParams(location.search);
+    const datastring = params.get('data');
+    const data = JSON.parse(datastring);
+    console.log('Data:', data);
+
+  
+   
+  
+    const title = data.title;
+    const pet_type = data.pet_type;
+    const pet_breed = data.pet_breed;
+    const gender = data.gender;
+    const health_status = data.health_status;
+    const description = data.description;
+    const age = data.age;
+    const price = data.price;
+    const loc = data.location;
+    const images = data.images;
+
+    setTitle(title);
+    setPetType(pet_type);
+    setPetBreed(pet_breed);
+    setGender(gender);
+    setHealthStatus(health_status);
+    setDescription(description);
+    setAge(age);
+    setPrice(price);
+    setLoc(loc);
+    setImages(images);
+
+   
+    
+    
+  }, []);
+  
+  
+  
+
+  
   const stars = Array.from({ length: 5 }, (_, index) => (
     <span
       key={index}
@@ -151,37 +212,32 @@ const ProductDetailsBuy = () => {
       <Container>
         <Breadcrumb items={breadcrumbItems} />
         <DetailsContent className="grid">
-          <ProductPreview previewImages={product_one.previewImages} />
+          <ProductPreview previewImages={images} />
           <ProductDetailsWrapper>
-            <h2 className="prod-title">{product_one.title}</h2>
-            <div className="flex items-center rating-and-comments flex-wrap">
-              <div className="prod-rating flex items-center">
-                {stars}
-                <span className="text-gray text-xs">{product_one.rating}</span>
-              </div>
-              <div className="prod-comments flex items-start">
-                <span className="prod-comment-icon text-gray">
-                  <i className="bi bi-chat-left-text"></i>
-                </span>
-                <span className="prod-comment-text text-sm text-gray">
-                  {product_one.comments_count} comment(s)
-                </span>
-              </div>
-            </div>
+            <h2 className="prod-title">{title}</h2>
+            
             <ProductSexWrapper>
               <div className="prod-sex-top flex items-center flex-wrap">
                 <p className="text-lg font-semibold text-outerspace">Sex Available</p>
               </div>
+              
               <div className="prod-sex-list flex items-center">
-                  <div className="prod-sex-item">
+                  {gender === 'Male' ? (
+                    <div className="prod-sex-item">
                       <input type="radio" name="sex" value="male" id="male" />
                       <label htmlFor="male">Male</label>
-                  </div>
-                <div className="prod-sex-item">
-                  <input type="radio" name="sex" value="female" id="female" />
-                  <label htmlFor="female">Female</label>
+                    </div>
+                  ) : gender === 'Female' ? (
+                    <div className="prod-sex-item">
+                      <input type="radio" name="sex" value="female" id="female" />
+                      <label htmlFor="female">Female</label>
+                    </div>
+                  ) : (
+                    <div className="prod-sex-item">
+                      <p>Not specified</p>
+                    </div>
+                  )}
                 </div>
-              </div>
             </ProductSexWrapper>
             <div className="btn-and-price flex items-center flex-wrap">
               <BaseLinkGreen
@@ -195,14 +251,14 @@ const ProductDetailsBuy = () => {
                 <span className="prod-add-btn-text">Add to cart</span>
               </BaseLinkGreen>
               <span className="prod-price text-xl font-bold text-outerspace">
-                {currencyFormat(product_one.price)}
+                {price} Rs
               </span>
             </div>
             <ProductServices />
           </ProductDetailsWrapper>
         </DetailsContent>
-        <ProductDescriptionTab />
-        <ProductSimilar />
+        <ProductDescriptionTab description= {description}/>
+        
       </Container>
     </DetailsScreenWrapper>
   );
