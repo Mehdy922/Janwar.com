@@ -37,11 +37,13 @@ const ProductCardWrapper = styled(Link)`
 
 const ProductItem = ({ product }) => {
   
+  const encodedData = encodeURIComponent(JSON.stringify(product));
+  const data = `/product/buy/details?data=${encodedData}`; 
 
   return (
 
-    <ProductCardWrapper key={product.id} to="/product/buy/details">
-
+    <ProductCardWrapper key={product.id} to= {data} >
+      
       <div className="product-img">
       <img className="object-fit-cover" src={product.images} />
         <button
