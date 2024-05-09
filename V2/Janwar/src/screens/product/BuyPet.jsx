@@ -110,7 +110,7 @@ const BuyPet = () => {
   const loadProducts = async () => {
     try {
       console.log("Fetching data...");
-      const userObj = await axios.post('http://localhost:5050/user/getAds');
+      const userObj = await axios.post('http://localhost:5050/user/getAds_sells');
       if (userObj.status === 200) {
         console.log("Response:", userObj);
         setPetlist(userObj.data);  // Update petlist using the state setter function

@@ -24,6 +24,10 @@ app.use(cors(), function(req, res, next) {
   next();
 });
 
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+
+
 app.use(express.json());
 app.use("/user", db_users);
 
@@ -34,3 +38,4 @@ app.use('/email', emailRoutes);
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
+
