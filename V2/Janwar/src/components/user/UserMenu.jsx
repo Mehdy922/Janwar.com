@@ -67,7 +67,7 @@ const UserMenu = () => {
   const location = useLocation();
   return (
     <div>
-      <Title titleText={"Hello Mehdy"} />
+      <Title titleText={"Hello"} />
       <p className="text-base font-light italic">Welcome to your account.</p>
 
       <NavMenuWrapper>
@@ -90,7 +90,7 @@ const UserMenu = () => {
               </span>
             </Link>
           </li>
-          <li className="nav-menu-item">
+          {/* <li className="nav-menu-item">
             <Link
               to="/wishlist"
               className={`nav-menu-link flex items-center ${
@@ -107,7 +107,7 @@ const UserMenu = () => {
                 Wishlist
               </span>
             </Link>
-          </li>
+          </li> */}
           <li className="nav-menu-item">
             <Link
               to="/account"

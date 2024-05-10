@@ -168,26 +168,24 @@ const SignUpScreen = () => {
                   <li className="flex items-center">
                     <input type="checkbox" name="terms" required />
                     <span className="text-sm">
-                      I agree to the
-                      <Link to="/terms" className="text-underline">
-                        Terms of Use
-                      </Link>
-                      and
-                      <Link to="/privacy" className="text-underline">
-                        Privacy Policy
-                      </Link>
-                    </span>
-                  </li>
-                  <li className="flex items-center">
-                    <input type="checkbox" name="subscribe" />
-                    <span className="text-sm">
-                      Subscribe to our monthly newsletter
+                      I agree to the Terms of Use and Privacy Policy
                     </span>
                   </li>
                 </CheckboxGroup>
 
                 <button
                         className="form-submit-btn" 
+                        style={{
+                          backgroundColor: '#2c5282',
+                          color: '#fff',
+                          fontWeight: 'bold',
+                          padding: '0.5rem 1rem',
+                          borderRadius: '0.25rem',
+                          cursor: 'pointer',
+                          transition: 'background-color 0.3s ease',
+                          outline: 'none',
+                          border: 'none',
+                        }}
                         type="button"
                         onClick={register}
                       >

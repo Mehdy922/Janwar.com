@@ -73,6 +73,17 @@ const ResetScreen = () => {
               
                 <button
                         className="form-submit-btn" 
+                        style={{
+                          backgroundColor: '#2c5282',
+                          color: '#fff',
+                          fontWeight: 'bold',
+                          padding: '0.5rem 1rem',
+                          borderRadius: '0.25rem',
+                          cursor: 'pointer',
+                          transition: 'background-color 0.3s ease',
+                          outline: 'none',
+                          border: 'none',
+                        }}
                         type="button"
                         onClick={resetPassword}
                       >

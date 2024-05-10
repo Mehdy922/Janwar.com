@@ -46,12 +46,12 @@ const ProductItem = ({ product }) => {
       
       <div className="product-img">
       <img className="object-fit-cover" src={product.images} />
-        <button
+        {/* <button
           type="button"
           className="product-wishlist-icon flex items-center justify-center bg-white"
         >
           <i className="bi bi-heart"></i>
-        </button>
+        </button> */}
       </div>
       <div className="product-info">
         <p className="font-bold">{product.title}</p>

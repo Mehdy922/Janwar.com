@@ -131,12 +131,12 @@ const BuyPet = () => {
   };
 
   const handleSearch = () => {
-    const filteredPets = petlist.filter(pet =>
-      pet.title.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    setFilteredPetList(filteredPets);
+    const filteredList = petlist.filter(pet => {
+      // Assuming each pet object has a property 'name' to search against
+      return pet.title.toLowerCase().includes(searchQuery.toLowerCase());
+    });
+    setFilteredPetList(filteredList);
   };
-  console.log(petlist)
 
   return (
     <main className="page-py-spacing">
@@ -157,10 +157,16 @@ const BuyPet = () => {
               }}
             />
             {filteredPetList.length > 0 ? (
-              <ProductList products={filteredPetList} />
-            ) : (
-              <ProductList products={petlist} />
-            )}
+                <>
+                  <ProductList products={filteredPetList} />
+                  {console.log("filteredPetList")}
+                </>
+              ) : (
+                <>
+                  <ProductList products={petlist} />
+                  {console.log("petlist")}
+                </>
+              )}
             {/* <div className="products-right-top flex items-center justify-between">
               <h4 className="text-xxl">Buy Pets</h4>
               <ul className="products-right-nav flex items-center justify-end flex-wrap">

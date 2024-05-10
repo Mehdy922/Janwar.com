@@ -85,6 +85,13 @@ const DescriptionContent = styled.div`
     }
   }
 `;
+const SearchBar = styled.input`
+  width: 100%;
+  padding: 10px;
+  border: 1px solid ${defaultTheme.color_gray};
+  border-radius: 8px;
+  margin-bottom: 20px;
+`;
 
 const Accessories = () => {
   const breadcrumbItems = [
