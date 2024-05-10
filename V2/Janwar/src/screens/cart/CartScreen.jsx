@@ -52,7 +52,11 @@ const CartScreen = () => {
 
   const fetchCartItems = async () => {
     try {
-        const response = await axios.get("http://localhost:5050/user/getAds_cart");
+        const userData = localStorage.getItem("user_data");
+        const user = JSON.parse(userData);
+        console.log("User data:", user);
+        const userID = user._id;
+        const response = await axios.post("http://localhost:5050/user/getAds_cart", userID );
         console.log("API response data:", response.data);
         if (response.status === 200 && Array.isArray(response.data)) {
             setCartItems(response.data);

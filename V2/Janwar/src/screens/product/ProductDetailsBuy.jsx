@@ -13,6 +13,7 @@ import ProductServices from "../../components/product/ProductServices";
 import React, {useEffect} from "react";
 import { useState } from "react";
 import {useLocation, useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 const DetailsScreenWrapper = styled.main`
   margin: 40px 0;
@@ -132,7 +133,7 @@ const ProductSexWrapper = styled.div`
 
 const ProductDetailsBuy = () => {
   
-
+  const [url,setUrl] = useState('');
   const [title , setTitle] = useState('');
   const [pet_type , setPetType] = useState('');
   const [pet_breed , setPetBreed] = useState('');
@@ -154,10 +155,8 @@ const ProductDetailsBuy = () => {
     const datastring = params.get('data');
     const data = JSON.parse(datastring);
     console.log('Data:', data);
+    
 
-  
-   
-  
     const title = data.title;
     const pet_type = data.pet_type;
     const pet_breed = data.pet_breed;
@@ -180,13 +179,35 @@ const ProductDetailsBuy = () => {
     setLoc(loc);
     setImages(images);
 
-   
+
+    
     
     
   }, []);
   
   
-  
+  const additem = async () => {
+    const params = new URLSearchParams(location.search);
+    const datastring = params.get('data');
+    const data = JSON.parse(datastring);
+    console.log('Add to cart clicked');
+    const buyer = JSON.parse(localStorage.getItem('user_data')); // Parse the string into an object
+    const buyerID = buyer._id;
+    data.buyerID = buyerID;
+    try {
+      console.log('Adding:', data);
+      const userObj = await axios.post('http://localhost:5050/user/addtocart', data);
+      console.log('Response:', userObj);
+      if (userObj.status === 200) {
+        alert('Added to cart!');
+        // Navigate to Sign In page after successful registration
+        navigate('/sign_in');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('error occured item not added');
+    }
+  };
 
   
   const stars = Array.from({ length: 5 }, (_, index) => (
@@ -241,14 +262,16 @@ const ProductDetailsBuy = () => {
             </ProductSexWrapper>
             <div className="btn-and-price flex items-center flex-wrap">
               <BaseLinkGreen
-                to="/cart"
+                to={'/cart'}
                 as={BaseLinkGreen}
                 className="prod-add-btn"
+                onClick={additem}
               >
                 <span className="prod-add-btn-icon">
                   <i className="bi bi-cart2"></i>
                 </span>
                 <span className="prod-add-btn-text">Add to cart</span>
+
               </BaseLinkGreen>
               <span className="prod-price text-xl font-bold text-outerspace">
                 {price} Rs

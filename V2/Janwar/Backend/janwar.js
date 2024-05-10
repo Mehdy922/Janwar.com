@@ -113,12 +113,31 @@ db_users.post("/getAds_sells", async (req, res) => {
   }
 });
 
+db_users.post("/addtocart", async (req, res) => {
+  try {
+    console.log("Add to Cart request received:", req.body);
+    const collection = await db.collection("janwarAds_cart");
+    const user = await collection.insertOne(req.body);
+    res.status(200).send(user);
+  } catch (error) {
+    console.error("Error during Add to Cart:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 db_users.post("/getAds_cart", async (req, res) => {
   try {
       console.log("Get Ads Cart request received");
+      const body = req.body;
+      const keys = Object.keys(body);
+      const userID = keys[0]; 
+      console.log("User that called ID = ", userID);
       const collection = await db.collection("janwarAds_cart");
       const cartItems = await collection.find().toArray();
-      res.status(200).json(cartItems);
+      //only return those item where userID is same
+      const userCartItems = cartItems.filter(item => item.buyerID === userID);
+      console.log("User Cart Items = ", userCartItems);
+      res.status(200).json(userCartItems);
   } catch (error) {
       console.error("Error during getAds_cart:", error);
       res.status(500).send("Internal Server Error");
