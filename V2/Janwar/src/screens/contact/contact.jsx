@@ -12,7 +12,6 @@ function contact() {
   return (
     <div className="contact">
       <InfoScreenWrapper>
-      <IntroSection />
       <ContactSection />
       <Map />
       <DisclaimerSection />

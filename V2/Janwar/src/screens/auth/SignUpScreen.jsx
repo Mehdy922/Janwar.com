@@ -1,19 +1,17 @@
-import styled from "styled-components";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import {
   CheckboxGroup,
   FormGridWrapper,
   FormTitle,
-} from "../../styles/form_grid";
-import { Container } from "../../styles/styles";
-import { staticImages } from "../../utils/images";
-import AuthOptions from "../../components/auth/AuthOptions";
-import { FormElement, Input } from "../../styles/form";
-import PasswordInput from "../../components/auth/PasswordInput";
-import { Link } from "react-router-dom";
-import { BaseButtonBlack } from "../../styles/button";
-
-import axios from "axios";
-import React, { useState } from "react";
+} from '../../styles/form_grid';
+import { Container } from '../../styles/styles';
+import { staticImages } from '../../utils/images';
+import { FormElement, Input } from '../../styles/form';
+import { BaseButtonBlack } from '../../styles/button';
+import PasswordInput from '../../components/auth/PasswordInput';
 
 const SignUpScreenWrapper = styled.section`
   form {
@@ -30,17 +28,36 @@ const SignUpScreenWrapper = styled.section`
 `;
 
 const SignUpScreen = () => {
-
+  const navigate = useNavigate(); // Initialize useNavigate hook
   const [contactData, setContactData] = useState({
-    name:"",
-    email: "",
-    password: "",
-    phone: "",
-    address: ""
+    name: '',
+    email: '',
+    password: '',
+    phone: '',
+    address: '',
   });
 
+  const [showPassword, setShowPassword] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [phoneError, setPhoneError] = useState(false);
+
   const handleContactChange = (e) => {
-    setContactData({ ...contactData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setContactData((prevData) => ({ ...prevData, [name]: value }));
+
+    // Validate password length
+    if (name === 'password') {
+      setPasswordError(value.length < 8);
+    }
+
+    // Validate phone number length
+    if (name === 'phone') {
+      setPhoneError(value.length !== 11);
+    }
+  };
+
+  const toggleShowPassword = () => {
+    setShowPassword((prevState) => !prevState);
   };
 
   const register = async () => {
@@ -48,21 +65,25 @@ const SignUpScreen = () => {
       console.log('Registering:', contactData);
       const userObj = await axios.post('http://localhost:5050/user/register', contactData);
       console.log('Response:', userObj);
-     if (userObj.status === 200) {
-        alert('User registered');
+      if (userObj.status === 200) {
+        alert('User registered successfully!');
+        // Navigate to Sign In page after successful registration
+        navigate('/sign_in');
       }
-      
-
-      
     } catch (error) {
-      console.error('Error sending message:', error);
-      alert('User already exists');
+      console.error('Error:', error);
+      alert('User already exists or an error occurred.');
     }
   };
 
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    if (!passwordError && !phoneError) {
+      register();
+    }
+  };
 
   return (
-    
     <SignUpScreenWrapper>
       <FormGridWrapper>
         <Container>
@@ -81,9 +102,9 @@ const SignUpScreen = () => {
                   Sign up for free to access any of our products.
                 </p>
               </FormTitle>
-              <form>
+              <form onSubmit={handleFormSubmit}>
                 <FormElement>
-                  <label htmlFor="name" className="forme-elem-label">
+                  <label htmlFor="name" className="form-elem-label">
                     Name
                   </label>
                   <Input
@@ -92,6 +113,8 @@ const SignUpScreen = () => {
                     name="name"
                     className="form-elem-control"
                     onChange={handleContactChange}
+                    value={contactData.name}
+                    required
                   />
                   <span className="form-elem-error">
                     {/* Add error message if needed */}
@@ -99,7 +122,7 @@ const SignUpScreen = () => {
                 </FormElement>
 
                 <FormElement>
-                  <label htmlFor="email" className="forme-elem-label">
+                  <label htmlFor="email" className="form-elem-label">
                     Email address
                   </label>
                   <Input
@@ -108,6 +131,8 @@ const SignUpScreen = () => {
                     name="email"
                     className="form-elem-control"
                     onChange={handleContactChange}
+                    value={contactData.email}
+                    required
                   />
                   <span className="form-elem-error">
                     {/* Add error message if needed */}
@@ -118,22 +143,41 @@ const SignUpScreen = () => {
                   <label htmlFor="password" className="form-elem-label">
                     Password
                   </label>
-                  <Input
-                    type="password"
-                    placeholder=""
-                    name="password"
-                    className="form-elem-control"
-                    onChange={handleContactChange}
-                  />
+                  <div style={{ position: 'relative' }}>
+                    <Input
+                      type={showPassword ? 'text' : 'password'}
+                      placeholder="Enter your password"
+                      name="password"
+                      className="form-elem-control"
+                      onChange={handleContactChange}
+                      value={contactData.password}
+                      required
+                    />
+                    <button
+                      type="button"
+                      onClick={toggleShowPassword}
+                      style={{
+                        position: 'absolute',
+                        top: 8,
+                        right: 0,
+                        padding: '8px',
+                        border: 'none',
+                        backgroundColor: 'transparent',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      {showPassword ? 'Hide' : 'Show'}
+                    </button>
+                  </div>
+                  {passwordError && (
+                    <span style={{ color: 'red' }}>
+                      Password must be at least 8 characters long.
+                    </span>
+                  )}
                 </FormElement>
 
-
-                <span className="form-elem-text font-medium">
-                  *Use 8 or more characters with a mix of letters, numbers &
-                  symbols.
-                </span>
                 <FormElement>
-                  <label htmlFor="phone" className="forme-elem-label">
+                  <label htmlFor="phone" className="form-elem-label">
                     Phone Number
                   </label>
                   <Input
@@ -142,14 +186,18 @@ const SignUpScreen = () => {
                     name="phone"
                     className="form-elem-control"
                     onChange={handleContactChange}
+                    value={contactData.phone}
+                    required
                   />
-                  <span className="form-elem-error">
-                    {/* Add error message if needed */}
-                  </span>
+                  {phoneError && (
+                    <span style={{ color: 'red' }}>
+                      Phone number must be exactly 11 digits long.
+                    </span>
+                  )}
                 </FormElement>
 
                 <FormElement>
-                  <label htmlFor="address" className="forme-elem-label">
+                  <label htmlFor="address" className="form-elem-label">
                     Address
                   </label>
                   <Input
@@ -158,6 +206,8 @@ const SignUpScreen = () => {
                     name="address"
                     className="form-elem-control"
                     onChange={handleContactChange}
+                    value={contactData.address}
+                    required
                   />
                   <span className="form-elem-error">
                     {/* Add error message if needed */}
@@ -166,7 +216,11 @@ const SignUpScreen = () => {
 
                 <CheckboxGroup>
                   <li className="flex items-center">
-                    <input type="checkbox" name="terms" required />
+                    <input
+                      type="checkbox"
+                      name="terms"
+                      required
+                    />
                     <span className="text-sm">
                       I agree to the
                       <Link to="/terms" className="text-underline">
@@ -179,7 +233,11 @@ const SignUpScreen = () => {
                     </span>
                   </li>
                   <li className="flex items-center">
-                    <input type="checkbox" name="subscribe" />
+                    <input
+                      type="checkbox"
+                      name="subscribe"
+                      value={contactData.subscribe}
+                    />
                     <span className="text-sm">
                       Subscribe to our monthly newsletter
                     </span>
@@ -187,11 +245,11 @@ const SignUpScreen = () => {
                 </CheckboxGroup>
 
                 <button
-                        className="form-submit-btn" 
-                        type="button"
-                        onClick={register}
-                      >
-                        Send
+                  type="submit"
+                  disabled={passwordError || phoneError}
+                  className="form-submit-btn"
+                >
+                  Sign Up
                 </button>
               </form>
               <p className="flex flex-wrap account-rel-text">
