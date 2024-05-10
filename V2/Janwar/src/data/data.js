@@ -205,6 +205,70 @@ const savingZoneData = [
     isLimited: false,
   },
 ];
+const PetsForSale = [
+  {
+    id: "PetSell-1",
+    imgSource: staticImages.product7,
+    title: "Rottwiler",
+    description: "Dogs Of All Breeds can be Found Here",
+  },
+  {
+    id: "PetSell-2",
+    imgSource: staticImages.product6,
+    title: "Lorry",
+    description: "The Most Colourful of Birds",
+  },
+  {
+    id: "PetSell-3",
+    imgSource: staticImages.product5,
+    title: "Grey Parrot",
+    description: "All Types of Parrots from the African Grey to Macaw",
+  },
+  {
+    id: "PetSell-4",
+    imgSource: staticImages.product2,
+    title: "Persian Cat",
+    description: "If Your Not a Dog Person, We Definitly Got Cats!!",
+  },
+  {
+    id: "PetSell-5",
+    imgSource: staticImages.product3,
+    title: "Sun Conure",
+    description: "Your Tiny Best Friend is Right Here!",
+  },
+];
+const PetsForSale2 = [
+  {
+    id: "PetSell-1",
+    imgSource: staticImages.product1,
+    title: "German Shepherd",
+    description: "Dog Lovers Will Love it Here",
+  },
+  {
+    id: "PetSell-2",
+    imgSource: staticImages.hero_img1,
+    title: "Scarlet Macaw",
+    description: "Unlock a world of vibrant colors and endless chatter",
+  },
+  {
+    id: "PetSell-3",
+    imgSource: staticImages.hero_img2,
+    title: "Amazon Parrot",
+    description: "Embrace the charm and intelligence of the Amazon Parrot",
+  },
+  {
+    id: "PetSell-4",
+    imgSource: staticImages.hero_img3,
+    title: "Persian Cat",
+    description: "Meow Meow The Loneliness Away With a Lovely Cat",
+  },
+  {
+    id: "PetSell-5",
+    imgSource: staticImages.hero_img4,
+    title: "Macaw",
+    description: " Bringing Lively Conversations and Colorful Companionship to your Home",
+  },
+];
 
 const products = [
   {
@@ -834,4 +898,6 @@ export {
   recentViewedData,
   cardsData,
   socialLinksData,
+  PetsForSale,
+  PetsForSale2,
 };
