@@ -119,9 +119,9 @@ const Accessories = () => {
     try {
       console.log("Fetching data...");
       //link change karna database ka
-      const userObj = await axios.post('http://localhost:5050/user/getAds_sells');
+      const userObj = await axios.post('http://localhost:5050/user/getAds_accessories');
       if (userObj.status === 200) {
-        console.log("Response:", userObj);
+        console.log("Response:", userObj.data);
         setaccessoriesList(userObj.data);  // Update accessoriesList using the state setter function
         console.log("accessoriesList:", accessoriesList);
       }

@@ -156,6 +156,18 @@ db_users.post("/getAds_cart", async (req, res) => {
   }
 });
 
+db_users.post("/getAds_accessories", async (req, res) => {
+  try {
+    console.log("Get Ads request received");
+    const collection = await db.collection("janwarAds_accessories");
+    const user = await collection.find().toArray();
+    console.log("Accessories = ", user);
+    res.status(200).send(user);
+  } catch (error) {
+    console.error("Error during getAds:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
 
 
 
