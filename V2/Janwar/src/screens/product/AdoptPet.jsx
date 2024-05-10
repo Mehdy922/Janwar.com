@@ -7,6 +7,11 @@ import { products } from "../../data/data";
 import Title from "../../components/common/Title";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";
 import ProductFilter from "../../components/product/ProductFilterAdopt";
+import { useState } from "react";
+import React, {useEffect} from "react";
+import axios from "axios";
+
+let petlist = []
 
 const ProductsContent = styled.div`
   grid-template-columns: 320px auto;
@@ -97,8 +102,40 @@ const SearchBar = styled.input`
 const AdoptPet = () => {
   const breadcrumbItems = [
     { label: "Home", link: "/home" },
-    { label: "Products", link: "/adopt" },
+    { label: "Adopt", link: "/adopt" },
   ];
+
+  const [petlist, setPetlist] = useState([]);
+  const [filteredPetList, setFilteredPetList] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    loadProducts();
+  }, []);
+
+  const loadProducts = async () => {
+    try {
+      console.log("Fetching data...");
+      //link change karna database ka
+      const userObj = await axios.post('http://localhost:5050/user/getAds_sells');
+      if (userObj.status === 200) {
+        console.log("Response:", userObj);
+        setPetlist(userObj.data);  // Update petlist using the state setter function
+        console.log("Petlist:", petlist);
+      }
+    } catch (error) {
+      console.error("Failed to fetch data:", error);
+    }
+  };
+
+  const handleSearch = () => {
+    const filteredList = petlist.filter(pet => {
+      return pet.title.toLowerCase().includes(searchQuery.toLowerCase());
+    });
+    setFilteredPetList(filteredList);
+  };
+
+
   return (
     <main className="page-py-spacing">
       <Container>
@@ -108,10 +145,26 @@ const AdoptPet = () => {
             <ProductFilter />
           </ProductsContentLeft>
           <ProductsContentRight>
-            <div className="products-right-top flex items-center justify-between">
-              <h4 className="text-xxl">Adopt Pets</h4>
-            </div>
-            <ProductList products={products.slice(0, 12)} />
+          <SearchBar
+              type="text"
+              placeholder="Search pets..."
+              value={searchQuery}
+              onChange={(e) => {setSearchQuery(e.target.value); handleSearch();}}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") handleSearch();
+              }}
+            />
+            {filteredPetList.length > 0 ? (
+                <>
+                  <ProductList products={filteredPetList} />
+                  {console.log("filteredPetList")}
+                </>
+              ) : (
+                <>
+                  <ProductList products={petlist} />
+                  {console.log("petlist")}
+                </>
+              )}
           </ProductsContentRight>
         </ProductsContent>
       </Container>
