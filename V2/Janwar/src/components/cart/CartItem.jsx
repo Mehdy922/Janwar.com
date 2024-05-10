@@ -2,13 +2,13 @@ import styled from "styled-components";
 import { PropTypes } from "prop-types";
 import { Link } from "react-router-dom";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";
+import axios from "axios";
 
 const CartTableRowWrapper = styled.tr`
   .cart-tbl {
     &-prod {
       grid-template-columns: 80px auto;
       column-gap: 12px;
-
       @media (max-width: ${breakpoints.xl}) {
         grid-template-columns: 60px auto;
       }
@@ -58,7 +58,18 @@ const CartTableRowWrapper = styled.tr`
   }
 `;
 
-const CartItem = ({ cartItem }) => {
+const CartItem = ({ cartItem, onRemoveItem }) => {
+  const handleRemove = async () => {
+    try {
+      // Call API to remove the item from the cart
+      await axios.delete(`/api/cart/${cartItem.id}`);
+      // Trigger the onRemoveItem callback function
+      onRemoveItem(cartItem.id);
+    } catch (error) {
+      console.error("Failed to remove item from cart:", error);
+    }
+  };
+
   return (
     <CartTableRowWrapper key={cartItem.id}>
       <td>
@@ -72,8 +83,7 @@ const CartItem = ({ cartItem }) => {
               <span className="font-semibold">Color: </span> {cartItem.color}
             </p>
             <p className="text-sm text-gray inline-flex">
-              <span className="font-semibold">Size:</span>
-              {cartItem.size}
+              <span className="font-semibold">Size:</span> {cartItem.size}
             </p>
           </div>
         </div>
@@ -89,16 +99,16 @@ const CartItem = ({ cartItem }) => {
             <i className="bi bi-dash-lg"></i>
           </button>
           <span className="qty-value inline-flex items-center justify-center font-medium text-outerspace">
-            2
+            {cartItem.quantity}
           </span>
           <button className="qty-inc-btn">
-            <i className="bi bi-plus-lg"></i>
+            <i class="bi bi-plus-lg"></i>
           </button>
         </div>
       </td>
       <td>
         <span className="cart-tbl-shipping uppercase text-silver font-bold">
-          {cartItem.shipping === 0 ? "Free" : cartItem.shipping}
+          {cartItem.shipping === 0 ? "Free" : `$${cartItem.shipping}`}
         </span>
       </td>
       <td>
@@ -108,17 +118,18 @@ const CartItem = ({ cartItem }) => {
       </td>
       <td>
         <div className="cart-tbl-actions flex justify-center">
-          <Link to="/" className="tbl-del-action text-red">
-            <i className="bi bi-trash3"></i>
-          </Link>
+          <button onClick={handleRemove} className="tbl-del-action text-red">
+            <i class="bi bi-trash3"></i>
+          </button>
         </div>
       </td>
     </CartTableRowWrapper>
   );
 };
 
-export default CartItem;
-
 CartItem.propTypes = {
-  cartItem: PropTypes.object,
+  cartItem: PropTypes.object.isRequired,
+  onRemoveItem: PropTypes.func.isRequired,
 };
+
+export default CartItem;
