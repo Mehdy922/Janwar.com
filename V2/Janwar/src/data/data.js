@@ -52,12 +52,6 @@ const sideMenuData = [
     iconName: "grid-fill",
   },
   {
-    id: "side-menu-3",
-    menuLink: "/wishlist",
-    menuText: "Wishlist",
-    iconName: "heart",
-  },
-  {
     id: "side-menu-4",
     menuLink: "/account",
     menuText: "My Account",
