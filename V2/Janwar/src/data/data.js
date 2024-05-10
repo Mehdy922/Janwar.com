@@ -28,6 +28,11 @@ const navMenuData = [
   },
   {
     id: "nav-menu-6",
+    menuLink: "/contact",
+    menuText: "Contact Us",
+  },
+  {
+    id: "nav-menu-7",
     menuLink: "/feedback",
     menuText: "Feedback",
   },

@@ -176,14 +176,6 @@ const Header = () => {
 
           <IconLinksWrapper className="flex items-center">
             <Link
-              to="/wishlist"
-              className={`icon-link ${
-                location.pathname === "/wishlist" ? "active" : ""
-              } inline-flex items-center justify-center`}
-            >
-              <img src={staticImages.heart} alt="" />
-            </Link>
-            <Link
               to="/account"
               className={`icon-link ${
                 location.pathname === "/account" ||

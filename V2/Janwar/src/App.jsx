@@ -24,6 +24,7 @@ import ProductDetailsAccessories from "./screens/product/ProductDetailsAccessori
 import ProductDetailsBuy from "./screens/product/ProductDetailsBuy.jsx";
 import ProductDetailsAdopt from "./screens/product/ProductDetailsAdopt.jsx";
 import Cart from "./screens/cart/CartScreen";
+import CartEmpty from "./screens/cart/CartEmptyScreen";
 import Checkout from "./screens/checkout/CheckoutScreen";
 import Order from "./screens/user/OrderListScreen";
 import OrderDetail from "./screens/user/OrderDetailScreen";
@@ -34,7 +35,7 @@ import Account from "./screens/user/AccountScreen";
 import Address from "./screens/user/AddressScreen";
 import PostAdScreen from "./screens/user/PostAd";
 import Intro from "./components/intro/Intro.jsx";
-
+import Contact from "./screens/contact/contact.jsx";
 
 
 
@@ -58,6 +59,7 @@ function App() {
             <Route path="/product/buy/details" element={<ProductDetailsBuy />} />
             <Route path="/product/adopt/details" element={<ProductDetailsAdopt />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/empty_cart" element={<CartEmpty />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/order" element={<Order />} />
             <Route path="/order_detail" element={<OrderDetail />} />
@@ -67,6 +69,7 @@ function App() {
             <Route path="/account" element={<Account />} />
             <Route path="/account/add" element={<Address />} />
             <Route path="/Intro" element={<Intro />} />
+            <Route path="/contact" element={<Contact />} />
             </Route>
 
             {/* auth screens */}

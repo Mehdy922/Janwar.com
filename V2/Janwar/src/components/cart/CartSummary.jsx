@@ -31,22 +31,37 @@ const CartSummaryWrapper = styled.div`
   }
 `;
 
-const CartSummary = () => {
+const CartSummary = ({ cartItems }) => {
+  const calculateTotals = () => {
+    let subTotal = 0;
+    let shipping = 0;
+
+    cartItems.forEach((item) => {
+      subTotal += item.price * item.quantity;
+      shipping += item.shipping;
+    });
+
+    const grandTotal = subTotal + shipping;
+    return { subTotal, shipping, grandTotal };
+  };
+
+  const { subTotal, shipping, grandTotal } = calculateTotals();
+
   return (
     <CartSummaryWrapper>
       <ul className="summary-list">
         <li className="summary-item flex justify-between">
           <span className="font-medium text-outerspace">Sub Total</span>
-          <span className="font-medium text-outerspace">$513.00</span>
+          <span className="font-medium text-outerspace">${subTotal.toFixed(2)}</span>
         </li>
         <li className="summary-item flex justify-between">
           <span className="font-medium text-outerspace">Shipping</span>
-          <span className="font-medium text-outerspace">$5.00</span>
+          <span className="font-medium text-outerspace">${shipping.toFixed(2)}</span>
         </li>
         <li className="summary-item flex justify-between">
           <span className="font-medium text-outerspace">Grand Total</span>
           <span className="summary-item-value font-bold text-outerspace">
-            $518.00
+            ${grandTotal.toFixed(2)}
           </span>
         </li>
       </ul>
