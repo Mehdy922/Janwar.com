@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";
 import axios from "axios";
 
+const quantity = 1;
+const ShippingCost = 0;
+
 const CartTableRowWrapper = styled.tr`
   .cart-tbl {
     &-prod {
@@ -61,14 +64,14 @@ const CartTableRowWrapper = styled.tr`
 const CartItem = ({ cartItem, onRemoveItem }) => {
   const handleRemove = async () => {
     try {
-      // Call API to remove the item from the cart
-      await axios.delete(`/api/cart/${cartItem.id}`);
-      // Trigger the onRemoveItem callback function
+      const endpoint = `/api/cart/${cartItem.id}`;
+      await axios.delete(endpoint);
       onRemoveItem(cartItem.id);
     } catch (error) {
       console.error("Failed to remove item from cart:", error);
     }
   };
+  
 
   return (
     <CartTableRowWrapper key={cartItem.id}>
@@ -80,10 +83,7 @@ const CartItem = ({ cartItem, onRemoveItem }) => {
           <div className="cart-prod-info">
             <h4 className="text-base">{cartItem.title}</h4>
             <p className="text-sm text-gray inline-flex">
-              <span className="font-semibold">Color: </span> {cartItem.color}
-            </p>
-            <p className="text-sm text-gray inline-flex">
-              <span className="font-semibold">Size:</span> {cartItem.size}
+              <span className="font-semibold">Gender: </span> {cartItem.gender}
             </p>
           </div>
         </div>
@@ -99,7 +99,7 @@ const CartItem = ({ cartItem, onRemoveItem }) => {
             <i className="bi bi-dash-lg"></i>
           </button>
           <span className="qty-value inline-flex items-center justify-center font-medium text-outerspace">
-            {cartItem.quantity}
+            {quantity}
           </span>
           <button className="qty-inc-btn">
             <i class="bi bi-plus-lg"></i>
@@ -108,12 +108,12 @@ const CartItem = ({ cartItem, onRemoveItem }) => {
       </td>
       <td>
         <span className="cart-tbl-shipping uppercase text-silver font-bold">
-          {cartItem.shipping === 0 ? "Free" : `$${cartItem.shipping}`}
+          {ShippingCost === 0 ? "Free" : `$${ShippingCost}`}
         </span>
       </td>
       <td>
         <span className="text-lg font-bold text-outerspace">
-          ${cartItem.price * cartItem.quantity}
+        ${Number(cartItem.price.replace(/,/g, '')) * quantity}
         </span>
       </td>
       <td>
