@@ -104,10 +104,10 @@ const BuyPet = () => {
   const [petlist, setPetlist] = useState([]);
 
   useEffect(() => {
-    loadProducts();
+    loadcart();
   }, []);
 
-  const loadProducts = async () => {
+  const loadcart = async () => {
     try {
       console.log("Fetching data...");
       const userObj = await axios.post('http://localhost:5050/user/getAds_sells');

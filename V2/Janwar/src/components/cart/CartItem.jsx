@@ -75,7 +75,7 @@ const CartItem = ({ cartItem, onRemoveItem }) => {
       <td>
         <div className="cart-tbl-prod grid">
           <div className="cart-prod-img">
-            <img src={cartItem.imgSource} className="object-fit-cover" alt="" />
+            <img src={cartItem.images} className="object-fit-cover" alt="" />
           </div>
           <div className="cart-prod-info">
             <h4 className="text-base">{cartItem.title}</h4>
