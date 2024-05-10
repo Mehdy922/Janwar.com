@@ -104,7 +104,7 @@ const Sidebar = () => {
           <span className="site-brand-text text-outerspace">Janwar</span>
         </SiteBrandWrapper>
         <form className="sidenav-search-form">
-          <InputGroupWrapper className="input-group">
+          {/* <InputGroupWrapper className="input-group">
             <span className="input-icon flex items-center justify-center text-xl text-gray">
               <i className="bi bi-search"></i>
             </span>
@@ -113,7 +113,7 @@ const Sidebar = () => {
               className="input-control w-full"
               placeholder="Search"
             />
-          </InputGroupWrapper>
+          </InputGroupWrapper> */}
         </form>
         <ul className="sidenav-menu-list grid">
           {sideMenuData?.map((menu) => (

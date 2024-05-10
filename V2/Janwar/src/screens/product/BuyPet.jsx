@@ -92,20 +92,29 @@ const DescriptionContent = styled.div`
   }
 `;
 
+const SearchBar = styled.input`
+  width: 100%;
+  padding: 10px;
+  border: 1px solid ${defaultTheme.color_gray};
+  border-radius: 8px;
+  margin-bottom: 20px;
+`;
 
 const BuyPet = () => {
   const breadcrumbItems = [
     { label: "Home", link: "/" },
-
     { label: "Products", link: "/buy" },
 
   ];
 
   const [petlist, setPetlist] = useState([]);
+  const [filteredPetList, setFilteredPetList] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     loadProducts();
   }, []);
+
 
   const loadProducts = async () => {
     try {
@@ -121,6 +130,14 @@ const BuyPet = () => {
     }
   };
 
+  const handleSearch = () => {
+    const filteredPets = petlist.filter(pet =>
+      pet.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredPetList(filteredPets);
+  };
+  console.log(petlist)
+
   return (
     <main className="page-py-spacing">
       <Container>
@@ -130,7 +147,21 @@ const BuyPet = () => {
             <ProductFilter />
           </ProductsContentLeft>
           <ProductsContentRight>
-            <div className="products-right-top flex items-center justify-between">
+          <SearchBar
+              type="text"
+              placeholder="Search pets..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") handleSearch();
+              }}
+            />
+            {filteredPetList.length > 0 ? (
+              <ProductList products={filteredPetList} />
+            ) : (
+              <ProductList products={petlist} />
+            )}
+            {/* <div className="products-right-top flex items-center justify-between">
               <h4 className="text-xxl">Buy Pets</h4>
               <ul className="products-right-nav flex items-center justify-end flex-wrap">
                 <li>
@@ -144,8 +175,8 @@ const BuyPet = () => {
                   </Link>
                 </li>
               </ul>
-            </div>
-            {<ProductList products={petlist} />}
+            </div> */}
+            {/* {<ProductList products={petlist} />} */}
           </ProductsContentRight>
         </ProductsContent>
       </Container>

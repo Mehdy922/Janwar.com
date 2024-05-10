@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {
-  ColorsFilter,
   FilterTitle,
   FilterWrap,
   PriceFilter,
@@ -14,7 +13,6 @@ import { staticImages } from "../../utils/images";
 const ProductFilter = () => {
   const [isProductFilterOpen, setProductFilterOpen] = useState(true);
   const [isPriceFilterOpen, setPriceFilterOpen] = useState(true);
-  const [isColorFilterOpen, setColorFilterOpen] = useState(true);
   const [isSexFilterOpen, setSexFilterOpen] = useState(true);
 
   const toggleFilter = (filter) => {
@@ -24,9 +22,6 @@ const ProductFilter = () => {
         break;
       case "price":
         setPriceFilterOpen(!isPriceFilterOpen);
-        break;
-      case "color":
-        setColorFilterOpen(!isColorFilterOpen);
         break;
       case "Sex":
         setSexFilterOpen(!isSexFilterOpen);
@@ -68,7 +63,7 @@ const ProductFilter = () => {
           className="filter-title flex items-center justify-between"
           onClick={() => toggleFilter("product")}
         >
-          <p className="filter-title-text text-gray text-base font-semibold text-lg">
+          <p className="filter-title-text text-gray text-base font-semibold">
             Filter
           </p>
           <span
@@ -105,7 +100,7 @@ const ProductFilter = () => {
           className="filter-title flex items-center justify-between"
           onClick={() => toggleFilter("price")}
         >
-          <p className="filter-title-text text-gray text-base font-semibold text-lg">
+          <p className="filter-title-text text-gray text-base font-semibold">
             Price
           </p>
           <span
@@ -171,7 +166,7 @@ const ProductFilter = () => {
         </FilterWrap>
       </PriceFilter>
 
-      <ColorsFilter>
+      {/* <ColorsFilter>
         <FilterTitle
           className="flex items-center justify-between"
           onClick={() => toggleFilter("color")}
@@ -239,13 +234,13 @@ const ProductFilter = () => {
             </div>
           </div>
         </FilterWrap>
-      </ColorsFilter>
+      </ColorsFilter> */}
       <SexFilter>
         <FilterTitle
           className="flex items-center justify-between"
           onClick={() => toggleFilter("Sex")}
         >
-          <p className="filter-title-text text-gray text-base font-semibold text-lg">
+          <p className="filter-title-text text-gray font-semibold text-lg">
             Sex
           </p>
           <span

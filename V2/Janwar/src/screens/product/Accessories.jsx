@@ -102,18 +102,6 @@ const Accessories = () => {
           <ProductsContentRight>
             <div className="products-right-top flex items-center justify-between">
               <h4 className="text-xxl">Buy Accessories</h4>
-              <ul className="products-right-nav flex items-center justify-end flex-wrap">
-                <li>
-                  <Link to="/" className="active text-lg font-semibold">
-                    New
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/" className="text-lg font-semibold">
-                    Recommended
-                  </Link>
-                </li>
-              </ul>
             </div>
             <ProductList products={products.slice(0, 12)} />
           </ProductsContentRight>
