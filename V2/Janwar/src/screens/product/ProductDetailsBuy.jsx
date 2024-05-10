@@ -224,9 +224,9 @@ const ProductDetailsBuy = () => {
   ));
 
   const breadcrumbItems = [
-    { label: "Home", link: "" },
-    { label: "Product", link: "" },
-    { label: "Buy Pet", link: "" },
+    { label: "Home", link: "/home" },
+    { label: "Product", link: "/buy" },
+    { label: "Buy Pet", link: "/product/buy/details" },
   ];
   return (
     <DetailsScreenWrapper>

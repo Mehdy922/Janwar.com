@@ -49,8 +49,6 @@ const HomeScreen = () => {
       <SavingZone />
       <Catalog catalogTitle={"Pets For SALE"} products={mensCatalog} />
       <Catalog catalogTitle={"Pets For Adoption"} products={womensCatalog} />
-      {/*<Brands />
-      <Catalog catalogTitle={"In The LimeLight"} products={limelightCatalog} />*/}
       <Feedback />
     </HomeScreenWrapper>
   );
