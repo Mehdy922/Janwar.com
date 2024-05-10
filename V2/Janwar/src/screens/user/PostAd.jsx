@@ -34,21 +34,16 @@ const breadcrumbItems = [
 ];
 
 const PostAdScreen = () => {
-/*   const navigate = useNavigate();
+  const navigate = useNavigate();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
-  const data = params.get('data');
-
+  const loginflag = localStorage.getItem('login_flag');
   useEffect(() => {
-    if (!data) {
+    if(!loginflag){ 
       navigate('/login');
     }
-    else
-    {
-      console.log('User data:', data);
-    }
-  }, [data, navigate]);
- */
+    
+  } , [loginflag, navigate]);
 
   
   const [postData, setContactData] = useState({
@@ -65,16 +60,19 @@ const PostAdScreen = () => {
     postCategory:""
   });
 
-  const [image, setImage] = useState(null);
+  
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
+
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
         setContactData({ ...postData, images: reader.result });
       };
-      reader.readAsArrayBuffer(file); // Read file as binary data
+      reader.readAsDataURL(file); // Read file as base64 data
+      
+
     }
   };
 

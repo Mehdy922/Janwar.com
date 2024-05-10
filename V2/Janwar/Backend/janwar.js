@@ -85,19 +85,26 @@ db_users.post("/register", async (req, res) => {
 db_users.post("/postAd", async (req, res) => {
   try {
     console.log("Post Add request received:", req.body);
-    const collection = await db.collection("janwarAds");
-    const user = await collection.insertOne(req.body);
-    res.status(200).send(user);
+    if (req.body.postCategory === "Sell") {
+      const collection = await db.collection("janwarAds_sells");
+      const user = await collection.insertOne(req.body);
+      res.status(200).send(user);
+    } else {
+      const collection = await db.collection("janwarAds_adopts");
+      const user = await collection.insertOne(req.body);
+      res.status(200).send(user);
+    }
+    
   } catch (error) {
     console.error("Error during postAdd:", error);
     res.status(500).send("Internal Server Error");
   }
 });
 
-db_users.post("/getAds", async (req, res) => {
+db_users.post("/getAds_sells", async (req, res) => {
   try {
     console.log("Get Ads request received");
-    const collection = await db.collection("janwarAds");
+    const collection = await db.collection("janwarAds_sells");
     const user = await collection.find().toArray();
     res.status(200).send(user);
   } catch (error) {
@@ -105,6 +112,7 @@ db_users.post("/getAds", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
+
 
 
 

@@ -19,6 +19,17 @@ const HomeScreen = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const data = params.get('data');
+  const loginflag = localStorage.getItem('login_flag');
+  useEffect(() => {
+    if(!loginflag){ 
+      navigate('/login');
+    }
+    
+  } , [loginflag, navigate]);
+  /* const navigate = useNavigate();
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const data = params.get('data');
 
   useEffect(() => {
     if (!data) {
@@ -28,7 +39,7 @@ const HomeScreen = () => {
     {
       console.log('User data:', data);
     }
-  }, [data, navigate]);
+  }, [data, navigate]); */
 
   return (
     <HomeScreenWrapper>

@@ -11,6 +11,7 @@ import { breakpoints, defaultTheme } from "../../styles/themes/default.js";
 
 import axios from "axios";
 import React, { useState } from "react";
+import { useEffect } from "react";
 
 const SignInScreenWrapper = styled.section`
   .form-separator {
@@ -44,6 +45,10 @@ const SignInScreenWrapper = styled.section`
 
 const SignInScreen = () => {
 
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
+
   const [contactData, setContactData] = useState({
     email: "",
     password: ""
@@ -59,6 +64,8 @@ const SignInScreen = () => {
       const userObj = await axios.post('http://localhost:5050/user/login', contactData);
       console.log('Response:', userObj);
       if (userObj.status === 200) {
+        let loginFlag = true;
+        localStorage.setItem('login_flag', loginFlag);
         localStorage.setItem('user_data', JSON.stringify(userObj.data));
         const encodedData = encodeURIComponent(JSON.stringify(userObj.data));
         window.location.href = `/home?data=${encodedData}`;
