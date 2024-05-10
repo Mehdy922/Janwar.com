@@ -26,7 +26,6 @@ const ProductsContent = styled.div`
     row-gap: 24px;
   }
 `;
-
 const ProductsContentLeft = styled.div`
   border: 1px solid rgba(190, 188, 189, 0.4);
   border-radius: 12px;
@@ -37,7 +36,6 @@ const ProductsContentLeft = styled.div`
     display: grid;
   }
 `;
-
 const ProductsContentRight = styled.div`
   padding: 16px 40px;
 
@@ -81,7 +79,6 @@ const ProductsContentRight = styled.div`
     padding-right: 0;
   }
 `;
-
 const DescriptionContent = styled.div`
   .content-stylings {
     margin-left: 32px;
@@ -90,7 +87,6 @@ const DescriptionContent = styled.div`
     }
   }
 `;
-
 const SearchBar = styled.input`
   width: 100%;
   padding: 10px;
@@ -117,7 +113,7 @@ const AdoptPet = () => {
     try {
       console.log("Fetching data...");
       //link change karna database ka
-      const userObj = await axios.post('http://localhost:5050/user/getAds_sells');
+      const userObj = await axios.post('http://localhost:5050/user/getAds_adopt');
       if (userObj.status === 200) {
         console.log("Response:", userObj);
         setPetlist(userObj.data);  // Update petlist using the state setter function
