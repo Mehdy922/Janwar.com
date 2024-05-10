@@ -6,7 +6,6 @@ import { FormGridWrapper, FormTitle } from '../../styles/form_grid';
 import { Container } from '../../styles/styles';
 import { staticImages } from '../../utils/images';
 import { FormElement, Input } from '../../styles/form';
-import { BaseButtonBlack } from '../../styles/button';
 import { breakpoints, defaultTheme } from '../../styles/themes/default';
 
 const SignInScreenWrapper = styled.section`
@@ -70,12 +69,16 @@ const SignInScreen = () => {
 
   const login = async () => {
     try {
-      const response = await axios.post('http://localhost:5050/user/login', contactData);
-      if (response.status === 200) {
-        localStorage.setItem('login_flag', true);
-        localStorage.setItem('user_data', JSON.stringify(response.data));
-        const encodedData = encodeURIComponent(JSON.stringify(response.data));
+      console.log('Sending message:', contactData);
+      const userObj = await axios.post('http://localhost:5050/user/login', contactData);
+      console.log('Response:', userObj);
+      if (userObj.status === 200) {
+        let loginFlag = true;
+        localStorage.setItem('login_flag', loginFlag);
+        localStorage.setItem('user_data', JSON.stringify(userObj.data));
+        const encodedData = encodeURIComponent(JSON.stringify(userObj.data));
         navigate(`/home?data=${encodedData}`);
+        window.location.href = `/home?data=${encodedData}`;
       }
     } catch (error) {
       console.error('Error logging in:', error);

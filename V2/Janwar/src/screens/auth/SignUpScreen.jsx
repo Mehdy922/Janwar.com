@@ -63,9 +63,9 @@ const SignUpScreen = () => {
   const register = async () => {
     try {
       console.log('Registering:', contactData);
-      const response = await axios.post('http://localhost:5050/user/register', contactData);
-      console.log('Response:', response);
-      if (response.status === 200) {
+      const userObj = await axios.post('http://localhost:5050/user/register', contactData);
+      console.log('Response:', userObj);
+      if (userObj.status === 200) {
         alert('User registered successfully!');
         // Navigate to Sign In page after successful registration
         navigate('/sign_in');
