@@ -86,10 +86,18 @@ const DescriptionContent = styled.div`
   }
 `;
 
+const SearchBar = styled.input`
+  width: 100%;
+  padding: 10px;
+  border: 1px solid ${defaultTheme.color_gray};
+  border-radius: 8px;
+  margin-bottom: 20px;
+`;
+
 const Accessories = () => {
   const breadcrumbItems = [
-    { label: "Home", link: "/" },
-    { label: "Products", link: "" },
+    { label: "Home", link: "/home" },
+    { label: "Products", link: "/accessories" },
   ];
   return (
     <main className="page-py-spacing">
@@ -102,18 +110,6 @@ const Accessories = () => {
           <ProductsContentRight>
             <div className="products-right-top flex items-center justify-between">
               <h4 className="text-xxl">Buy Accessories</h4>
-              <ul className="products-right-nav flex items-center justify-end flex-wrap">
-                <li>
-                  <Link to="/" className="active text-lg font-semibold">
-                    New
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/" className="text-lg font-semibold">
-                    Recommended
-                  </Link>
-                </li>
-              </ul>
             </div>
             <ProductList products={products.slice(0, 12)} />
           </ProductsContentRight>
