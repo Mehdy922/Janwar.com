@@ -7,6 +7,11 @@ import { products } from "../../data/data";
 import Title from "../../components/common/Title";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";
 import ProductFilter from "../../components/product/ProductFilterAccessories";
+import { useState } from "react";
+import React, {useEffect} from "react";
+import axios from "axios";
+
+let accessoriesList = []
 
 const ProductsContent = styled.div`
   grid-template-columns: 320px auto;
@@ -97,8 +102,41 @@ const SearchBar = styled.input`
 const Accessories = () => {
   const breadcrumbItems = [
     { label: "Home", link: "/home" },
-    { label: "Products", link: "/accessories" },
+    { label: "Accessories", link: "/accessories" },
   ];
+
+
+
+  const [accessoriesList, setaccessoriesList] = useState([]);
+  const [filteredaccessoriesList, setFilteredaccessoriesList] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    loadProducts();
+  }, []);
+
+  const loadProducts = async () => {
+    try {
+      console.log("Fetching data...");
+      //link change karna database ka
+      const userObj = await axios.post('http://localhost:5050/user/getAds_sells');
+      if (userObj.status === 200) {
+        console.log("Response:", userObj);
+        setaccessoriesList(userObj.data);  // Update accessoriesList using the state setter function
+        console.log("accessoriesList:", accessoriesList);
+      }
+    } catch (error) {
+      console.error("Failed to fetch data:", error);
+    }
+  };
+
+  const handleSearch = () => {
+    const filteredList = accessoriesList.filter(pet => {
+      return pet.title.toLowerCase().includes(searchQuery.toLowerCase());
+    });
+    setFilteredaccessoriesList(filteredList);
+  };
+
   return (
     <main className="page-py-spacing">
       <Container>
@@ -108,10 +146,26 @@ const Accessories = () => {
             <ProductFilter />
           </ProductsContentLeft>
           <ProductsContentRight>
-            <div className="products-right-top flex items-center justify-between">
-              <h4 className="text-xxl">Buy Accessories</h4>
-            </div>
-            <ProductList products={products.slice(0, 12)} />
+            <SearchBar
+              type="text"
+              placeholder="Search pets..."
+              value={searchQuery}
+              onChange={(e) => {setSearchQuery(e.target.value); handleSearch();}}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") handleSearch();
+              }}
+            />
+            {filteredaccessoriesList.length > 0 ? (
+                <>
+                  <ProductList products={filteredaccessoriesList} />
+                  {console.log("filteredaccessoriesList")}
+                </>
+              ) : (
+                <>
+                  <ProductList products={accessoriesList} />
+                  {console.log("accessoriesList")}
+                </>
+              )}
           </ProductsContentRight>
         </ProductsContent>
       </Container>

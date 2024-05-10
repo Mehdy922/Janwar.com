@@ -103,7 +103,7 @@ const SearchBar = styled.input`
 const BuyPet = () => {
   const breadcrumbItems = [
     { label: "Home", link: "/home" },
-    { label: "Products", link: "/buy" },
+    { label: "BuyPets", link: "/buy" },
 
   ];
 
@@ -132,7 +132,6 @@ const BuyPet = () => {
 
   const handleSearch = () => {
     const filteredList = petlist.filter(pet => {
-      // Assuming each pet object has a property 'name' to search against
       return pet.title.toLowerCase().includes(searchQuery.toLowerCase());
     });
     setFilteredPetList(filteredList);
@@ -151,7 +150,7 @@ const BuyPet = () => {
               type="text"
               placeholder="Search pets..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => {setSearchQuery(e.target.value); handleSearch();}}
               onKeyDown={(e) => {
                 if (e.key === "Enter") handleSearch();
               }}
