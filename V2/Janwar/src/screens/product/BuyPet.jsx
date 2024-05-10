@@ -92,22 +92,31 @@ const DescriptionContent = styled.div`
   }
 `;
 
+const SearchBar = styled.input`
+  width: 100%;
+  padding: 10px;
+  border: 1px solid ${defaultTheme.color_gray};
+  border-radius: 8px;
+  margin-bottom: 20px;
+`;
 
 const BuyPet = () => {
   const breadcrumbItems = [
-    { label: "Home", link: "/" },
-
+    { label: "Home", link: "/home" },
     { label: "Products", link: "/buy" },
 
   ];
 
   const [petlist, setPetlist] = useState([]);
+  const [filteredPetList, setFilteredPetList] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    loadcart();
+    loadProducts();
   }, []);
 
-  const loadcart = async () => {
+
+  const loadProducts = async () => {
     try {
       console.log("Fetching data...");
       const userObj = await axios.post('http://localhost:5050/user/getAds_sells');
@@ -121,6 +130,14 @@ const BuyPet = () => {
     }
   };
 
+  const handleSearch = () => {
+    const filteredList = petlist.filter(pet => {
+      // Assuming each pet object has a property 'name' to search against
+      return pet.title.toLowerCase().includes(searchQuery.toLowerCase());
+    });
+    setFilteredPetList(filteredList);
+  };
+
   return (
     <main className="page-py-spacing">
       <Container>
@@ -130,7 +147,27 @@ const BuyPet = () => {
             <ProductFilter />
           </ProductsContentLeft>
           <ProductsContentRight>
-            <div className="products-right-top flex items-center justify-between">
+          <SearchBar
+              type="text"
+              placeholder="Search pets..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") handleSearch();
+              }}
+            />
+            {filteredPetList.length > 0 ? (
+                <>
+                  <ProductList products={filteredPetList} />
+                  {console.log("filteredPetList")}
+                </>
+              ) : (
+                <>
+                  <ProductList products={petlist} />
+                  {console.log("petlist")}
+                </>
+              )}
+            {/* <div className="products-right-top flex items-center justify-between">
               <h4 className="text-xxl">Buy Pets</h4>
               <ul className="products-right-nav flex items-center justify-end flex-wrap">
                 <li>
@@ -144,8 +181,8 @@ const BuyPet = () => {
                   </Link>
                 </li>
               </ul>
-            </div>
-            {<ProductList products={petlist} />}
+            </div> */}
+            {/* {<ProductList products={petlist} />} */}
           </ProductsContentRight>
         </ProductsContent>
       </Container>

@@ -71,7 +71,7 @@ const CartScreen = () => {
 
 
     const breadcrumbItems = [
-      { label: "Home", link: "/" },
+      { label: "Home", link: "/home" },
   
       { label: "Add to cart", link: "/cart" },
   
