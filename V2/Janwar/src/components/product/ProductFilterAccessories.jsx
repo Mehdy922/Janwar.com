@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {
-  ColorsFilter,
   FilterTitle,
   FilterWrap,
   PriceFilter,
@@ -14,7 +13,6 @@ import { staticImages } from "../../utils/images";
 const ProductFilter = () => {
   const [isProductFilterOpen, setProductFilterOpen] = useState(true);
   const [isPriceFilterOpen, setPriceFilterOpen] = useState(true);
-  const [isColorFilterOpen, setColorFilterOpen] = useState(true);
   const [isSexFilterOpen, setSexFilterOpen] = useState(true);
 
   const toggleFilter = (filter) => {
@@ -24,9 +22,6 @@ const ProductFilter = () => {
         break;
       case "price":
         setPriceFilterOpen(!isPriceFilterOpen);
-        break;
-      case "color":
-        setColorFilterOpen(!isColorFilterOpen);
         break;
       case "Sex":
         setSexFilterOpen(!isSexFilterOpen);
@@ -68,7 +63,7 @@ const ProductFilter = () => {
           className="filter-title flex items-center justify-between"
           onClick={() => toggleFilter("product")}
         >
-          <p className="filter-title-text text-gray text-base font-semibold text-lg">
+          <p className="filter-title-text text-gray font-semibold text-lg">
             Filter
           </p>
           <span
@@ -87,7 +82,7 @@ const ProductFilter = () => {
                   type="button"
                   className="filter-item-head w-full flex items-center justify-between"
                 >
-                  <span className="filter-head-title text-base text-gray font-semibold">
+                  <span className="filter-head-title text-gray font-semibold">
                     {productFilter.title}
                   </span>
                   <span className="filter-head-icon text-gray">
@@ -105,7 +100,7 @@ const ProductFilter = () => {
           className="filter-title flex items-center justify-between"
           onClick={() => toggleFilter("price")}
         >
-          <p className="filter-title-text text-gray text-base font-semibold text-lg">
+          <p className="filter-title-text text-gray font-semibold text-lg">
             Price
           </p>
           <span
@@ -170,82 +165,12 @@ const ProductFilter = () => {
           </div>
         </FilterWrap>
       </PriceFilter>
-
-      <ColorsFilter>
-        <FilterTitle
-          className="flex items-center justify-between"
-          onClick={() => toggleFilter("color")}
-        >
-          <p className="filter-title-text text-gray text-base font-semibold text-lg">
-            Colors
-          </p>
-          <span
-            className={`text-gray text-xl filter-title-icon ${
-              !isColorFilterOpen ? "rotate" : ""
-            }`}
-          >
-            <i className="bi bi-chevron-up"></i>
-          </span>
-        </FilterTitle>
-        <FilterWrap className={`${!isColorFilterOpen ? "hide" : "show"}`}>
-          <div className="colors-list grid">
-            <div className="colors-item text-center flex flex-col justify-center items-center">
-              <input type="checkbox" />
-              <img src={staticImages.color1} alt="" />
-            </div>
-            <div className="colors-item text-center flex flex-col justify-center items-center">
-              <input type="checkbox" />
-              <img src={staticImages.color2} alt="" />
-            </div>
-            <div className="colors-item text-center flex flex-col justify-center items-center">
-              <input type="checkbox" />
-              <img src={staticImages.color3} alt="" />
-            </div>
-            <div className="colors-item text-center flex flex-col justify-center items-center">
-              <input type="checkbox" />
-              <img src={staticImages.color4} alt="" />
-            </div>
-            <div className="colors-item text-center flex flex-col justify-center items-center">
-              <input type="checkbox" />
-              <img src={staticImages.color5} alt="" />
-            </div>
-            <div className="colors-item text-center flex flex-col justify-center items-center">
-              <input type="checkbox" />
-              <img src={staticImages.color6} alt="" />
-            </div>
-            <div className="colors-item text-center flex flex-col justify-center items-center">
-              <input type="checkbox" />
-              <img src={staticImages.color7} alt="" />
-            </div>
-            <div className="colors-item text-center flex flex-col justify-center items-center">
-              <input type="checkbox" />
-              <img src={staticImages.color8} alt="" />
-            </div>
-            <div className="colors-item text-center flex flex-col justify-center items-center">
-              <input type="checkbox" />
-              <img src={staticImages.color9} alt="" />
-            </div>
-            <div className="colors-item text-center flex flex-col justify-center items-center">
-              <input type="checkbox" />
-              <img src={staticImages.color10} alt="" />
-            </div>
-            <div className="colors-item text-center flex flex-col justify-center items-center">
-              <input type="checkbox" />
-              <img src={staticImages.color11} alt="" />
-            </div>
-            <div className="colors-item text-center flex flex-col justify-center items-center">
-              <input type="checkbox" />
-              <img src={staticImages.color12} alt="" />
-            </div>
-          </div>
-        </FilterWrap>
-      </ColorsFilter>
       <SexFilter>
         <FilterTitle
           className="flex items-center justify-between"
           onClick={() => toggleFilter("Sex")}
         >
-          <p className="filter-title-text text-gray text-base font-semibold text-lg">
+          <p className="filter-title-text text-gray font-semibold text-lg">
             Sex
           </p>
           <span
@@ -281,7 +206,7 @@ const ProductFilter = () => {
       </SexFilter>
       {/* <StyleFilter onClick={() => toggleFilter("style")}>
         <FilterTitle className="flex items-center justify-between">
-          <p className="filter-title-text text-gray text-base font-semibold text-lg">
+          <p className="filter-title-text text-gray font-semibold text-lg">
             Dress Style
           </p>
           <span
@@ -300,7 +225,7 @@ const ProductFilter = () => {
                   type="button"
                   className="filter-item-head w-full flex items-center justify-between"
                 >
-                  <span className="filter-head-title text-base text-gray font-semibold">
+                  <span className="filter-head-title text-gray font-semibold">
                     {styleFilter.title}
                   </span>
                   <span className="filter-head-icon text-gray">
