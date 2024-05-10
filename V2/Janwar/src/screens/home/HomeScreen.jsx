@@ -4,6 +4,7 @@ import Featured from "../../components/home/Featured";
 import NewArrival from "../../components/home/NewArrival";
 import SavingZone from "../../components/home/SavingZone";
 import Catalog from "../../components/home/Catalog";
+import Catalog2 from "../../components/home/Catalog2";
 import { limelightCatalog, mensCatalog } from "../../data/data";
 import {womensCatalog } from "../../data/data";
 // import Brands from "../../components/home/Brands";
@@ -47,8 +48,8 @@ const HomeScreen = () => {
       <Featured />
       <NewArrival />
       <SavingZone />
-      <Catalog catalogTitle={"Pets For SALE"} products={mensCatalog} />
-      <Catalog catalogTitle={"Pets For Adoption"} products={womensCatalog} />
+      <Catalog/>
+      <Catalog2/>
       <Feedback />
     </HomeScreenWrapper>
   );
