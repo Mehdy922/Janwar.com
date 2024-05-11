@@ -162,8 +162,9 @@ db_users.post("/getAds_adopt", async (req, res) => {
 db_users.post("/addtocart", async (req, res) => {
   try {
     console.log("Add to Cart request received:", req.body);
+    const cartItem = { ...req.body, _id: new ObjectId() };
     const collection = await db.collection("janwarAds_cart");
-    const user = await collection.insertOne(req.body);
+    const user = await collection.insertOne(cartItem);
     res.status(200).send(user);
   } catch (error) {
     console.error("Error during Add to Cart:", error);
@@ -212,11 +213,39 @@ db_users.post("/removeFromCart", async (req, res) => {
 });
 
 
+db_users.post("/removeCart", async (req, res) => {
+  try {
+    console.log("Remove Cart request received");
+      const body = req.body;
+      const keys = Object.keys(body);
+      const userID = keys[0]; 
+    
+    console.log("Item ID:", userID);
+    const collection = await db.collection("janwarAds_cart");
+    const result = await collection.deleteMany({ productID: userID });
+    const collection2 = await db.collection("janwarAds_sells");
+    const result2 = await collection2.deleteMany({ _id: new ObjectId(userID) });
+
+    if (result.deletedCount > 0) {
+      console.log("Item removed from cart successfully");
+      res.status(200).send({ message: "Item removed from cart successfully" });
+    } else {
+      console.log("Item not found in the cart");
+      res.status(404).send({ message: "Item not found in the cart" });
+    }
+
+  } catch (error) {
+    console.error("Error during removeFromCart:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+
 db_users.post("/addtoorder", async (req, res) => {
   try {
     console.log("Add to order request received:", req.body);
     const collection = await db.collection("janwarOrders");
-    const user = await collection.insert(req.body);
+    const user = await collection.insertOne(req.body);
     res.status(200).send(user);
   } catch (error) {
     console.error("Error during Add to order:", error);
