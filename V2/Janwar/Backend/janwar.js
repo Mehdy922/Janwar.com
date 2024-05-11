@@ -220,22 +220,15 @@ db_users.post("/getAds_cart", async (req, res) => {
   }
 });
 
-db_users.post("/getAds_cart", async (req, res) => {
+db_users.post("/get_order", async (req, res) => {
   try {
-      console.log("Get Ads Cart request received");
-      const body = req.body;
-      const keys = Object.keys(body);
-      const userID = keys[0]; 
-      console.log("User that called ID = ", userID);
-      const collection = await db.collection("janwarAds_cart");
-      const cartItems = await collection.find().toArray();
-      //only return those item where userID is same
-      const userCartItems = cartItems.filter(item => item.buyerID === userID);
-      console.log("User Cart Items = ", userCartItems);
-      res.status(200).send(userCartItems);
+    console.log("Get order request received");
+    const collection = await db.collection("janwarOrders");
+    const user = await collection.find().toArray();
+    res.status(200).send(user);
   } catch (error) {
-      console.error("Error during getAds_cart:", error);
-      res.status(500).send("Internal Server Error");
+    console.error("Error during getOrders:", error);
+    res.status(500).send("Internal Server Error");
   }
 });
 
