@@ -55,7 +55,7 @@ const AccountScreenWrapper = styled.main`
 const breadcrumbItems = [
   {
     label: "Home",
-    link: "/",
+    link: "/home",
   },
   { label: "Account", link: "/account" },
 ];
