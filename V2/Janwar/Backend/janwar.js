@@ -9,7 +9,6 @@ const router_lang = express.Router();
 const router_user = express.Router();
 
 //Janwar API
-
 //get user by email  and check if email and pass match
 
 db_users.post("/login", async (req, res) => {
@@ -119,7 +118,7 @@ db_users.delete("/deleteAd_accessories/:id", async (req, res) => {
     console.log("Delete request received for ID:", id);
     
     const collection = await db.collection("janwarAds_accessories");
-    const result = await collection.deleteOne({ _id: ObjectId(id) });
+    const result = await collection.deleteOne({ _id: new ObjectId(id) });
 
     if (result.deletedCount === 1) {
       console.log("Post deleted successfully.");
