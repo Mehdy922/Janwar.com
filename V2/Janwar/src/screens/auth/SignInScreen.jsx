@@ -73,11 +73,11 @@ const SignInScreen = () => {
       const userObj = await axios.post('http://localhost:5050/user/login', contactData);
       console.log('Response:', userObj);
       if (userObj.status === 200) {
-        let loginFlag = true;
+        const loginFlag = true;
         localStorage.setItem('login_flag', loginFlag);
         localStorage.setItem('user_data', JSON.stringify(userObj.data));
         const encodedData = encodeURIComponent(JSON.stringify(userObj.data));
-        if (userObj.email == 'officialjanwar2024@gmail.com')
+        if (userObj.data.email == 'officialjanwar2024@gmail.com')
         {
           navigate('/admin');
           window.location.href = '/admin';

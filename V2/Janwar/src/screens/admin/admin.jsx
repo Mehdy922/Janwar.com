@@ -11,6 +11,8 @@ import { breakpoints, defaultTheme } from "../../styles/themes/default";
 import { BaseLinkGreen,BaseLinkBlack, BaseButtonGreen, BaseButtonRed } from "../../styles/button";
 import React, {useEffect} from "react";
 import {useLocation, useNavigate } from 'react-router-dom';
+import axios from "axios";
+import { useState } from "react";
 
 const ButtonGroupWrapper = styled.div`
   gap: 8px;
@@ -160,26 +162,60 @@ const AdminPage = () => {
   const navigate = useNavigate();
   const location = useLocation(); 
 
-  const loginflag = localStorage.getItem('login_flag');
-  const userData = localStorage.getItem('user_data');
+  const[data, setData] = useState([]);
+  
+  useEffect(() => {
+    getComplaints();
+  }, []);
+  
 
   useEffect(() => {
-    
-    if(!loginflag){ 
-      navigate('/login');
+    const loginflag = localStorage.getItem('login_flag');
+    console.log(loginflag);
+    const userData = JSON.parse(localStorage.getItem('user_data'));
+    console.log(userData.email);
+    const navigateToLogin = async () => {
+      if(!loginflag || (userData.email !== 'officialjanwar2024@gmail.com')) { 
+        await navigate('/login');
+      }
     }
-    if(userData.email !== 'officialjanwar2024@gmail.com')
-    { 
-      navigate('/login');
-    }
-    
-  } , [loginflag, navigate]);
+  
+    navigateToLogin();
+  }, []);
 
 
-  const Board = ({ info }) => {
+  const getComplaints = async () => {
+    try {
+      console.log("Fetching complaints...");
+      const userObj = await axios.post('http://localhost:5050/user/getComplains');
+      console.log('Response:', userObj);
+      setData(userObj.data);
+      console.log('Data:', data);
+      
+    } catch (error) {
+      console.error("Error fetching complaints:", error);
+    }
+  };
+
+  const deleteComplaint = async (id) => {
+    try {
+      console.log('Deleting complaint:', id);
+      const userObj = await axios.post('http://localhost:5050/user/deleteComplain', {id});
+      console.log('Response:', userObj);
+      if (userObj.status === 200) {
+        alert('Complaint resolved!');
+        getComplaints();
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+
+  const Board = () => {
     return (
       <div>
-        {info.map((data) => (
+        {data.map((data) => (
           <><div className="order-d-top flex justify-between items-start">
           <div className="order-d-top-l">
             <h4 className="text-3xl order-d-no">
@@ -189,13 +225,12 @@ const AdminPage = () => {
               Email: {data.email}
             </p>
             <p className="text-lg font-medium text-gray">
-              Complain: {data.complain}
+              Message: {data.message}
             </p>
           </div>
           <div className="order-d-top-r text-xxl text-gray font-semibold">
             <ButtonGroupWrapper className="flex items-center">
-            <BaseButtonGreen>Resolved</BaseButtonGreen>
-            <BaseButtonRed>Ignore</BaseButtonRed>
+            <BaseButtonGreen onClick={() => deleteComplaint(data._id)}>Resolve</BaseButtonGreen>
             </ButtonGroupWrapper>
           </div>
         </div>

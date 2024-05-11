@@ -24,8 +24,7 @@ const CheckoutScreenWrapper = styled.main`
 `;
 
 const CheckoutScreen = () => {
-  const cartItems = JSON.parse(localStorage.getItem("cartItems"));
-  console.log("cart at checkout: ", cartItems);
+  
  
   return (
     <CheckoutScreenWrapper>
