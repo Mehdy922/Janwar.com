@@ -8,7 +8,7 @@ import Title from "../../components/common/Title";
 import { orderData } from "../../data/data";
 import { currencyFormat } from "../../utils/helper";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";
-import { BaseLinkGreen, BaseButtonGreen, BaseButtonRed } from "../../styles/button";
+import { BaseLinkGreen,BaseLinkBlack, BaseButtonGreen, BaseButtonRed } from "../../styles/button";
 
 const ButtonGroupWrapper = styled.div`
   gap: 8px;
@@ -51,6 +51,7 @@ const OrderDetailScreenWrapper = styled.main`
 const OrderDetailListWrapper = styled.div`
   padding: 24px;
   margin-top: 40px;
+  margin-bottom: 40px;
   border: 1px solid rgba(0, 0, 0, 0.05);
 
   @media (max-width: ${defaultTheme.md}) {
@@ -146,6 +147,7 @@ const OrderDetailListWrapper = styled.div`
     }
   }
 `;
+
 const breadcrumbItems = [
   { label: "Admin Page", link: "/" },
 ];
@@ -208,50 +210,27 @@ const AdminPage = () => {
                 </div>
               </div>
               </div>
-              <hr></hr><hr></hr>
+              <hr></hr><hr></hr><hr></hr><hr></hr>
               <OrderDetailListWrapper className="order-d-list">
-                {orderData[0].items?.map((item) => {
-                  return (
-                    <div className="order-d-item grid" key={item.id}>
-                      <div className="order-d-item-img">
-                        <img
-                          src={item.imgSource}
-                          alt=""
-                          className="object-fit-cover"
-                        />
-                      </div>
-                      <div className="order-d-item-info">
-                        <p className="text-xl font-bold">{item.name}</p>
-                        <p className="text-md font-bold">
-                          Color: &nbsp;
-                          <span className="font-medium text-gray">
-                            {item.color}
-                          </span>
-                        </p>
-                      </div>
-                      <div className="order-d-item-calc">
-                        <p className="font-bold text-lg">
-                          Qty: &nbsp;
-                          <span className="text-gray">{item.quantity}</span>
-                        </p>
-                        <p className="font-bold text-lg">
-                          Price: &nbsp;
-                          <span className="text-gray">
-                            {currencyFormat(item.price)}
-                          </span>
-                        </p>
-                      </div>
-                      <button
-                        type="button"
-                        className="text-xl text-outerspace order-d-item-btn"
-                      >
-                        <i className="bi bi-x-lg"></i>
-                      </button>
-                    </div>
-                  );
-                })}
+              <div className="order-d-top flex justify-between items-start">
+                <div className="order-d-top-l">
+                  <h4 className="text-3xl order-d-no">
+                    View and Manage Post
+                  </h4>
+                  <p className="text-lg font-medium text-gray">
+                    Manage your accessories here
+                  </p>
+                </div>
+                <div className="order-d-top-r text-xxl text-gray font-semibold">
+                <Link to="/postacc">
+                  <ButtonGroupWrapper className="flex items-center">
+                  <BaseLinkBlack to="/accessoriesAcc">Manage</BaseLinkBlack>
+                  </ButtonGroupWrapper>
+                </Link>
+                </div>
+              </div>
               </OrderDetailListWrapper>
-              <hr></hr><hr></hr>
+              <hr></hr><hr></hr><hr></hr><hr></hr>
               <div className="order-d-top flex justify-between items-start">
                 <div className="order-d-top-l">
                   <h4 className="text-3xl order-d-no">
