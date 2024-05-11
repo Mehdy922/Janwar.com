@@ -37,6 +37,26 @@ const breadcrumbItems = [
 ];
 
 const OrderListScreen = () => {
+
+  const fetchCartItems = async () => {
+    try {
+        const userData = localStorage.getItem("user_data");
+        const user = JSON.parse(userData);
+        console.log("User data:", user);
+        const userID = user._id;
+        const response = await axios.post("http://localhost:5050/user/get_order", userID );
+        console.log("API response data:", response.data);
+        console.log("API response status:", response.status);
+        if (response.status == 200 ) {
+            setCartItems(response.data);
+        } 
+    } catch (error) {
+        console.error("Failed to fetch cart items:", error);
+        setCartItems([]);
+    }
+};
+
+
   return (
     <OrderListScreenWrapper className="page-py-spacing">
       <Container>
@@ -50,12 +70,6 @@ const OrderListScreen = () => {
                 <div className="order-tabs-content" id="active">
                     <OrderItemList orders = {orderData} />
                 </div>
-                {/* <div className="order-tabs-content" id="cancelled">
-                    Cancelled content
-                </div>
-                <div className="order-tabs-content" id="completed">
-                    Completed content
-                </div> */}
               </div>
             </div>
           </UserContent>

@@ -191,13 +191,33 @@ db_users.post("/getAds_cart", async (req, res) => {
   }
 });
 
+db_users.post("/getAds_cart", async (req, res) => {
+  try {
+      console.log("Get Ads Cart request received");
+      const body = req.body;
+      const keys = Object.keys(body);
+      const userID = keys[0]; 
+      console.log("User that called ID = ", userID);
+      const collection = await db.collection("janwarAds_cart");
+      const cartItems = await collection.find().toArray();
+      //only return those item where userID is same
+      const userCartItems = cartItems.filter(item => item.buyerID === userID);
+      console.log("User Cart Items = ", userCartItems);
+      res.status(200).send(userCartItems);
+  } catch (error) {
+      console.error("Error during getAds_cart:", error);
+      res.status(500).send("Internal Server Error");
+  }
+});
+
+
 db_users.post("/removeFromCart", async (req, res) => {
   try {
     console.log("Remove from Cart request received");
-    const { itemId } = req.body;
+    const {itemId} = req.body;
     console.log("Item ID:", itemId);
     const collection = await db.collection("janwarAds_cart");
-    const result = await collection.deleteOne({ _id: itemId });
+    const result = await collection.deleteOne({ _id: new ObjectId(itemId) });
 
     if (result.deletedCount === 1) {
       console.log("Item removed from cart successfully");
@@ -216,15 +236,33 @@ db_users.post("/removeFromCart", async (req, res) => {
 db_users.post("/removeCart", async (req, res) => {
   try {
     console.log("Remove Cart request received");
-      const body = req.body;
-      const keys = Object.keys(body);
-      const userID = keys[0]; 
-    
-    console.log("Item ID:", userID);
-    const collection = await db.collection("janwarAds_cart");
-    const result = await collection.deleteMany({ productID: userID });
+      const { ItemId, type } = req.body;
+
+    console.log("Item ID:",ItemId);
+    console.log("Item type:",type);
+
+    if(type === "Sell"){
     const collection2 = await db.collection("janwarAds_sells");
-    const result2 = await collection2.deleteMany({ _id: new ObjectId(userID) });
+    const result1 = await collection2.deleteOne({ _id: new ObjectId(ItemId) });
+      if (result1.deletedCount > 0) {
+        console.log("Item removed from ads_sells successfully");
+      } else {
+        console.log("Item not found in the ads_sella");
+      }
+    }
+    if(type === "Adopt"){
+      const collection2 = await db.collection("janwarAds_adopt");
+      const result2 = await collection2.deleteOne({ _id: new ObjectId(ItemId) });
+      if (result2.deletedCount > 0) {
+        console.log("Item removed from ads_adopt successfully");
+      } else {
+        console.log("Item not found in the ads_adopt");
+      }
+
+      }
+    
+    const collection = await db.collection("janwarAds_cart");
+    const result = await collection.deleteMany({ productID: ItemId });
 
     if (result.deletedCount > 0) {
       console.log("Item removed from cart successfully");
@@ -244,8 +282,9 @@ db_users.post("/removeCart", async (req, res) => {
 db_users.post("/addtoorder", async (req, res) => {
   try {
     console.log("Add to order request received:", req.body);
+    const order = { ...req.body, _id: new ObjectId() };
     const collection = await db.collection("janwarOrders");
-    const user = await collection.insertOne(req.body);
+    const user = await collection.insertOne(order);
     res.status(200).send(user);
   } catch (error) {
     console.error("Error during Add to order:", error);
