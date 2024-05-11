@@ -69,7 +69,10 @@ const AdListScreen = () => {
       if (isMounted.current && adoptResponse.status === 200) {
         console.log("Adopt Response:", adoptResponse);
         // Filter out objects where user_id is not 'buyer'
-        const filteredAdoptData = adoptResponse.data.filter(item => item.user_id !== buyer);
+        console.log('Buyer = ',buyer._id)
+        console.log('Item = ', adoptResponse.data)
+        const filteredAdoptData = adoptResponse.data.filter(item => item.user_id == buyer._id);
+        console.log('Item = ', filteredAdoptData)
         setPetlist(prevPetlist => [...prevPetlist, ...filteredAdoptData]);
       }
     } catch (error) {
@@ -83,7 +86,7 @@ const AdListScreen = () => {
       if (isMounted.current && sellResponse.status === 200) {
         console.log("Sell Response:", sellResponse);
         // Filter out objects where user_id is not 'buyer'
-        const filteredSellData = sellResponse.data.filter(item => item.user_id !== buyer);
+        const filteredSellData = sellResponse.data.filter(item => item.user_id == buyer._id);
         setPetlist(prevPetlist => [...prevPetlist, ...filteredSellData]);
       }
     } catch (error) {
@@ -99,7 +102,7 @@ const AdListScreen = () => {
       if (response.status === 200) {
         console.log("Product deleted successfully.");
         // Reload products after deletion
-        loadProducts();
+        // loadProducts();
         navigate('/myads');
       }
     } catch (error) {
