@@ -29,6 +29,7 @@ import Cart from "./screens/cart/CartScreen";
 import CartEmpty from "./screens/cart/CartEmptyScreen";
 import Checkout from "./screens/checkout/CheckoutScreen";
 import Order from "./screens/user/OrderListScreen";
+import AdListScreen from "./screens/user/AdsListScreen";
 import OrderDetail from "./screens/user/OrderDetailScreen";
 //import WishList from "./screens/user/WishListScreen";
 //import WishListEmpty from "./screens/user/WishListEmptyScreen";
@@ -78,6 +79,7 @@ function App() {
             <Route path="/account/add" element={<Address />} />
             <Route path="/Intro" element={<Intro />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/myads" element={<AdListScreen />} />
             </Route>
 
             {/* auth screens */}

@@ -32,7 +32,7 @@ const OrderListScreenWrapper = styled.div`
 `;
 
 const breadcrumbItems = [
-  { label: "Home", link: "/" },
+  { label: "Home", link: "/home" },
   { label: "Order", link: "/order" },
 ];
 
