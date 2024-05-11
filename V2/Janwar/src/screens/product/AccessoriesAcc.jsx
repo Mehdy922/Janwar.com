@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Container, ContentStylings, Section } from "../../styles/styles";
 import Breadcrumb from "../../components/common/Breadcrumb";
 import { Link } from "react-router-dom";
-import ProductList from "../../components/product/ProductList";
+import ProductList from "../../components/product/ProductListAcc";
 import { products } from "../../data/data";
 import Title from "../../components/common/Title";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";

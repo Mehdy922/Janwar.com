@@ -20,7 +20,7 @@ const AdminHeader = () => {
     <HeaderMainWrapper className="flex items-center">
       <Container>
         <div className="header-wrap flex items-center justify-between">
-          <SiteBrandWrapper to="" className="inline-flex">
+          <SiteBrandWrapper to="/admin" className="inline-flex">
             <div className="brand-img-wrap flex items-center justify-center">
               <img className="site-brand-img" src={staticImages.logo} alt="" />
             </div>
