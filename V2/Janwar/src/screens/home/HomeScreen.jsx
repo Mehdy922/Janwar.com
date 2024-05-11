@@ -8,7 +8,7 @@ import Catalog2 from "../../components/home/Catalog2";
 import { limelightCatalog, mensCatalog } from "../../data/data";
 import {womensCatalog } from "../../data/data";
 // import Brands from "../../components/home/Brands";
-import Feedback from "../../components/home/Feedback";
+// import Feedback from "../../components/home/Feedback";
 import React, {useEffect} from "react";
 import {useLocation, useNavigate } from 'react-router-dom';
 
@@ -50,7 +50,7 @@ const HomeScreen = () => {
       <SavingZone />
       <Catalog/>
       <Catalog2/>
-      <Feedback />
+      {/* <Feedback /> */}
     </HomeScreenWrapper>
   );
 };
