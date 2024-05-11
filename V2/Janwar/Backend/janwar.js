@@ -284,6 +284,51 @@ db_users.post("/getAds_accessories", async (req, res) => {
   }
 });
 
+db_users.post("/addtoComplain", async (req, res) => {
+  try {
+    console.log("Add to Complain request received:", req.body);
+    const collection = await db.collection("janwarComplains");
+    const user = await collection.insertOne(req.body);
+    res.status(200).send(user);
+  } catch (error) {
+    console.error("Error during Add to Complain:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+db_users.post("/getComplains", async (req, res) => {
+  try {
+    console.log("Get Complains request received");
+    const collection = await db.collection("janwarComplains");
+    const user = await collection.find().toArray();
+    res.status(200).send(user);
+  } catch (error) {
+    console.error("Error during getComplains:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+db_users.post("/deleteComplain", async (req, res) => {
+  try {
+    console.log("Delete Complain request received");
+    const  complainId  = req.body.id;
+    console.log("Complain ID:", complainId);
+    const collection = await db.collection("janwarComplains");
+    const result = await collection.deleteOne({ _id: new ObjectId(complainId) });
+    console.log("Result = ", result);
+    if (result.deletedCount === 1) {
+      console.log("Complain removed successfully");
+      res.status(200).json({ message: "Complain removed successfully" });
+    } else {
+      console.log("Complain not found");
+      res.status(404).json({ message: "Complain not found" });
+    }
+  } catch (error) {
+    console.error("Error during deleteComplain:", error);
+    res.status(500).send("Internal Server Error");
+  }
+} );
+
 
 
 
