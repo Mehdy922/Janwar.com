@@ -39,7 +39,8 @@ import PostAdScreen from "./screens/user/PostAd";
 import PostAcc from "./screens/user/PostAcc.jsx";
 import Intro from "./components/intro/Intro.jsx";
 import Contact from "./screens/contact/contact.jsx";
-import AdminPage  from "./screens/admin/admin.jsx";
+import ConfirmScreen from "./screens/user/ConfirmScreen.jsx";
+
 
 
 
@@ -67,6 +68,8 @@ function App() {
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/order" element={<Order />} />
             <Route path="/order_detail" element={<OrderDetail />} />
+            <Route path="/ConfirmScreen" element={<ConfirmScreen />} />
+            
             {/* <Route path="/wishlist" element={<WishList />} />
             <Route path="/empty_wishlist" element={<WishListEmpty />} /> */}
             <Route path="/confirm" element={<Confirm />} />
