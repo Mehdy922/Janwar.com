@@ -60,7 +60,7 @@ const CartSummaryWrapper = styled.div`
   }
 `;
 
-const addorder = async () => {
+/* const addorder = async () => {
   const params = new URLSearchParams(location.search);
   const datastring = params.get('data');
   const data = JSON.parse(datastring);
@@ -84,9 +84,12 @@ const addorder = async () => {
     console.error('Error:', error);
     alert('error occured order was not added');
   }
-};
+}; */
+
 
 const CartSummary = ({ cartItems }) => {
+  
+
   const calculateTotals = () => {
     let subTotal = 0;
 
@@ -96,6 +99,7 @@ const CartSummary = ({ cartItems }) => {
       const itemPrice = Number(cartItem.price.replace(/,/g, ''));
       subTotal += itemPrice * quantity;
     });
+
 
     // Use the global shipping cost variable
     const shipping = ShippingCost;
@@ -134,10 +138,10 @@ const CartSummary = ({ cartItems }) => {
       </ul>
 
       <BaseLinkGreen
-                to={'/checkout'}
+                to={"/checkout"}
                 as={BaseLinkGreen}
                 className="prod-add-btn"
-                onClick={addorder}
+                //onClick={addorder}
               >
              <span className="prod-add-btn-text">Checkout</span>
 
