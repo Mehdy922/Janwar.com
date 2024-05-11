@@ -9,6 +9,8 @@ import { orderData } from "../../data/data";
 import { currencyFormat } from "../../utils/helper";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";
 import { BaseLinkGreen,BaseLinkBlack, BaseButtonGreen, BaseButtonRed } from "../../styles/button";
+import React, {useEffect} from "react";
+import {useLocation, useNavigate } from 'react-router-dom';
 
 const ButtonGroupWrapper = styled.div`
   gap: 8px;
@@ -154,6 +156,26 @@ const breadcrumbItems = [
 
 
 const AdminPage = () => {
+
+  const navigate = useNavigate();
+  const location = useLocation(); 
+
+  const loginflag = localStorage.getItem('login_flag');
+  const userData = localStorage.getItem('user_data');
+
+  useEffect(() => {
+    
+    if(!loginflag){ 
+      navigate('/login');
+    }
+    if(userData.email !== 'officialjanwar2024@gmail.com')
+    { 
+      navigate('/login');
+    }
+    
+  } , [loginflag, navigate]);
+
+
   const Board = ({ info }) => {
     return (
       <div>

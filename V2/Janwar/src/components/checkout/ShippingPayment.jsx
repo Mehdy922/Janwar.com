@@ -8,8 +8,6 @@ import { Link } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
-const paymentMethod = [];
-
 const ShippingPaymentWrapper = styled.div`
   .shipping-addr,
   .shipping-method,
@@ -161,7 +159,6 @@ const ShippingPayment = () => {
   const [address, setAddress] = useState('');
   const [deliveryDate, setDeliveryDate] = useState('');
   const [cart, setCart] = useState('');
-  console.log("Cart items local at shipping:", cart);
 
   useEffect(() => {
     const cartItems = JSON.parse(localStorage.getItem("cartItems"));
@@ -188,10 +185,7 @@ const ShippingPayment = () => {
 
 
   const handlePaymentMethodChange = (event) => {
-    const selectedPaymentMethod = event.target.value;
-    setPaymentMethod(selectedPaymentMethod);
-    paymentMethod = selectedPaymentMethod;
-    console.log("Selected Payment Method:", selectedPaymentMethod);
+    setPaymentMethod(event.target.value);
   };
 
  
@@ -201,36 +195,31 @@ const ShippingPayment = () => {
   const location = useLocation();
 
   const addorder = async () => {
-    
     try {
-      const params = new URLSearchParams(location.search);
-      const datastring = params.get("data");
-      console.log("Data string:", datastring);
-      const data = JSON.parse(datastring);
       console.log('Proceed to the checkout clicked');
-      const buyer = JSON.parse(localStorage.getItem('user_data'));
-      const buyerID = buyer._id;
-      data.buyerID = buyerID;
-
-
-
       const timestamp = new Date();
-      //data.timestamp = timestamp;
-      //data.paymentMethod = paymentMethod;
-      console.log("Adding:", data);
-      const response = await axios.post("http://localhost:5050/user/addtoorder",data);
-      console.log("Response:", response.data);
-      if (response.status === 200) {
-        alert("Order placed successfully!");
-        navigate("/confirmScreen");
+      console.log("Cart (Shipping):", cart);
+      for (const item of cart) {
+        item.timestamp = timestamp;
+        item.paymentMethod = paymentMethod;
+        console.log("Adding item to order:", item);
+        const response = await axios.post("http://localhost:5050/user/addtoorder", item);
+        console.log("Response:", response.data);
       }
+      alert("Order placed successfully!");
+      for (const item of cart) {
+        console.log("Removing item:", item.productID);
+        const response = await axios.post("http://localhost:5050/user/removeCart", item.productID);
+      }
+      alert("Deleted successfully!");
+      navigate("/confirmScreen");
     } catch (error) {
       // Handle error
       console.error("Error:", error);
-      alert("Failed to place order. Please try again later.");
+      alert("Failed. Please try again later.");
     }
   };
-
+  
 
   return (
     <ShippingPaymentWrapper>
@@ -351,7 +340,7 @@ const ShippingPayment = () => {
           <div className="horiz-line-separator"></div>
         </div>
       </div>
-      <Link to="/confirmScreen">
+      <Link>
       <BaseButtonGreen
           type="button"
           className="pay-now-btn"
