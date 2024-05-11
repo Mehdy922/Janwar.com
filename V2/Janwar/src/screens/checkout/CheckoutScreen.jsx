@@ -4,6 +4,9 @@ import Title from "../../components/common/Title";
 import Billing from "../../components/checkout/Billing";
 import ShippingPayment from "../../components/checkout/ShippingPayment";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { json } from "react-router-dom";
 
 
 const CheckoutScreenWrapper = styled.main`
@@ -21,6 +24,9 @@ const CheckoutScreenWrapper = styled.main`
 `;
 
 const CheckoutScreen = () => {
+  const cartItems = JSON.parse(localStorage.getItem("cartItems"));
+  console.log("cart at checkout: ", cartItems);
+ 
   return (
     <CheckoutScreenWrapper>
       <Container>
