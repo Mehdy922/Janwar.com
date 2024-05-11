@@ -77,8 +77,16 @@ const SignInScreen = () => {
         localStorage.setItem('login_flag', loginFlag);
         localStorage.setItem('user_data', JSON.stringify(userObj.data));
         const encodedData = encodeURIComponent(JSON.stringify(userObj.data));
-        navigate(`/home?data=${encodedData}`);
-        window.location.href = `/home?data=${encodedData}`;
+        if (userObj.email == 'officialjanwar2024@gmail.com')
+        {
+          navigate('/admin');
+          window.location.href = '/admin';
+        }
+        else{
+          navigate(`/home?data=${encodedData}`);
+          window.location.href = `/home?data=${encodedData}`;
+        }
+
       }
     } catch (error) {
       console.error('Error logging in:', error);
