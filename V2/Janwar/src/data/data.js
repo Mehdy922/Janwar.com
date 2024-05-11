@@ -31,11 +31,11 @@ const navMenuData = [
     menuLink: "/contact",
     menuText: "Contact Us",
   },
-  {
-    id: "nav-menu-7",
-    menuLink: "/feedback",
-    menuText: "Feedback",
-  },
+  // {
+  //   id: "nav-menu-7",
+  //   menuLink: "/feedback",
+  //   menuText: "Feedback",
+  // },
 ];
 
 const sideMenuData = [

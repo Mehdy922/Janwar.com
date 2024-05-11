@@ -4,8 +4,6 @@ import {
   FilterWrap,
   PriceFilter,
   ProductCategoryFilter,
-  SexFilter,
-  StyleFilter,
 } from "../../styles/filter";
 import { ProductFilterList, StyleFilterList } from "../../data/data";
 import { staticImages } from "../../utils/images";
@@ -13,7 +11,6 @@ import { staticImages } from "../../utils/images";
 const ProductFilter = () => {
   const [isProductFilterOpen, setProductFilterOpen] = useState(true);
   const [isPriceFilterOpen, setPriceFilterOpen] = useState(true);
-  const [isSexFilterOpen, setSexFilterOpen] = useState(true);
 
   const toggleFilter = (filter) => {
     switch (filter) {
@@ -22,9 +19,6 @@ const ProductFilter = () => {
         break;
       case "price":
         setPriceFilterOpen(!isPriceFilterOpen);
-        break;
-      case "Sex":
-        setSexFilterOpen(!isSexFilterOpen);
         break;
       default:
         break;
@@ -165,45 +159,6 @@ const ProductFilter = () => {
           </div>
         </FilterWrap>
       </PriceFilter>
-      <SexFilter>
-        <FilterTitle
-          className="flex items-center justify-between"
-          onClick={() => toggleFilter("Sex")}
-        >
-          <p className="filter-title-text text-gray font-semibold text-lg">
-            Sex
-          </p>
-          <span
-            className={`text-gray text-xl filter-title-icon ${
-              !isSexFilterOpen ? "rotate" : ""
-            }`}
-          >
-            <i className="bi bi-chevron-up"></i>
-          </span>
-        </FilterTitle>
-        <FilterWrap className={`${!isSexFilterOpen ? "hide" : "show"}`}>
-          <div className="sizes-list grid text-center justify-center">
-            <div className="sizes-item text-sm font-semibold text-outerspace w-full">
-              <input type="checkbox" />
-              <span className="flex items-center justify-center uppercase">
-                Male
-              </span>
-            </div>
-            <div className="sizes-item text-sm font-semibold text-outerspace w-full">
-              <input type="checkbox" />
-              <span className="flex items-center justify-center uppercase">
-                Female
-              </span>
-            </div>
-            <div className="sizes-item text-sm font-semibold text-outerspace w-full">
-              <input type="checkbox" />
-              <span className="flex items-center justify-center uppercase">
-              All
-              </span>
-            </div>
-          </div>
-        </FilterWrap>
-      </SexFilter>
       {/* <StyleFilter onClick={() => toggleFilter("style")}>
         <FilterTitle className="flex items-center justify-between">
           <p className="filter-title-text text-gray font-semibold text-lg">

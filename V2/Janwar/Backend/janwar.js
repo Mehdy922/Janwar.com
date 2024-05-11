@@ -9,7 +9,6 @@ const router_lang = express.Router();
 const router_user = express.Router();
 
 //Janwar API
-
 //get user by email  and check if email and pass match
 
 db_users.post("/login", async (req, res) => {
@@ -100,6 +99,41 @@ db_users.post("/postAd", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
+
+db_users.post("/postAcc", async (req, res) => {
+  try {
+    console.log("Post Add request received:", req.body);
+    const collection = await db.collection("janwarAds_accessories");
+    const user = await collection.insertOne(req.body);
+    res.status(200).send(user);
+  } catch (error) {
+    console.error("Error during postAdd:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+db_users.delete("/deleteAd_accessories/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    console.log("Delete request received for ID:", id);
+    
+    const collection = await db.collection("janwarAds_accessories");
+    const result = await collection.deleteOne({ _id: new ObjectId(id) });
+
+    if (result.deletedCount === 1) {
+      console.log("Post deleted successfully.");
+      res.status(200).send("Post deleted successfully.");
+    } else {
+      console.log("No post found with the given ID.");
+      res.status(404).send("No post found with the given ID.");
+    }
+  } catch (error) {
+    console.error("Error during post deletion:", error.message);
+    console.error(error.stack);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 
 db_users.post("/getAds_sells", async (req, res) => {
   try {

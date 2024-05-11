@@ -6,6 +6,7 @@ import './App.css';
 //import Home from "./screens/home/HomeScreen";
 import BaseLayout from './components/layout/BaseLayout.jsx';
 import AuthLayout from './components/layout/AuthLayout.jsx';
+import AdminLayout from './components/layout/AdminLayout.jsx';
 import { GlobalStyles } from './styles/global/GlobalStyles.js';
 
 // Auth pages
@@ -20,6 +21,7 @@ import BuyPet from "./screens/product/BuyPet.jsx";
 import FeedbackPage from "./screens/feedback/feedback.jsx";
 import AdoptPet from "./screens/product/AdoptPet.jsx";
 import Accessories from "./screens/product/Accessories.jsx";
+import AccessoriesAcc from "./screens/product/AccessoriesAcc.jsx";
 import ProductDetailsAccessories from "./screens/product/ProductDetailsAccessories.jsx";
 import ProductDetailsBuy from "./screens/product/ProductDetailsBuy.jsx";
 import ProductDetailsAdopt from "./screens/product/ProductDetailsAdopt.jsx";
@@ -34,9 +36,11 @@ import Confirm from "./screens/user/ConfirmScreen";
 import Account from "./screens/user/AccountScreen";
 import Address from "./screens/user/AddressScreen";
 import PostAdScreen from "./screens/user/PostAd";
+import PostAcc from "./screens/user/PostAcc.jsx";
 import Intro from "./components/intro/Intro.jsx";
 import Contact from "./screens/contact/contact.jsx";
 import ConfirmScreen from "./screens/user/ConfirmScreen.jsx";
+
 
 
 
@@ -84,8 +88,14 @@ function App() {
             <Route path="change_password" element={<ChangePassword />} />
             <Route path="check_mail" element={<CheckMail />} />
             <Route path="verification" element={<Verification />} />
+            </Route>
+
+          {/* Admin Screen */}
+          <Route path="/" element={<AdminLayout />}>
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/postacc" element={<PostAcc />} />
+          <Route path="/accessoriesAcc" element={<AccessoriesAcc />} />
           </Route>
-          
   
           {/* Base layout or other routes can be added here */}
           {/* <Route path="/base" element={<BaseLayout />} /> */}
