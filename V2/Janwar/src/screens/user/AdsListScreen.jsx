@@ -102,7 +102,7 @@ const AdListScreen = () => {
       if (response.status === 200) {
         console.log("Product deleted successfully.");
         // Reload products after deletion
-        loadProducts();
+        // loadProducts();
         navigate('/myads');
       }
     } catch (error) {
