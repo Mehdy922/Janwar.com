@@ -81,7 +81,20 @@ const UserMenu = () => {
                 <img src="./assets/icons/ac_orders.svg" alt="" />
               </span>
               <span className="text-base font-semibold nav-link-text no-wrap">
-                Back To Admin Page
+              Admin Page
+              </span>
+            </Link>
+          </li>
+          <li className="nav-menu-item">
+            <Link
+              to="/postacc"
+              className={`nav-menu-link flex items-center`}
+            >
+              <span className="nav-link-icon flex items-center justify-center">
+                <img src="./assets/icons/ac_orders.svg" alt="" />
+              </span>
+              <span className="text-base font-semibold nav-link-text no-wrap">
+              Post Accessory
               </span>
             </Link>
           </li>

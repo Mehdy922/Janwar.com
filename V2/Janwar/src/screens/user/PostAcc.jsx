@@ -6,6 +6,7 @@ import UserMenu from "../../components/user/UserMenuAcc";
 import Title from "../../components/common/Title";
 import { FormElement, Input, Textarea } from "../../styles/form";
 import { BaseButtonGreen, BaseButtonWhitesmoke } from "../../styles/button";
+import { BaseLinkGreen, BaseLinkOutlineDark } from "../../styles/button";
 import { defaultTheme } from "../../styles/themes/default";
 import {useLocation, useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
@@ -29,8 +30,8 @@ const PostAdScreenWrapper = styled.main`
 `;
 
 const breadcrumbItems = [
-  { label: "Home", link: "/" },
-  { label: "Post Ad", link: "/post-ad" },
+  { label: "Admin", link: "/admin" },
+  { label: "Post Ad", link: "/postacc" },
 ];
 
 const PostAcc = () => {
@@ -91,7 +92,6 @@ const PostAcc = () => {
         if (userObj.status === 200) {
             alert('Add posted successfully');
         }
-
       }
     }
     catch (error) {
@@ -197,9 +197,7 @@ const PostAcc = () => {
                 <BaseButtonGreen type="button" onClick={postAdd}>Post Ad</BaseButtonGreen>
                 
                 
-                <BaseButtonWhitesmoke type="button">
-                  Cancel
-                </BaseButtonWhitesmoke>
+                <BaseLinkGreen to="/admin">Cancel</BaseLinkGreen>
               </div>
             </form>
           </UserContent>
