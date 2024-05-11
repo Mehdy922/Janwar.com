@@ -1,22 +1,27 @@
-import React from 'react'
-import { Icon } from '@iconify/react'
-import sendCircle from '@iconify/icons-mdi/send-circle'
+import React, { useState } from 'react';
+import { Icon } from '@iconify/react';
+import sendCircle from '@iconify/icons-mdi/send-circle';
+import './form.css';
+import axios from 'axios';
+import { useNavigate, useLocation } from "react-router-dom";
 
-import './form.css'
 
 const formInputs = [
-  { id: 'name', type: 'text', label: 'Your name', placeholder: 'Hasnain Fatmi' },
+  { id: 'name',
+    type: 'text',
+    label: 'Your name',
+    placeholder: 'John Doe' },
   {
-    id: 'tel',
-    type: 'tel',
+    id: 'phone',
+    type: 'phone',
     label: 'Phone number',
-    placeholder: '+92 234 567 8900',
+    placeholder: '03001234567',
   },
   {
     id: 'email',
     type: 'email',
     label: 'Email address',
-    placeholder: 'officialjanwar2024@gmail.com',
+    placeholder: 'example@gmail.com',
   },
   {
     id: 'message',
@@ -24,33 +29,81 @@ const formInputs = [
     label: 'Your message',
     placeholder: 'How can we help you? let us know!',
   },
-]
+];
 
-const Form = () => (
-  <form className="form">
-    <h2 className="form-h2">Send us a message</h2>
+const Form = () => {
+  const [formState, setFormState] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    message: '',
+  });
 
-    {formInputs.map(input => (
-      <label key={input.label} id={input.id} className="form-label">
-        {input.label}
+  const handleInputChange = (event) => {
+    setFormState({
+      ...formState,
+      [event.target.id]: event.target.value,
+    });
+  };
 
-        {input.type === 'textarea' ? (
-          <textarea className="form-textarea" placeholder={input.placeholder} />
-        ) : (
-          <input
-            className="form-input"
-            type={input.type}
-            placeholder={input.placeholder}
-          />
-        )}
-      </label>
-    ))}
+  const handleSubmit = async (event)  => {
+    event.preventDefault();
+    console.log('Sending message:', formState);
+    // Here you can handle the form submission.
+    // For example, you can send a request to your server with the form data.
+    const userObj = await axios.post('http://localhost:5050/user/addtoComplain', formState);
+    const msg = await axios.post('http://localhost:5050/email/contactUser', formState);
 
+    if (userObj.status === 200) {
+      alert('Thank you for contacting us!');
 
-    {<button className="form-submit" type="submit">
-    <Icon className="form-submit" icon={sendCircle} />
-    </button>}
-  </form>
-)
+      // Clear the form
+      setFormState({
+        name: '',
+        phone: '',
+        email: '',
+        message: '',
+      });
+    }
+    
+    console.log(formState);
+  };
 
-export default Form
+  return (
+    <form className="form" onSubmit={handleSubmit}>
+      <h2 className="form-h2">Send us a message</h2>
+      <p className="form-p"> Fill out the form below if you have any issues or feedback and we will get back to you as soon as possible.</p>
+
+      {formInputs.map((input) => (
+        <label key={input.label} id={input.id} className="form-label">
+          {input.label}
+
+          {input.type === 'textarea' ? (
+            <textarea
+              className="form-textarea"
+              placeholder={input.placeholder}
+              id={input.id}
+              value={formState[input.id]}
+              onChange={handleInputChange}
+            />
+          ) : (
+            <input
+              className="form-input"
+              type={input.type}
+              placeholder={input.placeholder}
+              id={input.id}
+              value={formState[input.id]}
+              onChange={handleInputChange}
+            />
+          )}
+        </label>
+      ))}
+
+      <button className="form-submit" type="submit" onSubmit={handleSubmit}>
+        <Icon className="form-submit" icon={sendCircle}  />
+      </button>
+    </form>
+  );
+};
+
+export default Form;

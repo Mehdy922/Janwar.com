@@ -24,7 +24,9 @@ const ResetScreen = () => {
 
   const resetPassword = async () => {
     try {
-      console.log('Pass Request reset recieved', contactData);
+      
+      console.log('email ', contactData.email);
+
       if (contactData.email === 'officialjanwar2024@gmail.com') 
       {alert('Zada shatir nhi ho');
        return;
@@ -38,6 +40,7 @@ const ResetScreen = () => {
       console.log('Response:', data);
 
       const userObj = await axios.post('http://localhost:5050/email/send-pass', data);
+
      if (userObj.status === 200) {
         alert('Password reset email sent');
       }
@@ -45,7 +48,7 @@ const ResetScreen = () => {
       console.error('Error sending message:', error);
       alert('Failed to send message');
     }
-  }
+  } 
 
 
   return (
@@ -97,6 +100,7 @@ const ResetScreen = () => {
                         type="button"
                         onClick={resetPassword}
                       >
+                        Reset Password
                 </button>
               </form>
               <p className="flex flex-wrap account-rel-text">
