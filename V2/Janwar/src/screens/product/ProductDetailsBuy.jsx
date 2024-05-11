@@ -189,6 +189,7 @@ const ProductDetailsBuy = () => {
     const buyer = JSON.parse(localStorage.getItem('user_data')); // Parse the string into an object
     const buyerID = buyer._id;
     data.buyerID = buyerID;
+    data.productID = data._id;
     try {
       console.log('Adding:', data);
       const userObj = await axios.post('http://localhost:5050/user/addtocart', data);
