@@ -1,7 +1,10 @@
 import styled from "styled-components";
-import { BaseButtonGreen } from "../../styles/button";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";
 import { Link } from "react-router-dom";
+import { BaseLinkGreen } from "../../styles/button";
+import React, {useEffect} from "react";
+import { useState } from "react";
+
 
 const quantity = 1;
 const ShippingCost = 0;
@@ -57,6 +60,32 @@ const CartSummaryWrapper = styled.div`
   }
 `;
 
+const addorder = async () => {
+  const params = new URLSearchParams(location.search);
+  const datastring = params.get('data');
+  const data = JSON.parse(datastring);
+  console.log('Data:', data);
+  console.log('Proceed to the checkout clicked');
+  const buyer = JSON.parse(localStorage.getItem('user_data')); // Parse the string into an object
+  const buyerID = buyer._id;
+  data.buyerID = buyerID;
+  const timestamp = new Date();
+  data.timestamp = timestamp;
+  try {
+    console.log('Adding:', data);
+    const userObj = await axios.post('http://localhost:5050/user/addtoorder', data);
+    console.log('Response:', userObj);
+    if (userObj.status === 200) {
+      alert('Added to order!');
+      // Navigate to Sign In page after successful registration
+      navigate('/checkout');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('error occured order was not added');
+  }
+};
+
 const CartSummary = ({ cartItems }) => {
   const calculateTotals = () => {
     let subTotal = 0;
@@ -104,10 +133,15 @@ const CartSummary = ({ cartItems }) => {
         </li>
       </ul>
 
+      <BaseLinkGreen
+                to={'/checkout'}
+                as={BaseLinkGreen}
+                className="prod-add-btn"
+                onClick={addorder}
+              >
+             <span className="prod-add-btn-text">Checkout</span>
 
-      <Link to="/checkout" className="checkout-btn">
-        Proceed To Checkout
-      </Link>
+              </BaseLinkGreen>
 
     </CartSummaryWrapper>
   );

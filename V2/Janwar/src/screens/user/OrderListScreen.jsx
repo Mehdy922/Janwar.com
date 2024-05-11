@@ -46,8 +46,6 @@ const OrderListScreen = () => {
           <UserContent>
             <Title titleText={"My Orders"} />
             <div className="order-tabs">
-              
-
               <div className="order-tabs-contents">
                 <div className="order-tabs-content" id="active">
                     <OrderItemList orders = {orderData} />
