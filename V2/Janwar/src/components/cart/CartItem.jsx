@@ -3,7 +3,7 @@ import { PropTypes } from "prop-types";
 import { Link } from "react-router-dom";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";
 import axios from "axios";
-
+import { useNavigate, useLocation } from "react-router-dom";
 
 const quantity = 1;
 const ShippingCost = 0;
@@ -62,6 +62,9 @@ const CartTableRowWrapper = styled.tr`
   }
 `;
 const CartItem = ({ cartItem, onDelete }) => {
+
+  const navigate = useNavigate();
+  const location = useLocation();
   
   const handleRemove = async () => {
     try {
@@ -72,9 +75,8 @@ const CartItem = ({ cartItem, onDelete }) => {
       if (response.status === 200) {
         onDelete(cartItem._id); // Update local state after successful deletion
         console.log("Item removed from cart successfully");
-      } else {
-        console.log("Failed to remove item from cart:", response.data.message);
       }
+      navigate("/cart");
     } catch (error) {
       console.error("Failed to remove item from cart:", error.response.data);
     }

@@ -209,7 +209,9 @@ const ShippingPayment = () => {
       alert("Order placed successfully!");
       for (const item of cart) {
         console.log("Removing item:", item.productID);
-        const response = await axios.post("http://localhost:5050/user/removeCart", item.productID);
+        console.log("Removing item:", item.postCategory);
+        const response = await axios.post("http://localhost:5050/user/removeCart", { ItemId: item.productID, type: item.postCategory });
+
       }
       alert("Deleted successfully!");
       navigate("/confirmScreen");
