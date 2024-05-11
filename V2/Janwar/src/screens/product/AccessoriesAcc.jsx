@@ -99,10 +99,10 @@ const SearchBar = styled.input`
   margin-bottom: 20px;
 `;
 
-const Accessories = () => {
+const AccessoriesAcc = () => {
   const breadcrumbItems = [
-    { label: "Home", link: "/home" },
-    { label: "Accessories", link: "/accessories" },
+    { label: "Admin", link: "/admin" },
+    { label: "Accessories", link: "/accessoriesAcc" },
   ];
 
 
@@ -142,7 +142,7 @@ const Accessories = () => {
       <Container>
         <Breadcrumb items={breadcrumbItems} />
         <ProductsContent className="grid items-start">
-          <ProductsContentLeft>
+        <ProductsContentLeft>
             <ProductFilter />
           </ProductsContentLeft>
           <ProductsContentRight>
@@ -169,33 +169,8 @@ const Accessories = () => {
           </ProductsContentRight>
         </ProductsContent>
       </Container>
-      <Section>
-        <Container>
-          <DescriptionContent>
-            <Title titleText={"Pamper Your Pet with Premium Accessories"} />
-            <ContentStylings className="text-base content-stylings">
-              <h4>Shop Trendy and Functional Accessories for Pets of All Kinds</h4>
-              <p>
-              Explore our collection of high-quality accessories designed to make your pet's life even better. From stylish collars to cozy beds and everything in between, we have everything you need to pamper your furry friend.
-              </p>
-              <p>
-              Give your pet the star treatment with our curated selection of accessories. Whether it's a fun new toy to keep them entertained or a comfortable bed to help them rest, we have something for every pet parent.
-              </p>
-              <h4>
-              Enhance Your Pet's Comfort and Happiness with Our Accessories
-              </h4>
-              <p>
-              Discover a world of possibilities for your pet with our diverse range of accessories. Whether you're looking to add a pop of color to their wardrobe or upgrade their grooming routine, we have the perfect accessories to suit every pet's personality and lifestyle.
-              </p>
-              <p>
-              At our store, we understand that pets are family, and they deserve the best. That's why we've handpicked a range of accessories that combine style, functionality, and durability to meet the unique needs of your beloved pets.
-              </p>
-            </ContentStylings>
-          </DescriptionContent>
-        </Container>
-      </Section>
     </main>
   );
 };
 
-export default Accessories;
+export default AccessoriesAcc;
