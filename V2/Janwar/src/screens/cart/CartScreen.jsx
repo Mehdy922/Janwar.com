@@ -43,10 +43,13 @@ const CartContent = styled.div`
 
 const CartScreen = () => {
   const [cartItems, setCartItems] = useState([]);
+  console.log("Cart items:", cartItems);
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
 
 
   useEffect(() => {
     fetchCartItems();
+
   }, []);
 
 
@@ -58,11 +61,10 @@ const CartScreen = () => {
         const userID = user._id;
         const response = await axios.post("http://localhost:5050/user/getAds_cart", userID );
         console.log("API response data:", response.data);
-        if (response.status === 200 && Array.isArray(response.data)) {
+        console.log("API response status:", response.status);
+        if (response.status == 200 ) {
             setCartItems(response.data);
-        } else {
-            setCartItems([]);
-        }
+        } 
     } catch (error) {
         console.error("Failed to fetch cart items:", error);
         setCartItems([]);

@@ -40,6 +40,7 @@ import PostAcc from "./screens/user/PostAcc.jsx";
 import Intro from "./components/intro/Intro.jsx";
 import Contact from "./screens/contact/contact.jsx";
 import ConfirmScreen from "./screens/user/ConfirmScreen.jsx";
+import AdminPage from "./screens/admin/admin.jsx";
 
 
 

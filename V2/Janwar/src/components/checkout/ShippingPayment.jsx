@@ -154,12 +154,22 @@ const ShippingPaymentWrapper = styled.div`
 `;
 
 const ShippingPayment = () => {
+  
+
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
   const [deliveryDate, setDeliveryDate] = useState('');
+  const [cart, setCart] = useState('');
+  console.log("Cart items local at shipping:", cart);
 
   useEffect(() => {
+    const cartItems = JSON.parse(localStorage.getItem("cartItems"));
+    setCart(cartItems);
+    //delete cartItems from localStorage
+    localStorage.removeItem("cartItems");
+    
+   
     // Retrieve user data from localStorage
     const userData = localStorage.getItem('user_data');
     const { name, phone, address } = JSON.parse(userData);
@@ -184,37 +194,7 @@ const ShippingPayment = () => {
     console.log("Selected Payment Method:", selectedPaymentMethod);
   };
 
-  useEffect(() => {
-    
-    const params = new URLSearchParams(location.search);
-    const datastring = params.get('data');
-    const data = JSON.parse(datastring);
-    console.log('Data:', data);
-    
-
-    const title = data.title;
-    const pet_type = data.pet_type;
-    const pet_breed = data.pet_breed;
-    const gender = data.gender;
-    const health_status = data.health_status;
-    const description = data.description;
-    const age = data.age;
-    const price = data.price;
-    const loc = data.location;
-    const images = data.images;
-
-    setTitle(title);
-    setPetType(pet_type);
-    setPetBreed(pet_breed);
-    setGender(gender);
-    setHealthStatus(health_status);
-    setDescription(description);
-    setAge(age);
-    setPrice(price);
-    setLoc(loc);
-    setImages(images);
-  }, []);
-  
+ 
   
 
   const navigate = useNavigate();
@@ -231,6 +211,8 @@ const ShippingPayment = () => {
       const buyer = JSON.parse(localStorage.getItem('user_data'));
       const buyerID = buyer._id;
       data.buyerID = buyerID;
+
+
 
       const timestamp = new Date();
       //data.timestamp = timestamp;

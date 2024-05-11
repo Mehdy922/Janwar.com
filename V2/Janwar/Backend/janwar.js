@@ -183,7 +183,7 @@ db_users.post("/getAds_cart", async (req, res) => {
       //only return those item where userID is same
       const userCartItems = cartItems.filter(item => item.buyerID === userID);
       console.log("User Cart Items = ", userCartItems);
-      res.status(200).json(userCartItems);
+      res.status(200).send(userCartItems);
   } catch (error) {
       console.error("Error during getAds_cart:", error);
       res.status(500).send("Internal Server Error");
