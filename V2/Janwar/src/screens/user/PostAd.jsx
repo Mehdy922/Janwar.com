@@ -5,7 +5,7 @@ import { UserContent, UserDashboardWrapper } from "../../styles/user";
 import UserMenu from "../../components/user/UserMenu";
 import Title from "../../components/common/Title";
 import { FormElement, Input, Textarea } from "../../styles/form";
-import { BaseButtonGreen, BaseButtonWhitesmoke } from "../../styles/button";
+import { BaseButtonGreen, BaseLinkOutlineDark } from "../../styles/button";
 import { defaultTheme } from "../../styles/themes/default";
 import {useLocation, useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
@@ -303,9 +303,9 @@ const PostAdScreen = () => {
                 <BaseButtonGreen type="button" onClick={postAdd}>Post Ad</BaseButtonGreen>
                 
                 
-                <BaseButtonWhitesmoke type="button">
+                <BaseLinkOutlineDark to="/home">
                   Cancel
-                </BaseButtonWhitesmoke>
+                </BaseLinkOutlineDark>
               </div>
             </form>
           </UserContent>
