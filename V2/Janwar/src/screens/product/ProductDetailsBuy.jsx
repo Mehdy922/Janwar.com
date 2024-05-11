@@ -178,11 +178,6 @@ const ProductDetailsBuy = () => {
     setPrice(price);
     setLoc(loc);
     setImages(images);
-
-
-    
-    
-    
   }, []);
   
   
@@ -200,8 +195,7 @@ const ProductDetailsBuy = () => {
       console.log('Response:', userObj);
       if (userObj.status === 200) {
         alert('Added to cart!');
-        // Navigate to Sign In page after successful registration
-        navigate('/sign_in');
+        navigate('/cart');
       }
     } catch (error) {
       console.error('Error:', error);
@@ -239,7 +233,7 @@ const ProductDetailsBuy = () => {
             
             <ProductSexWrapper>
               <div className="prod-sex-top flex items-center flex-wrap">
-                <p className="text-lg font-semibold text-outerspace">Sex Available</p>
+                <p className="text-lg font-semibold text-outerspace">Gender</p>
               </div>
               
               <div className="prod-sex-list flex items-center">
