@@ -89,6 +89,20 @@ const AdListScreen = () => {
     }
   };
   
+  const handleDelete = async (id) => {
+    try {
+      console.log("Deleting product with id:", id);
+      // Make an HTTP request to delete the product with the given id
+      const response = await axios.delete(`http://localhost:5050/user/deletepost/${id}`);
+      if (response.status === 200) {
+        console.log("Product deleted successfully.");
+        // Reload products after deletion
+        loadProducts();
+      }
+    } catch (error) {
+      console.error("Failed to delete product:", error);
+    }
+  };
 
   return (
     <OrderListScreenWrapper className="page-py-spacing">
@@ -102,7 +116,7 @@ const AdListScreen = () => {
             <div className="order-tabs">
               <div className="order-tabs-contents">
                 <div className="order-tabs-content" id="active">
-                    <OrderItemList products={petlist} />
+                    <OrderItemList products={petlist} onDelete={handleDelete} />
                 </div>
               </div>
             </div>

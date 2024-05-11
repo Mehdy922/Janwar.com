@@ -90,9 +90,10 @@ const OrderItemWrapper = styled.div`
   }
 `;
 
-const OrderItem = ({ product }) => {
-  const encodedData = encodeURIComponent(JSON.stringify(product));
-  const data = `/product/buy/details?data=${encodedData}`;
+const OrderItem = ({ product, onDelete }) => {
+  const handleDelete = () => {
+    onDelete(product.id); // Pass the product id to the onDelete function
+  };
 
   return (
     <OrderItemWrapper>
@@ -148,7 +149,7 @@ const OrderItem = ({ product }) => {
             </ul>
           </div>
         </div>
-        <BaseButtonRed>Delete</BaseButtonRed>
+        <BaseButtonRed type="button" onClick={handleDelete}>Delete</BaseButtonRed>
       </div>
     </OrderItemWrapper>
   );
@@ -158,4 +159,5 @@ export default OrderItem;
 
 OrderItem.propTypes = {
   order: PropTypes.object,
+  onDelete: PropTypes.func.isRequired,
 };
