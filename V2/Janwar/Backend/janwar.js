@@ -190,6 +190,58 @@ db_users.post("/getAds_cart", async (req, res) => {
   }
 });
 
+db_users.post("/removeFromCart", async (req, res) => {
+  try {
+    console.log("Remove from Cart request received");
+    const { itemId } = req.body;
+    console.log("Item ID:", itemId);
+    const collection = await db.collection("janwarAds_cart");
+    const result = await collection.deleteOne({ _id: itemId });
+
+    if (result.deletedCount === 1) {
+      console.log("Item removed from cart successfully");
+      res.status(200).json({ message: "Item removed from cart successfully" });
+    } else {
+      console.log("Item not found in the cart");
+      res.status(404).json({ message: "Item not found in the cart" });
+    }
+  } catch (error) {
+    console.error("Error during removeFromCart:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+
+db_users.post("/addtoorder", async (req, res) => {
+  try {
+    console.log("Add to order request received:", req.body);
+    const collection = await db.collection("janwarOrders");
+    const user = await collection.insert(req.body);
+    res.status(200).send(user);
+  } catch (error) {
+    console.error("Error during Add to order:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+db_users.post("/get_Orders", async (req, res) => {
+  try {
+      console.log("Get Ads order request received");
+      const body = req.body;
+      const keys = Object.keys(body);
+      const userID = keys[0]; 
+      console.log("User that called ID = ", userID);
+      const collection = await db.collection("janwarOrders");
+      const orderItems = await collection.find().toArray();
+      const userorderItems = orderItems.filter(item => item.buyerID === userID);
+      console.log("User order Items = ", userorderItems);
+      res.status(200).json(userorderItems);
+  } catch (error) {
+      console.error("Error during janwarOrders:", error);
+      res.status(500).send("Internal Server Error");
+  }
+});
+
 db_users.post("/getAds_accessories", async (req, res) => {
   try {
     console.log("Get Ads request received");

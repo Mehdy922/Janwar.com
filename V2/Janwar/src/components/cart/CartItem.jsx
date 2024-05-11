@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";
 import axios from "axios";
 
+
 const quantity = 1;
 const ShippingCost = 0;
 
@@ -60,19 +61,26 @@ const CartTableRowWrapper = styled.tr`
     }
   }
 `;
-
-const CartItem = ({ cartItem, onRemoveItem }) => {
+const CartItem = ({ cartItem, onDelete }) => {
+  
   const handleRemove = async () => {
     try {
-      const endpoint = `/api/cart/${cartItem.id}`;
-      await axios.delete(endpoint);
-      onRemoveItem(cartItem.id);
+      const itemId = cartItem._id
+      console.log("Item ID:", itemId);
+      const response = await axios.post("http://localhost:5050/user/removeFromCart", { itemId });
+      console.log("API response:", response);
+      if (response.status === 200) {
+        onDelete(cartItem._id); // Update local state after successful deletion
+        console.log("Item removed from cart successfully");
+      } else {
+        console.log("Failed to remove item from cart:", response.data.message);
+      }
     } catch (error) {
-      console.error("Failed to remove item from cart:", error);
+      console.error("Failed to remove item from cart:", error.response.data);
     }
   };
   
-
+    
   return (
     <CartTableRowWrapper key={cartItem.id}>
       <td>
@@ -102,7 +110,7 @@ const CartItem = ({ cartItem, onRemoveItem }) => {
             {quantity}
           </span>
           <button className="qty-inc-btn">
-            <i class="bi bi-plus-lg"></i>
+            <i className="bi bi-plus-lg"></i>
           </button>
         </div>
       </td>
@@ -113,13 +121,13 @@ const CartItem = ({ cartItem, onRemoveItem }) => {
       </td>
       <td>
         <span className="text-lg font-bold text-outerspace">
-        ${Number(cartItem.price.replace(/,/g, '')) * quantity}
+          ${Number(cartItem.price.replace(/,/g, '')) * quantity}
         </span>
       </td>
       <td>
         <div className="cart-tbl-actions flex justify-center">
           <button onClick={handleRemove} className="tbl-del-action text-red">
-            <i class="bi bi-trash3"></i>
+            <i className="bi bi-trash3"></i>
           </button>
         </div>
       </td>
@@ -129,7 +137,7 @@ const CartItem = ({ cartItem, onRemoveItem }) => {
 
 CartItem.propTypes = {
   cartItem: PropTypes.object.isRequired,
-  onRemoveItem: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default CartItem;

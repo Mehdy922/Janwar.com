@@ -69,6 +69,9 @@ const CartScreen = () => {
     }
 };
 
+const handleDeleteItem = (itemId) => {
+  setCartItems(cartItems.filter(item => item._id !== itemId));
+};
 
     const breadcrumbItems = [
       { label: "Home", link: "/home" },
@@ -88,7 +91,7 @@ const CartScreen = () => {
         </div>
         <CartContent className="grid items-start">
           <div className="cart-content-left">
-            <CartTable cartItems={cartItems} />
+            <CartTable cartItems={cartItems} onDelete={handleDeleteItem} />
           </div>
           <div className="grid cart-content-right">
             <CartSummary cartItems={cartItems} />
