@@ -11,6 +11,8 @@ import OrderItemList from "../../components/user/AdsItemList";
 import React, {useEffect} from "react";
 import { useState, useRef } from "react";
 import axios from "axios";
+import {useLocation, useNavigate } from 'react-router-dom';
+
 
 const OrderListScreenWrapper = styled.div`
   .order-tabs-contents {
@@ -43,7 +45,7 @@ const breadcrumbItems = [
 ];
 
 const AdListScreen = () => {
-
+  const navigate = useNavigate();
   const [petlist, setPetlist] = useState([]);
   const isMounted = useRef(true); // Use a ref to track component mount state
   
@@ -98,6 +100,7 @@ const AdListScreen = () => {
         console.log("Product deleted successfully.");
         // Reload products after deletion
         loadProducts();
+        navigate('/myads');
       }
     } catch (error) {
       console.error("Failed to delete product:", error);
