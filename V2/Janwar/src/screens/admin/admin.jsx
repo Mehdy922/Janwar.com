@@ -19,7 +19,7 @@ const ButtonGroupWrapper = styled.div`
     }
   }
 `;
-const OrderDetailScreenWrapper = styled.main`
+const DetailScreenWrapper = styled.main`
   .btn-and-title-wrapper {
     margin-bottom: 24px;
     .title {
@@ -48,7 +48,7 @@ const OrderDetailScreenWrapper = styled.main`
     }
   }
 `;
-const OrderDetailListWrapper = styled.div`
+const DetailListWrapper = styled.div`
   padding: 24px;
   margin-top: 40px;
   margin-bottom: 40px;
@@ -149,7 +149,7 @@ const OrderDetailListWrapper = styled.div`
 `;
 
 const breadcrumbItems = [
-  { label: "Admin Page", link: "/" },
+  { label: "Admin Page", link: "/admin" },
 ];
 
 
@@ -163,6 +163,9 @@ const AdminPage = () => {
             <h4 className="text-3xl order-d-no">
                 {data.name}
             </h4>
+            <p className="text-lg font-medium text-black">
+              Email: {data.email}
+            </p>
             <p className="text-lg font-medium text-gray">
               Complain: {data.complain}
             </p>
@@ -181,12 +184,12 @@ const AdminPage = () => {
   };
 
   const info = [
-    { name: 'John', complain: 'My Bitch Hasnain turned out to be infertile' },
-    { name: 'Alice', complain: 'My Stud Mehdy had Erectile Dysfunction' },
-    { name: 'Bob', complain: 'Software update needed' }
+    { name: 'John',email:'jhonny.sins@gmail.com', complain: 'My Bitch Hasnain turned out to be infertile' },
+    { name: 'Alice',email:'alice.khalifa@gmail.com', complain: 'My Stud Mehdy had Erectile Dysfunction' },
+    { name: 'Bob',email:'booby69@gmail.com', complain: 'Software update needed' }
   ];
   return (
-    <OrderDetailScreenWrapper className="page-py-spacing">
+    <DetailScreenWrapper className="page-py-spacing">
       <Container>
         <Breadcrumb items={breadcrumbItems} />
         <UserDashboardWrapper>
@@ -211,7 +214,7 @@ const AdminPage = () => {
               </div>
               </div>
               <hr></hr><hr></hr><hr></hr><hr></hr>
-              <OrderDetailListWrapper className="order-d-list">
+              <DetailListWrapper className="order-d-list">
               <div className="order-d-top flex justify-between items-start">
                 <div className="order-d-top-l">
                   <h4 className="text-3xl order-d-no">
@@ -229,7 +232,7 @@ const AdminPage = () => {
                 </Link>
                 </div>
               </div>
-              </OrderDetailListWrapper>
+              </DetailListWrapper>
               <hr></hr><hr></hr><hr></hr><hr></hr>
               <div className="order-d-top flex justify-between items-start">
                 <div className="order-d-top-l">
@@ -252,7 +255,7 @@ const AdminPage = () => {
           </UserContent>
         </UserDashboardWrapper>
       </Container>
-    </OrderDetailScreenWrapper>
+    </DetailScreenWrapper>
   );
 };
 
