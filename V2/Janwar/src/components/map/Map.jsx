@@ -3,6 +3,7 @@ import GoogleMapReact from "google-map-react";
 import "./map.css";
 import { Icon } from "@iconify/react";
 import locationIcon from "@iconify/icons-mdi/map-marker";
+<script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap" async defer></script>
 
 const location = {
   address: "National University of Computer and Emerging Sciences, Block B, Faisal Town, Lahore, Punjab, Pakistan.",
@@ -22,10 +23,10 @@ const Map = () => {
   return (
     <div className="map">
       <h2 className="map-h2">Come Visit Us At Our Campus</h2>
-
       <div className="google-map">
+      
         <GoogleMapReact
-          bootstrapURLKeys={{ key: "YOUR_API_KEY" }}
+          bootstrapURLKeys={{ key: "" }}
           defaultCenter={location}
           defaultZoom={17}>
           <LocationPin
