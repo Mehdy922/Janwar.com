@@ -47,10 +47,15 @@ const Form = () => {
   };
 
   const handleSubmit = async (event)  => {
-    event.preventDefault();
+    
     console.log('Sending message:', formState);
-    // Here you can handle the form submission.
-    // For example, you can send a request to your server with the form data.
+    
+    const isFormFilled = Object.values(formState).every((value) => value.trim() !== '');
+
+    if (!isFormFilled) {
+      alert('Please fill all fields.');
+      return;
+    }
     const userObj = await axios.post('http://localhost:5050/user/addtoComplain', formState);
     const msg = await axios.post('http://localhost:5050/email/contactUser', formState);
 
@@ -72,7 +77,7 @@ const Form = () => {
   return (
     <form className="form" onSubmit={handleSubmit}>
       <h2 className="form-h2">Send us a message</h2>
-      <p className="form-p"> Fill out the form below if you have any issues or feedback and we will get back to you as soon as possible.</p>
+      <p className="form-p"> Fill out the form below if you have any issues or feedback or want to update your profile i.e name,email etc and we will get back to you as soon as possible.</p>
 
       {formInputs.map((input) => (
         <label key={input.label} id={input.id} className="form-label">
