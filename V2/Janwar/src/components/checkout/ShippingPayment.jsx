@@ -152,6 +152,7 @@ const ShippingPaymentWrapper = styled.div`
 `;
 
 const ShippingPayment = () => {
+
   
 
   const [name, setName] = useState('');
@@ -182,12 +183,13 @@ const ShippingPayment = () => {
   }, []);
 
   const [paymentMethod, setPaymentMethod] = useState('');
-
+  const [showPaymentDetails, setShowPaymentDetails] = useState(false);
 
   const handlePaymentMethodChange = (event) => {
     setPaymentMethod(event.target.value);
+    const selectedMethod = event.target.value;
+    setShowPaymentDetails(selectedMethod === 'credit card');
   };
-
  
   
 
@@ -222,6 +224,10 @@ const ShippingPayment = () => {
     }
   };
   
+
+
+
+
 
   return (
     <ShippingPaymentWrapper>
@@ -285,42 +291,42 @@ const ShippingPayment = () => {
                 );
               })}
             </div>
-            <div className="payment-details">
-        <div className="form-elem-group">
-          <Input
-            type="text"
-            className="form-elem"
-            placeholder="Card number"
-            required
-            pattern="[0-9]{16}"
-            title="Please enter a 16-digit card number"
-          />
-          <Input
-            type="text"
-            className="form-elem"
-            placeholder="Name of card"
-            required
+            <div className="payment-details" style={{ display: showPaymentDetails ? 'block' : 'none' }}>
+            <div className="form-elem-group">
+              <Input
+                type="text"
+                className="form-elem"
+                placeholder="Card number"
+                required
+                pattern="[0-9]{16}"
+                title="Please enter a 16-digit card number"
+              />
+              <Input
+                type="text"
+                className="form-elem"
+                placeholder="Name of card"
+                required
+              />
+            </div>
+            <div className="form-elem-group">
+                <Input
+                type="text"
+                className="form-elem"
+                placeholder="Expiration date (MM/YY)"
+                required
+                pattern="(0[1-9]|1[0-2])\/[0-9]{2}"
+                title="Please enter a valid expiration date in MM/YY format"
+              />
+              <Input
+                type="text"
+                className="form-elem"
+                placeholder="Security Code"
+                required
+                pattern="[0-9]{3}"
+                title="Please enter a 3-digit security code"
           />
         </div>
-        <div className="form-elem-group">
-          <Input
-            type="text"
-            className="form-elem"
-            placeholder="Expiration date (MM/YY)"
-            required
-            pattern="(0[1-9]|1[0-2])\/[0-9]{2}"
-            title="Please enter a valid expiration date in MM/YY format"
-          />
-          <Input
-            type="text"
-            className="form-elem"
-            placeholder="Security Code"
-            required
-            pattern="[0-9]{3}"
-            title="Please enter a 3-digit security code"
-          />
         </div>
-      </div>
           </div>
 
           <div className="horiz-line-separator"></div>
@@ -346,9 +352,9 @@ const ShippingPayment = () => {
       <BaseButtonGreen
           type="button"
           className="pay-now-btn"
-          onClick={addorder} // Call handlePayment when button is clicked
+          onClick={addorder}
         >
-    Pay Now
+    Confirm Order
   </BaseButtonGreen>
 </Link>
     </ShippingPaymentWrapper>
