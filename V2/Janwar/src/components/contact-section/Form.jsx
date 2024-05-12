@@ -47,10 +47,15 @@ const Form = () => {
   };
 
   const handleSubmit = async (event)  => {
-    event.preventDefault();
+    
     console.log('Sending message:', formState);
-    // Here you can handle the form submission.
-    // For example, you can send a request to your server with the form data.
+    
+    const isFormFilled = Object.values(formState).every((value) => value.trim() !== '');
+
+    if (!isFormFilled) {
+      alert('Please fill all fields.');
+      return;
+    }
     const userObj = await axios.post('http://localhost:5050/user/addtoComplain', formState);
     const msg = await axios.post('http://localhost:5050/email/contactUser', formState);
 
