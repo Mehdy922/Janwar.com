@@ -6,7 +6,7 @@ import ProductList from "../../components/product/ProductListAcc";
 import { products } from "../../data/data";
 import Title from "../../components/common/Title";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";
-import ProductFilter from "../../components/product/ProductFilterAccessories";
+import ProductFilter from "../../components/product/ProductFilterAccesoriesAdmin";
 import { useState } from "react";
 import React, { useEffect } from "react";
 import axios from "axios";
