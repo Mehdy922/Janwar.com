@@ -59,7 +59,6 @@ const CartTable = ({ cartItems, onRemoveItem }) => {
   const CART_TABLE_HEADS = [
     "Product details",
     "Price",
-    "Quantity",
     "Shipping",
     "Subtotal",
     "Action",
