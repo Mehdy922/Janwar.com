@@ -4,7 +4,8 @@ Contributors
 -Hasnain Fatmi  
 -Muhammad Mehdy Hasnain  
 
-# Figma prototype (In work)  
+# Figma prototype link
+https://www.figma.com/proto/q0g7pAhZgTYUwNlo4cGcYE/Janwar.com?type=design&node-id=123-18&t=KpRJNS6pHiHBYbaG-1&scaling=contain&page-id=0%3A1&starting-point-node-id=123%3A18&mode=design
 
 
 # Description  
