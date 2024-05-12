@@ -46,7 +46,7 @@ const ResetScreen = () => {
       }
     } catch (error) {
       console.error('Error sending message:', error);
-      alert('Failed to send message');
+      // alert('Failed to send message');
     }
   } 
 
