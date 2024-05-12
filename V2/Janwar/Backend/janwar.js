@@ -314,21 +314,15 @@ db_users.post("/addtoorder", async (req, res) => {
   }
 });
 
-db_users.post("/get_Orders", async (req, res) => {
+db_users.post("/get_order", async (req, res) => {
   try {
-      console.log("Get Ads order request received");
-      const body = req.body;
-      const keys = Object.keys(body);
-      const userID = keys[0]; 
-      console.log("User that called ID = ", userID);
-      const collection = await db.collection("janwarOrders");
-      const orderItems = await collection.find().toArray();
-      const userorderItems = orderItems.filter(item => item.buyerID === userID);
-      console.log("User order Items = ", userorderItems);
-      res.status(200).json(userorderItems);
+    console.log("Get Ads request received");
+    const collection = await db.collection("janwarOrders");
+    const user = await collection.find().toArray();
+    res.status(200).send(user);
   } catch (error) {
-      console.error("Error during janwarOrders:", error);
-      res.status(500).send("Internal Server Error");
+    console.error("Error during getAds:", error);
+    res.status(500).send("Internal Server Error");
   }
 });
 
