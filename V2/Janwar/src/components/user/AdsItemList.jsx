@@ -9,7 +9,7 @@ const OrderItemList = ({ products, onDelete }) => {
   return (
     <div>
       {products.map((product) => {
-        return <OrderItem product={product} onDelete={() => onDelete(product._id)}/>;
+        return <OrderItem key={product._id} product={product} onDelete={() => onDelete(product._id)}/>;
       })}
     </div>
   );
