@@ -82,6 +82,11 @@ const PostAdScreen = () => {
 
   const postAdd = async (e) => {
     try {
+      if (!postData.title || !postData.pet_type || !postData.description || !postData.location || !postData.images || !postData.postCategory) {
+        alert('Please fill all required fields');
+        return;
+      }
+      
       console.log('Posting ad req recieved at frontend:', postData);
      
       //combine local storage user data with post data
