@@ -72,7 +72,7 @@ const Form = () => {
   return (
     <form className="form" onSubmit={handleSubmit}>
       <h2 className="form-h2">Send us a message</h2>
-      <p className="form-p"> Fill out the form below if you have any issues or feedback and we will get back to you as soon as possible.</p>
+      <p className="form-p"> Fill out the form below if you have any issues or feedback or want to update your profile i.e name,email etc and we will get back to you as soon as possible.</p>
 
       {formInputs.map((input) => (
         <label key={input.label} id={input.id} className="form-label">
