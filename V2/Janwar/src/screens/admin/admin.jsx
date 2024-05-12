@@ -241,9 +241,6 @@ const AdminPage = () => {
   };
 
   const info = [
-    { name: 'John',email:'jhonny.sins@gmail.com', complain: 'My Bitch Hasnain turned out to be infertile' },
-    { name: 'Alice',email:'alice.khalifa@gmail.com', complain: 'My Stud Mehdy had Erectile Dysfunction' },
-    { name: 'Bob',email:'booby69@gmail.com', complain: 'Software update needed' }
   ];
   return (
     <DetailScreenWrapper className="page-py-spacing">
