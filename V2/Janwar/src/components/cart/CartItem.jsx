@@ -92,9 +92,11 @@ const CartItem = ({ cartItem, onDelete }) => {
           </div>
           <div className="cart-prod-info">
             <h4 className="text-base">{cartItem.title}</h4>
-            <p className="text-sm text-gray inline-flex">
-              <span className="font-semibold">Gender: </span> {cartItem.gender}
-            </p>
+            {['Male', 'Female', 'Not specified'].includes(cartItem.gender) && (
+              <p className="text-sm text-gray inline-flex">
+                <span className="font-semibold">Gender: </span> {cartItem.gender}
+              </p>
+            )}
           </div>
         </div>
       </td>
@@ -102,19 +104,6 @@ const CartItem = ({ cartItem, onDelete }) => {
         <span className="text-lg font-bold text-outerspace">
           ${cartItem.price}
         </span>
-      </td>
-      <td>
-        <div className="cart-tbl-qty flex items-center">
-          <button className="qty-dec-btn">
-            <i className="bi bi-dash-lg"></i>
-          </button>
-          <span className="qty-value inline-flex items-center justify-center font-medium text-outerspace">
-            {quantity}
-          </span>
-          <button className="qty-inc-btn">
-            <i className="bi bi-plus-lg"></i>
-          </button>
-        </div>
       </td>
       <td>
         <span className="cart-tbl-shipping uppercase text-silver font-bold">

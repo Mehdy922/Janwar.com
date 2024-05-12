@@ -62,7 +62,7 @@ const fetchCartItems = async () => {
       console.log("API response data:", response.data);
       console.log('Response = ', response.data)
       // Filter out objects where user_id is not 'buyer'
-      const filteredOrderItems = response.data.filter(item => item.user_id === buyer._id);
+      const filteredOrderItems = response.data.filter(item => item.buyerID === buyer._id);
       console.log('Filtered order items:', filteredOrderItems);
       setPetlist(filteredOrderItems);
     }
