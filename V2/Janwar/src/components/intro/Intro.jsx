@@ -10,7 +10,7 @@ align-items: flex-start;
 text-align: left;
 background-color: var(--main-blue);
 color: var(--white);
-height: 140vh; // Adjusted height for full screen
+height: 110vh; // Adjusted height for full screen
 padding-left: 10%;
 padding-right: 20%;
 padding-top: 4%;
