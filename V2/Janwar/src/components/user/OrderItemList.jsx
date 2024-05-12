@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const OrderItemList = ({ orders }) => {
   console.log('Ads:', orders.length);
   if (!orders || orders.length === 0) {
-    return <p>No Ads available.</p>;
+    return <p>No Orders available.</p>;
   }
   return (
     <div>
