@@ -77,7 +77,7 @@ const UserMenu = () => {
               to="/order"
               className={`nav-menu-link flex items-center ${
                 location.pathname === "/order" ||
-                location.pathname === "/order_detail"
+                location.pathname === "/order"
                   ? "active"
                   : ""
               }`}

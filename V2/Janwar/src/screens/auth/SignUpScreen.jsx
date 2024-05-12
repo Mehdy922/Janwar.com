@@ -10,8 +10,6 @@ import {
 import { Container } from '../../styles/styles';
 import { staticImages } from '../../utils/images';
 import { FormElement, Input } from '../../styles/form';
-import { BaseButtonBlack } from '../../styles/button';
-import PasswordInput from '../../components/auth/PasswordInput';
 
 const SignUpScreenWrapper = styled.section`
   form {
@@ -222,14 +220,7 @@ const SignUpScreen = () => {
                       required
                     />
                     <span className="text-sm">
-                      I agree to the
-                      <Link to="/terms" className="text-underline">
-                        Terms of Use
-                      </Link>
-                      and
-                      <Link to="/privacy" className="text-underline">
-                        Privacy Policy
-                      </Link>
+                      I agree to the Terms of Use and Privacy Policy.
                     </span>
                   </li>
                 </CheckboxGroup>

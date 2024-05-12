@@ -5,7 +5,6 @@ import { UserContent, UserDashboardWrapper } from "../../styles/user";
 import UserMenu from "../../components/user/UserMenu";
 import Title from "../../components/common/Title";
 import { breakpoints, defaultTheme } from "../../styles/themes/default";
-import { orderData } from "../../data/data";
 import OrderItemList from "../../components/user/AdsItemList";
 
 import React, {useEffect} from "react";
