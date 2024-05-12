@@ -95,7 +95,8 @@ const PostAdScreen = () => {
         postData.user_id = user._id;
         const userObj = await axios.post('http://localhost:5050/user/postAd', postData);
         if (userObj.status === 200) {
-            alert('Add posted successfully');
+          navigate('/home');  
+
         }
 
       }
