@@ -30,7 +30,8 @@ const ProductCardWrapper = styled(Link)`
     border: none;
     background-color: transparent;
     cursor: pointer;
-    color: ${defaultTheme.color_white};
+    color: ${defaultTheme.color_black};
+    background-color: ${defaultTheme.color_yellow};
 
     &:hover {
       background-color: ${defaultTheme.color_red};

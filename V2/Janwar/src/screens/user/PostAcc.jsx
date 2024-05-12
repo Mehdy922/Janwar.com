@@ -78,7 +78,12 @@ const PostAcc = () => {
   const postAdd = async (e) => {
     try {
       console.log('Posting ad req recieved at frontend:', postData);
-     
+      
+      if (Object.values(postData).some((value) => value.trim() === '')) {
+        alert('Please fill all fields.');
+        return;
+      }
+
       //combine local storage user data with post data
       const userData = localStorage.getItem('user_data');
       if (!userData) {
